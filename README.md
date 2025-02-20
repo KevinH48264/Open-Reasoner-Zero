@@ -12,6 +12,8 @@ An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
 </div>
 
 <div align="center" style="line-height: 1;">
+    <a href="https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero" style="margin: 2px;"><img alt="Code" src="https://img.shields.io/badge/Open%20Reasoner%20Zero-000000?style=for-the-badge&logo=github&logoColor=000&logoColor=white" style="display: inline-block; vertical-align: middle;"/></a>
+  
   <a href="https://huggingface.co/Open-Reasoner-Zero" target="_blank"><img alt="Hugging Face"
     src="https://img.shields.io/badge/HuggingFace-fcd022?style=for-the-badge&logo=huggingface&logoColor=000&labelColor"/></a>
 

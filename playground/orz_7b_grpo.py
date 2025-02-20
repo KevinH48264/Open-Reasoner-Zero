@@ -84,9 +84,9 @@ class PPOExpConfig(BasePPOExpConfig):
     advantage_normalize: bool = True
 
     num_episodes: int = 20
-    rollout_batch_size: int = 128 if not DEBUG_MODE else 128
-    n_samples_per_prompt: int = 64 if not DEBUG_MODE else 64
-    micro_rollout_batch_size: int = 128 if not DEBUG_MODE else 240
+    rollout_batch_size: int = 128 if not DEBUG_MODE else 16
+    n_samples_per_prompt: int = 64 if not DEBUG_MODE else 2
+    micro_rollout_batch_size: int = 128
 
     policy_update_steps: int = 1
     critic_update_steps: int = 12 if not DEBUG_MODE else 1
@@ -114,7 +114,7 @@ class PPOExpConfig(BasePPOExpConfig):
     # grpo related settings
     use_grpo: bool = True
 
-    gpu_memory_utilization: float = 0.75 if use_grpo else 0.7 if not DEBUG_MODE else 0.5
+    gpu_memory_utilization: float = 0.75 if not DEBUG_MODE else 0.5
     critic_pretrain: Optional[str] = "" if use_grpo else pretrain
 
     gamma: float = 1.0

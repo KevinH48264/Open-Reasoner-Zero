@@ -74,6 +74,7 @@ pip install -e .
 #### Start Orz-7B PPO Training
 debug running command in single node:
 ```bash
+# NOTE: just for debug, not final setting!
 DEBUG_MODE=True python -m playground.orz_7b_ppo
 ```
 

@@ -141,7 +141,7 @@ We are hiring talented researchers and engineers to join our team. If you are in
 
 We have a wechat group to help discussions and sharing, you can scan the QR code below to join.
 
-![Wechat Group QR Code](figure/WeChatGroup_0224.png)
+<img src="figure/WeChatGroup_0224.png" width="300" style="display: block; margin: 0 auto;"/>
 
 ## Citation
 

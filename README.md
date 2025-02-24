@@ -72,10 +72,16 @@ pip install -e .
 ```
 
 #### Start Orz-7B PPO Training
-debug running command in single node:
+
+debug running command:
 ```bash
 # NOTE: just for debug, not final setting!
-DEBUG_MODE=True python -m playground.orz_7b_ppo
+
+## Debug command in a single GPU
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
+
+## Debug command in a single node (8 GPUs)
+DEBUG_MODE=True python -m playground.orz_7b_ppo_mini
 ```
 
 Multi-node Training on 4 nodes:

@@ -24,7 +24,7 @@ class LLMActor:
                 # https://github.com/vllm-project/vllm/pull/10555
                 kwargs[
                     "worker_cls"
-                ] = "open_reasoner_zero.exp_engine.accelerators.inference.vllm_worker_wrap.OffloadableVLLMWorker"
+                ] = "orz.exp_engine.accelerators.inference.vllm_worker_wrap.OffloadableVLLMWorker"
             else:
                 RayWorkerWrapperPath = vllm.executor.ray_utils
 
@@ -32,7 +32,7 @@ class LLMActor:
                     def __init__(self, *args, **kwargs) -> None:
                         kwargs[
                             "worker_module_name"
-                        ] = "open_reasoner_zero.exp_engine.accelerators.inference.vllm_worker_wrap"
+                        ] = "orz.exp_engine.accelerators.inference.vllm_worker_wrap"
                         kwargs["worker_class_name"] = "OffloadableVLLMWorker"
                         super().__init__(*args, **kwargs)
 

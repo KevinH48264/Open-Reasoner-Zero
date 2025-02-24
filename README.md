@@ -98,7 +98,7 @@ python -m playground.orz_7b_ppo
 Your training log will be shown in the master node terminal.
 
 #### Start Orz-32B PPO Training
-running command in 8 nodes:
+running command in 16 nodes:
 
 first on master node, run:
 ```bash

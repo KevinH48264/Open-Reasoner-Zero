@@ -2,7 +2,7 @@
 Qwen2.5-32B base model + ppo
 
 
-running command in 8 nodes:
+running command in 16 nodes:
 
 on master node, first run `ray start --head`
 then on other nodes, run `ray start --address='<master-node-ip>:<master-node-port>'`

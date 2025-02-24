@@ -1,15 +1,8 @@
 """
-Qwen2.5-7B base model + ppo
+EleutherAI/pythia-14m base model + ppo
 
-debug running command in single node:
-DEBUG_MODE=True python -m playground.orz_7b_ppo
-
-Multi-node Training:
-
-on master node, first run `ray start --head`
-then on other nodes, run `ray start --address='<master-node-ip>:<master-node-port>'`
-then on master node, run `python -m playground.orz_7b_ppo`
-
+debug running command in single GPU:
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
 """
 
 import asyncio

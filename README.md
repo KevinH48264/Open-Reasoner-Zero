@@ -78,7 +78,7 @@ debug running command in single node:
 DEBUG_MODE=True python -m playground.orz_7b_ppo
 ```
 
-Multi-node Training:
+Multi-node Training on 4 nodes:
 
 first on master node, run:
 ```bash

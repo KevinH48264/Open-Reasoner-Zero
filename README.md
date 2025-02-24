@@ -137,6 +137,12 @@ We are hiring talented researchers and engineers to join our team. If you are in
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Open-Reasoner-Zero/Open-Reasoner-Zero&type=Timeline)](https://star-history.com/#Open-Reasoner-Zero/Open-Reasoner-Zero&Timeline)
 
+## Community Discussions
+
+We have a wechat group to help discussions and sharing, you can scan the QR code below to join.
+
+![Wechat Group QR Code](figure/WeChatGroup_0224.png)
+
 ## Citation
 
 ```bibtex

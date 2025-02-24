@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 # install apt dependencies
 RUN apt-get update \
     && apt-get install -y openssh-server iputils-ping net-tools iproute2 traceroute netcat \
+    build-essential libopenexr-dev libxi-dev libglfw3-dev libglew-dev libomp-dev libxinerama-dev libxcursor-dev tzdata \
     && apt clean
 
 # install pytorch_memlab
@@ -18,7 +19,6 @@ RUN pip install flash-attn --no-build-isolation -U
 RUN pip install loguru tqdm ninja tensorboard \
         sentencepiece fire tabulate easydict \
         transformers==4.48.1 awscli rpyc pythonping \
-        build-essential libopenexr-dev libxi-dev libglfw3-dev libglew-dev libomp-dev libxinerama-dev libxcursor-dev tzdata \
         torchvision==0.18.0 hydra-core accelerate \
         redis opentelemetry-api opentelemetry-sdk opentelemetry-exporter-otlp prometheus-client \
         omegaconf black==22.8.0 mypy-extensions pathspec tensorboardX nvitop antlr4-python3-runtime==4.11.0 \

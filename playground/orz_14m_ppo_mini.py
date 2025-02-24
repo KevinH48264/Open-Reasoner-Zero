@@ -150,7 +150,7 @@ class PPOExpConfig(BasePPOExpConfig):
     use_kl_loss: bool = True
     use_kl_estimator_k3: bool = True
 
-    enable_eval: bool = True
+    enable_eval: bool = False
     eval_interval: int = 10
 
     # generate related settings

@@ -25,7 +25,7 @@ RUN pip install loguru tqdm ninja tensorboard \
         ray==2.40.0 deepspeed==0.16.0 vllm==0.6.5 peft
 
 RUN apt update && apt install --fix-broken && apt install -y default-jre-headless openjdk-8-jdk
-RUN eval $(curl -s deploy.i.basemind.com/httpproxy) && pip install git+https://github.com/facebookresearch/hydra.git
+RUN pip install git+https://github.com/facebookresearch/hydra.git
 
 # set nccl.conf and nccl_env
 COPY nccl.conf /etc/nccl.conf

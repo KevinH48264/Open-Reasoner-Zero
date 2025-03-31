@@ -31,6 +31,7 @@ An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
 
 ## Overview 🌊
 We introduce **Open-Reasoner-Zero**, the first open source implementation of large-scale reasoning-oriented RL training focusing on scalability, simplicity and accessibility.
+Using the same base model as DeepSeek-R1-Zero-Qwen-32B, our implementation achieves superior performance on AIME2024, MATH500, and the GPQA Diamond benchmark while demonstrating remarkable efficiency—requiring only a tenth of the training steps, compared to DeepSeek-R1-Zero pipeline.
 
 To enable broader participation in this pivotal moment we witnessed and accelerate research towards artificial general intelligence (AGI), 
 we release our source code, parameter settings, training data, and model weights.

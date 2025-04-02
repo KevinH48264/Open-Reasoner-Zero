@@ -215,10 +215,13 @@ We have several wechat groups to help discussions and sharing, you can scan the 
 ## Citation
 
 ```bibtex
-@misc{OpenReasonerZero2025,
-  title={Open-Reasoner-Zero: An Open Source Approach to Scaling Reinforcement Learning on the Base Model},
-  author={Jingcheng Hu and Yinmin Zhang and Qi Han and Daxin Jiang and Xiangyu Zhang, Heung-Yeung Shum},
-  year={2025},
-  howpublished={\url{https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero}},
+@misc{hu2025openreasonerzeroopensourceapproach,
+      title={Open-Reasoner-Zero: An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model}, 
+      author={Jingcheng Hu and Yinmin Zhang and Qi Han and Daxin Jiang and Xiangyu Zhang and Heung-Yeung Shum},
+      year={2025},
+      eprint={2503.24290},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.24290}, 
 }
 ```

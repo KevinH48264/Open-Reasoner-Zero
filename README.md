@@ -21,7 +21,7 @@ An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
     src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white"/></a>
 
   <br>
-  <a href="https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf"><b>Paper PDF Link [WIP]</b>👁️</a>
+  <a href="https://arxiv.org/abs/2503.24290"><b>Paper Arxiv Link </b>👁️</a>
 </div>
 
 <div>
@@ -35,7 +35,7 @@ Using the same base model as DeepSeek-R1-Zero-Qwen-32B, our implementation achie
 
 To enable broader participation in this pivotal moment we witnessed and accelerate research towards artificial general intelligence (AGI), 
 we release our source code, parameter settings, training data, and model weights.
-Please refer to our [paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) for more insights across various model sizes. 
+Please refer to our [paper](https://arxiv.org/abs/2503.24290) for more insights across various model sizes. 
 
 **Let the Reasoner-Zero tide rise!**
 
@@ -54,7 +54,7 @@ Please refer to our [paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-
 <strong>[2025/03/31]</strong>
 We announce a major milestone for `Open-Reasoner-Zero`:
 
-- 🌊 [Updated Paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) with new results.
+- 🌊 [Updated Paper](https://arxiv.org/abs/2503.24290) with new results.
 - 🔭 [Easy-to-use Training Scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/playground):
   - [ORZ-1.5B training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_1p5b_ppo.py) and [ORZ-0.5B training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_0p5b_ppo.py) (main results in Figure 2). 
   - [Minimal resource training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_0p5b_ppo_1gpu.py): ORZ-0.5B can be run on a single A800/H800 gpu!
@@ -73,7 +73,7 @@ We announce a major milestone for `Open-Reasoner-Zero`:
 We release `Open-Reasoner-Zero`. 
 
 As part of this release, we open-source:
-- 🌊 [Paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) on our comprehensive analysis and insights in Reasoner-Zero training
+- 🌊 [Paper(WIP)](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) on our comprehensive analysis and insights in Reasoner-Zero training
 - 🤗 HF Model [`Open-Reasoner-Zero-7B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-7B) and [`Open-Reasoner-Zero-32B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-32B)
 - 🎁 [`Our curated 57k training data`](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/data)
 - 📄 [Training Scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/playground) to enjoy your own Reasoner-Zero journey!
@@ -92,7 +92,7 @@ We release all of curated high-quality training data in the [`data`](https://git
   * [extended 72k](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_72k_collection_extended.json), mainly cleaned from OpenR1-Math-220k.
 * [hard 13k](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_13k_collection_hard.json), mined from the first stage of ORZ-32B training.
 
-The details for how to collect data are described in our [paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf).
+The details for how to collect data are described in our [paper](https://arxiv.org/abs/2503.24290).
 
 ### Installation & Training Scripts
 We release our [Dockerfile](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/docker/Dockerfile) in [docker](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/docker) folder to facilitate the reproducibility of our training.
@@ -183,6 +183,14 @@ DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
 ## Debug command in a single node (8 GPUs) with `Qwen/Qwen2.5-7B`
 DEBUG_MODE=True python -m playground.orz_7b_ppo
 ```
+
+### How to Use the Model
+#### Policy Model
+Policy models can be used in the same way as any chat model in transformers and vllm, since we have put the chat template jinja in the tokenizer.
+
+#### Critic Model
+Critic models can be loaded the same way like in the [training code](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/orz/ppo/actors.py#L738). 
+
 
 ## Acknowledgements 💖 
 

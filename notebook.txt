@@ -1,0 +1,89 @@
+Purpose: to scale up self-play training on math
+
+--- TRAINING ---
+(unnecessary for now) cd docker; ./setup_system.sh
+
+DEBUG:
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_24__orz_14m_debug_run_v103__nodes_1__self_play_True.txt &
+
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_14m_debug_run_v104__nodes_1__self_play_False.txt &
+
+self_play=True
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_25__orz_7b__math_debug_run_v1001__nodes_1__self_play_true.txt &
+
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_20__orz_7b__math_debug_run_v1293__nodes_1__self_play_true.txt &
+
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_25__orz_7b_debug_run_v107__nodes_1__self_play_true.txt &
+
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_7b_debug_run_v1276__nodes_1__self_play_true.txt &
+
+
+self_play=False
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_22__orz_7b__math_debug_run_v1445__nodes_1__self_play_false.txt &
+
+DEBUG_MODE=True python -m playground.orz_7b_ppo &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_7b_debug_run_v104__nodes_1__self_play_false.txt &
+
+TRAIN ON 1 NODE
+DEBUG_MODE=True python -m playground.orz_7b_ppo &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_25__orz_ckpt_v102_debug.txt &
+
+
+7B RUN ON 4 NODES:
+first on master node, run: 'ray start --head'
+then on other nodes, run: 'ray start --address='10.4.34.79:6379''
+then on master node, run: 'python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_ckpt_v200__nodes_4__self_play_false.txt &'
+
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_27__orz_32b__math_debug_run_v1430__nodes_4__self_play_false.txt &
+
+
+ON OTHER NODES:
+tmux new -s qwen_training
+
+cd /data/users/kevihuang/projects/TNLGv2
+./mount.sh
+
+cd /data/users/kevihuang/projects/Open-Reasoner-Zero
+source venv/bin/activate
+ray start --address='10.4.35.183:6379'
+
+(to restart GPUs, you must restart ray) - ray stop
+
+Next steps
+  To add another node to this Ray cluster, run
+    ray start --address='10.4.39.148:6379'
+  
+  To connect to this Ray cluster:
+    import ray
+    ray.init()
+  
+  To terminate the Ray runtime, run
+    ray stop
+  
+  To view the status of the cluster, use
+    ray status
+
+
+--- VIEW LOGS --- (search for 'avg_custom_rewards')
+tensorboard --logdir=/data/users/kevihuang/projects/Open-Reasoner-Zero/orz_logs --port 6100
+
+
+--- SEMANTIC EVAL ---
+python -m playground.evaluate --checkpoints_roots /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1293__self_play_False /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1300__self_play_False /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1301__self_play_False /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1302__self_play_False /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1305__self_play_False /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1306__self_play_False &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_7b__math_eval.txt &
+
+--- SETTING UP DEPENDENCIES ---
+
+Approach to install dependencies
+1. Python -m venv venv
+2. Pip install -e .
+3. cd docker
+4. sudo -E ./setup.sh
+5. ./setup.sh
+6. sudo -E ./setup.sh
+7. ./setup.sh
+8. pip install math-verify[antlr4_13_2]
+9. cp parameter_offload.py /data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/runtime/zero/parameter_offload.py
+10. cp partitioned_param_coordinator.py /data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py
+11. cd ..
+12. DEBUG_MODE=True python -m playground.orz_7b_ppo
+13. pip install flash-attn==2.7.4.post1 --no-build-isolation --force-reinstall
+14. Repeat from step 3 and it seems to have worked? Not sure
+Note: I put my current environment into requirements.txt

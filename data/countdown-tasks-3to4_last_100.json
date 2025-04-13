@@ -1,0 +1,1502 @@
+[
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [34, 2, 16, 80], create an equation that equals 58. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "58"
+      },
+      "nums": {
+        "value": "[34, 2, 16, 80]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [16, 89, 4], create an equation that equals 93. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "93"
+      },
+      "nums": {
+        "value": "[16, 89, 4]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [83, 11, 92, 35], create an equation that equals 70. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "70"
+      },
+      "nums": {
+        "value": "[83, 11, 92, 35]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [75, 38, 31], create an equation that equals 68. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "68"
+      },
+      "nums": {
+        "value": "[75, 38, 31]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [7, 11, 9], create an equation that equals 27. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "27"
+      },
+      "nums": {
+        "value": "[7, 11, 9]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [46, 25, 61, 52], create an equation that equals 92. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "92"
+      },
+      "nums": {
+        "value": "[46, 25, 61, 52]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [41, 61, 88, 9], create an equation that equals 44. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "44"
+      },
+      "nums": {
+        "value": "[41, 61, 88, 9]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [22, 65, 95], create an equation that equals 52. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "52"
+      },
+      "nums": {
+        "value": "[22, 65, 95]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [21, 48, 42, 79], create an equation that equals 17. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "17"
+      },
+      "nums": {
+        "value": "[21, 48, 42, 79]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [22, 20, 50], create an equation that equals 100. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "100"
+      },
+      "nums": {
+        "value": "[22, 20, 50]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [27, 55, 26, 21], create an equation that equals 34. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "34"
+      },
+      "nums": {
+        "value": "[27, 55, 26, 21]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [17, 59, 39, 4], create an equation that equals 97. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "97"
+      },
+      "nums": {
+        "value": "[17, 59, 39, 4]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [83, 26, 42], create an equation that equals 67. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "67"
+      },
+      "nums": {
+        "value": "[83, 26, 42]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [34, 79, 30, 67], create an equation that equals 92. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "92"
+      },
+      "nums": {
+        "value": "[34, 79, 30, 67]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [22, 31, 8, 6], create an equation that equals 40. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "40"
+      },
+      "nums": {
+        "value": "[22, 31, 8, 6]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [37, 45, 50], create an equation that equals 42. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "42"
+      },
+      "nums": {
+        "value": "[37, 45, 50]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [26, 45, 39], create an equation that equals 32. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "32"
+      },
+      "nums": {
+        "value": "[26, 45, 39]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [11, 27, 7], create an equation that equals 23. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "23"
+      },
+      "nums": {
+        "value": "[11, 27, 7]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [78, 57, 53], create an equation that equals 82. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "82"
+      },
+      "nums": {
+        "value": "[78, 57, 53]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [91, 68, 88], create an equation that equals 65. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "65"
+      },
+      "nums": {
+        "value": "[91, 68, 88]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [5, 87, 67, 17], create an equation that equals 69. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "69"
+      },
+      "nums": {
+        "value": "[5, 87, 67, 17]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [9, 8, 94, 20], create an equation that equals 42. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "42"
+      },
+      "nums": {
+        "value": "[9, 8, 94, 20]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [71, 85, 71, 91], create an equation that equals 85. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "85"
+      },
+      "nums": {
+        "value": "[71, 85, 71, 91]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [57, 55, 97], create an equation that equals 15. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "15"
+      },
+      "nums": {
+        "value": "[57, 55, 97]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [24, 5, 21, 8], create an equation that equals 87. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "87"
+      },
+      "nums": {
+        "value": "[24, 5, 21, 8]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [6, 70, 90, 18], create an equation that equals 71. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "71"
+      },
+      "nums": {
+        "value": "[6, 70, 90, 18]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [20, 40, 31], create an equation that equals 51. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "51"
+      },
+      "nums": {
+        "value": "[20, 40, 31]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [53, 11, 10, 79], create an equation that equals 62. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "62"
+      },
+      "nums": {
+        "value": "[53, 11, 10, 79]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [16, 1, 9, 44], create an equation that equals 69. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "69"
+      },
+      "nums": {
+        "value": "[16, 1, 9, 44]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [11, 44, 2, 48], create an equation that equals 28. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "28"
+      },
+      "nums": {
+        "value": "[11, 44, 2, 48]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [70, 33, 91, 45], create an equation that equals 83. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "83"
+      },
+      "nums": {
+        "value": "[70, 33, 91, 45]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [10, 13, 26], create an equation that equals 49. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "49"
+      },
+      "nums": {
+        "value": "[10, 13, 26]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [80, 31, 79, 99], create an equation that equals 67. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "67"
+      },
+      "nums": {
+        "value": "[80, 31, 79, 99]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [22, 18, 30], create an equation that equals 70. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "70"
+      },
+      "nums": {
+        "value": "[22, 18, 30]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [77, 23, 69], create an equation that equals 74. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "74"
+      },
+      "nums": {
+        "value": "[77, 23, 69]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [34, 91, 68, 65], create an equation that equals 39. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "39"
+      },
+      "nums": {
+        "value": "[34, 91, 68, 65]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [10, 7, 13, 77], create an equation that equals 17. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "17"
+      },
+      "nums": {
+        "value": "[10, 7, 13, 77]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [52, 78, 96, 6], create an equation that equals 68. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "68"
+      },
+      "nums": {
+        "value": "[52, 78, 96, 6]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [66, 24, 3], create an equation that equals 93. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "93"
+      },
+      "nums": {
+        "value": "[66, 24, 3]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [16, 37, 68, 3], create an equation that equals 86. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "86"
+      },
+      "nums": {
+        "value": "[16, 37, 68, 3]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [76, 51, 98, 24], create an equation that equals 98. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "98"
+      },
+      "nums": {
+        "value": "[76, 51, 98, 24]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [10, 3, 15], create an equation that equals 35. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "35"
+      },
+      "nums": {
+        "value": "[10, 3, 15]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [48, 50, 54, 92], create an equation that equals 65. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "65"
+      },
+      "nums": {
+        "value": "[48, 50, 54, 92]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [72, 52, 47, 34], create an equation that equals 43. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "43"
+      },
+      "nums": {
+        "value": "[72, 52, 47, 34]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [7, 3, 11], create an equation that equals 26. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "26"
+      },
+      "nums": {
+        "value": "[7, 3, 11]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [88, 1, 96, 53], create an equation that equals 45. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "45"
+      },
+      "nums": {
+        "value": "[88, 1, 96, 53]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [80, 33, 49], create an equation that equals 64. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "64"
+      },
+      "nums": {
+        "value": "[80, 33, 49]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [54, 83, 82], create an equation that equals 53. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "53"
+      },
+      "nums": {
+        "value": "[54, 83, 82]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [29, 90, 9], create an equation that equals 52. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "52"
+      },
+      "nums": {
+        "value": "[29, 90, 9]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [98, 67, 39], create an equation that equals 70. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "70"
+      },
+      "nums": {
+        "value": "[98, 67, 39]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [3, 47, 60], create an equation that equals 67. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "67"
+      },
+      "nums": {
+        "value": "[3, 47, 60]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [87, 53, 77], create an equation that equals 63. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "63"
+      },
+      "nums": {
+        "value": "[87, 53, 77]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [13, 14, 26], create an equation that equals 25. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "25"
+      },
+      "nums": {
+        "value": "[13, 14, 26]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [5, 47, 7], create an equation that equals 45. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "45"
+      },
+      "nums": {
+        "value": "[5, 47, 7]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [11, 37, 20, 64], create an equation that equals 15. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "15"
+      },
+      "nums": {
+        "value": "[11, 37, 20, 64]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [98, 66, 9, 2], create an equation that equals 92. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "92"
+      },
+      "nums": {
+        "value": "[98, 66, 9, 2]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [36, 45, 20], create an equation that equals 81. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "81"
+      },
+      "nums": {
+        "value": "[36, 45, 20]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [16, 64, 34, 3], create an equation that equals 42. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "42"
+      },
+      "nums": {
+        "value": "[16, 64, 34, 3]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [55, 25, 35], create an equation that equals 65. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "65"
+      },
+      "nums": {
+        "value": "[55, 25, 35]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [90, 63, 77], create an equation that equals 76. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "76"
+      },
+      "nums": {
+        "value": "[90, 63, 77]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [88, 99, 79], create an equation that equals 90. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "90"
+      },
+      "nums": {
+        "value": "[88, 99, 79]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [90, 54, 69, 31], create an equation that equals 64. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "64"
+      },
+      "nums": {
+        "value": "[90, 54, 69, 31]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [72, 68, 14], create an equation that equals 56. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "56"
+      },
+      "nums": {
+        "value": "[72, 68, 14]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [50, 46, 48, 95], create an equation that equals 43. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "43"
+      },
+      "nums": {
+        "value": "[50, 46, 48, 95]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [54, 98, 3, 56], create an equation that equals 72. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "72"
+      },
+      "nums": {
+        "value": "[54, 98, 3, 56]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [27, 47, 54], create an equation that equals 94. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "94"
+      },
+      "nums": {
+        "value": "[27, 47, 54]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [40, 12, 90, 85], create an equation that equals 24. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "24"
+      },
+      "nums": {
+        "value": "[40, 12, 90, 85]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [39, 53, 63, 35], create an equation that equals 42. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "42"
+      },
+      "nums": {
+        "value": "[39, 53, 63, 35]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [60, 36, 32, 54], create an equation that equals 51. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "51"
+      },
+      "nums": {
+        "value": "[60, 36, 32, 54]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [82, 38, 55, 49], create an equation that equals 20. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "20"
+      },
+      "nums": {
+        "value": "[82, 38, 55, 49]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [14, 46, 38], create an equation that equals 70. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "70"
+      },
+      "nums": {
+        "value": "[14, 46, 38]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [65, 10, 5, 1], create an equation that equals 79. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "79"
+      },
+      "nums": {
+        "value": "[65, 10, 5, 1]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [95, 48, 64, 25], create an equation that equals 86. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "86"
+      },
+      "nums": {
+        "value": "[95, 48, 64, 25]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [79, 51, 75], create an equation that equals 55. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "55"
+      },
+      "nums": {
+        "value": "[79, 51, 75]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [92, 8, 53, 55], create an equation that equals 86. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "86"
+      },
+      "nums": {
+        "value": "[92, 8, 53, 55]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [13, 42, 45], create an equation that equals 74. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "74"
+      },
+      "nums": {
+        "value": "[13, 42, 45]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [4, 73, 16, 96], create an equation that equals 87. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "87"
+      },
+      "nums": {
+        "value": "[4, 73, 16, 96]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [44, 29, 62, 11], create an equation that equals 22. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "22"
+      },
+      "nums": {
+        "value": "[44, 29, 62, 11]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [55, 63, 21, 68], create an equation that equals 81. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "81"
+      },
+      "nums": {
+        "value": "[55, 63, 21, 68]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [56, 92, 94, 28], create an equation that equals 82. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "82"
+      },
+      "nums": {
+        "value": "[56, 92, 94, 28]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [25, 88, 3], create an equation that equals 60. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "60"
+      },
+      "nums": {
+        "value": "[25, 88, 3]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [3, 23, 21, 2], create an equation that equals 35. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "35"
+      },
+      "nums": {
+        "value": "[3, 23, 21, 2]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [49, 3, 52], create an equation that equals 95. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "95"
+      },
+      "nums": {
+        "value": "[49, 3, 52]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [53, 8, 58, 59], create an equation that equals 56. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "56"
+      },
+      "nums": {
+        "value": "[53, 8, 58, 59]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [26, 52, 39], create an equation that equals 13. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "13"
+      },
+      "nums": {
+        "value": "[26, 52, 39]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [87, 73, 64, 22], create an equation that equals 55. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "55"
+      },
+      "nums": {
+        "value": "[87, 73, 64, 22]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [11, 83, 2, 8], create an equation that equals 98. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "98"
+      },
+      "nums": {
+        "value": "[11, 83, 2, 8]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [32, 21, 77, 17], create an equation that equals 83. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "83"
+      },
+      "nums": {
+        "value": "[32, 21, 77, 17]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [57, 19, 64, 38], create an equation that equals 63. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "63"
+      },
+      "nums": {
+        "value": "[57, 19, 64, 38]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [28, 18, 62], create an equation that equals 52. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "52"
+      },
+      "nums": {
+        "value": "[28, 18, 62]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [39, 18, 21, 72], create an equation that equals 30. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "30"
+      },
+      "nums": {
+        "value": "[39, 18, 21, 72]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [47, 17, 69, 87], create an equation that equals 47. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "47"
+      },
+      "nums": {
+        "value": "[47, 17, 69, 87]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [79, 3, 14, 76], create an equation that equals 33. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "33"
+      },
+      "nums": {
+        "value": "[79, 3, 14, 76]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [29, 84, 89], create an equation that equals 34. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "34"
+      },
+      "nums": {
+        "value": "[29, 84, 89]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [41, 16, 35], create an equation that equals 22. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "22"
+      },
+      "nums": {
+        "value": "[41, 16, 35]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [40, 32, 68, 20], create an equation that equals 35. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "35"
+      },
+      "nums": {
+        "value": "[40, 32, 68, 20]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [73, 34, 60, 63], create an equation that equals 84. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "84"
+      },
+      "nums": {
+        "value": "[73, 34, 60, 63]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [98, 2, 70], create an equation that equals 26. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "26"
+      },
+      "nums": {
+        "value": "[98, 2, 70]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [97, 49, 4, 73], create an equation that equals 26. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "26"
+      },
+      "nums": {
+        "value": "[97, 49, 4, 73]"
+      }
+    }
+  ],
+  [
+    {
+      "from": "human",
+      "value": "Using the numbers [45, 43, 83, 38], create an equation that equals 33. You can use basic arithmetic operations (+, -, *, /) one or multiple times but each number can only be used once. Show your work in <think> </think> tags. And return the final equation in <answer> </answer> tags, for example <answer> (1 + 2) / 3 </answer>. Think step by step inside <think> tags."
+    },
+    {
+      "from": "assistant",
+      "ground_truth": {
+        "value": "33"
+      },
+      "nums": {
+        "value": "[45, 43, 83, 38]"
+      }
+    }
+  ]
+]

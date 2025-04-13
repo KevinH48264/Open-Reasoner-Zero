@@ -290,32 +290,82 @@ def get_advantages_and_returns(
     return advantages.detach(), returns
 
 
-def normalize_advantages(buffer):
-    items = []
-    action_masks = []
+# def normalize_advantages(buffer):
+#     items = []
+#     action_masks = []
+#     for item in buffer:
+#         items.append(getattr(item, "advantages"))
+#         action_masks.append(item.action_mask)
+
+#     items_vector = torch.cat(items).float().flatten()
+
+#     if action_masks[0] is None:
+#         # packing samples has no action mask
+#         action_masks_vector = 1
+#         num_actions = items_vector.numel()
+#     else:
+#         action_masks_vector = torch.cat(action_masks).flatten()
+#         num_actions = action_masks_vector.sum()
+
+#     # mean
+#     mean = items_vector.mean()
+#     # std
+#     std = ((items_vector - mean).pow(2) * action_masks_vector).sum()
+#     rstd = (std / num_actions).clamp(min=1e-8).rsqrt()
+
+#     for i, item in enumerate(buffer):
+#         t = (items[i] - mean) * rstd
+#         setattr(item, "advantages", t.bfloat16())
+#     return buffer
+
+
+def normalize_advantages(buffer, group_key="exp_type", n_samples_per_prompt=1):
+    # Group experiences by the provided key
+    groups = {}
     for item in buffer:
-        items.append(getattr(item, "advantages"))
-        action_masks.append(item.action_mask)
+        key_val = item.info.get(group_key, None)
+        if key_val is None:
+            key = "policy"
+        elif isinstance(key_val, torch.Tensor):
+            # Use thresholds: 1.0 → policy; 0.6 → evaluator_extract; 0.3 → evaluator_check; 0.0 → query.
+            val = key_val.squeeze().item()
+            if val >= 0.75:
+                key = "policy"
+            elif val >= 0.5:
+                key = "query_evaluator"
+            elif val >= 0.25:
+                key = "policy_evaluator"
+            else:
+                key = "query"
+        else:
+            key = key_val  # if already a string
+        groups.setdefault(key, []).append(item)
 
-    items_vector = torch.cat(items).float().flatten()
+    # Process each group separately.
+    for group in groups.values():
+        items = [getattr(item, "advantages") for item in group]
+        action_masks = [item.action_mask for item in group]
+        items_vector = torch.cat(items).float().flatten()
+        if action_masks[0] is None:
+            action_masks_vector = 1
+            num_actions = items_vector.numel()
+        else:
+            action_masks_vector = torch.cat(action_masks).flatten()
+            num_actions = action_masks_vector.sum()
+        mean = items_vector.mean()
+        std = ((items_vector - mean).pow(2) * action_masks_vector).sum()
+        rstd = (std / num_actions).clamp(min=1e-8).rsqrt()
 
-    if action_masks[0] is None:
-        # packing samples has no action mask
-        action_masks_vector = 1
-        num_actions = items_vector.numel()
-    else:
-        action_masks_vector = torch.cat(action_masks).flatten()
-        num_actions = action_masks_vector.sum()
 
-    # mean
-    mean = items_vector.mean()
-    # std
-    std = ((items_vector - mean).pow(2) * action_masks_vector).sum()
-    rstd = (std / num_actions).clamp(min=1e-8).rsqrt()
+        # # If the group is policy, downweight the advantages by a factor of 1/n_samples_per_prompt.
+        # scale_factor = 1.0
+        # if key == "policy": # downweight the policy advantages so that the query and policy advantages are on the same scale when sampled for loss computation
+        #     scale_factor = 1.0 / n_samples_per_prompt # this is likely critical otherwise the policy advantages (which is a factor of n_samples_per_prompt more than # of query advantages) will dominate the PPO loss (which you DON'T want). By bringing down the policy advantages by a factor of n_samples_per_prompt, you are effectively making the total loss contribution of policy and query advantages on the same scale (50/50)
 
-    for i, item in enumerate(buffer):
-        t = (items[i] - mean) * rstd
-        setattr(item, "advantages", t.bfloat16())
+        for i, item in enumerate(group):
+            normalized = (items[i] - mean) * rstd # * scale_factor
+            setattr(item, "advantages", normalized.bfloat16())
+
     return buffer
 
 

@@ -1,0 +1,171 @@
+[2025-04-09 15:58:43,305] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+2025-04-09 15:58:49.959 | INFO     | __main__:PPOExpConfig:162 - prompt_data: ['data/orz_math_57k_collected.json'], eval_prompt_data: ['data/eval_data/math500.json', 'data/eval_data/aime2024.json', 'data/eval_data/gpqa_diamond.json'], prompt_data_probs: [1.0]
+2025-04-09 15:58:49.970 | INFO     | __main__:<module>:2758 - --------- config key ---------                  ------ value ------
+seed                                            42
+ref_num_nodes                                   32
+ref_num_gpus_per_node                           1
+reward_num_nodes                                1
+reward_num_gpus_per_node                        2
+actor_num_nodes                                 32
+actor_num_gpus_per_node                         1
+critic_num_nodes                                32
+critic_num_gpus_per_node                        1
+colocate_critic_reward                          True
+colocate_actor_ref                              True
+colocate_all                                    True
+vllm_num_engines                                32
+vllm_tensor_parallel_size                       1
+vllm_sync_backend                               nccl
+local_rank                                      -1
+pretrain                                        Qwen/Qwen2.5-14B
+critic_pretrain                                 Qwen/Qwen2.5-14B
+reward_pretrain                                 <class 'NoneType'>
+ckpt_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/orz_7b_ppo_self_play__math__v1432__self_play_False
+save_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/orz_7b_ppo_self_play__math__v1432__self_play_False
+tensorboard_log_dir                             orz_logs/orz_7b_ppo_self_play__math__v1432__self_play_False
+prompt_data                                     <class 'omegaconf.listconfig.ListConfig'>
+load_checkpoint                                 True
+zero_stage                                      3
+bf16                                            True
+zpg                                             1
+adam_offload                                    False
+flash_attn                                      True
+grad_accum_dtype                                <class 'NoneType'>
+disable_trace_cache                             False
+gradient_checkpointing                          True
+gradient_checkpointing_use_reentrant            False
+disable_fast_tokenizer                          False
+target_modules                                  all-linear
+enable_prefix_caching                           True
+enable_chunked_prefill                          False
+max_num_batched_tokens                          2048
+enforce_eager                                   False
+gpu_memory_utilization                          0.7
+eval_steps                                      -1
+save_steps                                      -1
+save_interval                                   50
+actor_learning_rate                             1e-06
+critic_learning_rate                            5e-06
+num_episodes                                    20
+max_epochs                                      1
+prompt_max_len                                  8000
+generate_max_len                                8000
+train_batch_size                                256
+micro_train_batch_size                          1
+rollout_batch_size                              128
+micro_rollout_batch_size                        128
+micro_forward_batch_size                        1
+policy_update_steps                             1
+critic_update_steps                             12
+max_len                                         8192
+max_norm                                        1.0
+num_warmup_steps                                50
+l2                                              0.0
+eps_clip                                        0.2
+value_clip                                      0.2
+lambd                                           1.0
+gamma                                           1.0
+normalize_reward                                True
+top_p                                           1.0
+temperature                                     1.0
+freezing_actor_steps                            -1
+n_samples_per_prompt                            64
+kl_target                                       <class 'NoneType'>
+init_kl_coef                                    0
+use_kl_estimator_k3                             True
+use_abs_kl                                      False
+use_kl_loss                                     True
+kl_loss_coef                                    0.0
+adam_betas                                      (0.9, 0.95)
+reward_clip_range                               (-10, 10)
+use_compute_reward_fn                           True
+advantage_normalize                             True
+value_head_prefix                               value_head
+ref_reward_offload                              False
+enable_eval                                     True
+eval_interval                                   10
+update_ref_every_epoch                          True
+use_orm_score                                   False
+total_num_nodes                                 32
+n_policy_evaluator_samples_per_policy_response  1
+eval_prompt_data                                <class 'omegaconf.listconfig.ListConfig'>
+prompt_data_probs                               <class 'omegaconf.listconfig.ListConfig'>
+packing_max_len                                 16384
+top_k                                           -1
+stop                                            <class 'omegaconf.listconfig.ListConfig'>
+use_grpo                                        False
+2025-04-09 15:58:50,096	INFO worker.py:1636 -- Connecting to existing Ray cluster at address: 10.4.35.183:6379...
+2025-04-09 15:58:50,114	INFO worker.py:1821 -- Connected to Ray cluster.
+*** SIGTERM received at time=1744214374 on cpu 49 ***
+PC: @     0x7f8994bf4117  (unknown)  (unknown)
+    @     0x7f8994ba5520  (unknown)  (unknown)
+    @ ... and at least 1 more frames
+[2025-04-09 15:59:34,347 E 292662 292662] logging.cc:447: *** SIGTERM received at time=1744214374 on cpu 49 ***
+[2025-04-09 15:59:34,348 E 292662 292662] logging.cc:447: PC: @     0x7f8994bf4117  (unknown)  (unknown)
+[2025-04-09 15:59:34,348 E 292662 292662] logging.cc:447:     @     0x7f8994ba5520  (unknown)  (unknown)
+[2025-04-09 15:59:34,348 E 292662 292662] logging.cc:447:     @ ... and at least 1 more frames
+[36m(LLMActor pid=292976)[0m Exception ignored in: <function LLM.__del__ at 0x7ff10c6a6e60>
+[36m(LLMActor pid=292976)[0m Traceback (most recent call last):
+[36m(LLMActor pid=292976)[0m   File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 236, in __del__
+[36m(LLMActor pid=292976)[0m     if self.llm_engine and hasattr(self.llm_engine, "shutdown"):
+[36m(LLMActor pid=292976)[0m AttributeError: 'LLM' object has no attribute 'llm_engine'
+[36m(LLMActor pid=292977)[0m Exception ignored in: <function LLM.__del__ at 0x7f2c51006e60>[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=292977)[0m Traceback (most recent call last):[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=292977)[0m   File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 236, in __del__[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=292977)[0m     if self.llm_engine and hasattr(self.llm_engine, "shutdown"):[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=292977)[0m AttributeError: 'LLM' object has no attribute 'llm_engine'[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=292973)[0m INFO 04-09 15:59:15 config.py:478] This model supports multiple tasks: {'reward', 'score', 'embed', 'classify', 'generate'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292973)[0m WARNING 04-09 15:59:15 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(LLMActor pid=292973)[0m WARNING 04-09 15:59:15 config.py:604] Async output processing is not supported on the current platform type cuda.
+[36m(LLMActor pid=292973)[0m INFO 04-09 15:59:15 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-14B', speculative_config=None, tokenizer='Qwen/Qwen2.5-14B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=44, served_model_name=Qwen/Qwen2.5-14B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(LLMActor pid=292972)[0m INFO 04-09 15:59:15 config.py:478] This model supports multiple tasks: {'generate', 'reward', 'score', 'embed', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292976)[0m INFO 04-09 15:59:15 config.py:478] This model supports multiple tasks: {'reward', 'embed', 'classify', 'score', 'generate'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292974)[0m INFO 04-09 15:59:15 config.py:478] This model supports multiple tasks: {'score', 'classify', 'embed', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292977)[0m INFO 04-09 15:59:15 config.py:478] This model supports multiple tasks: {'reward', 'generate', 'score', 'classify', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292979)[0m INFO 04-09 15:59:16 config.py:478] This model supports multiple tasks: {'generate', 'score', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292975)[0m INFO 04-09 15:59:16 config.py:478] This model supports multiple tasks: {'reward', 'classify', 'generate', 'score', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292978)[0m INFO 04-09 15:59:16 config.py:478] This model supports multiple tasks: {'classify', 'score', 'generate', 'embed', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292976)[0m INFO 04-09 15:59:17 selector.py:120] Using Flash Attention backend.
+[36m(LLMActor pid=99460, ip=10.4.37.103)[0m INFO 04-09 15:59:19 config.py:478] This model supports multiple tasks: {'score', 'reward', 'classify', 'generate', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99467, ip=10.4.37.103)[0m INFO 04-09 15:59:19 config.py:478] This model supports multiple tasks: {'generate', 'embed', 'score', 'classify', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292974)[0m INFO 04-09 15:59:20 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-14B...
+[36m(LLMActor pid=99467, ip=10.4.37.103)[0m WARNING 04-09 15:59:19 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used[32m [repeated 10x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(LLMActor pid=99467, ip=10.4.37.103)[0m WARNING 04-09 15:59:19 config.py:604] Async output processing is not supported on the current platform type cuda.[32m [repeated 10x across cluster][0m
+[36m(LLMActor pid=99467, ip=10.4.37.103)[0m INFO 04-09 15:59:19 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-14B', speculative_config=None, tokenizer='Qwen/Qwen2.5-14B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=68, served_model_name=Qwen/Qwen2.5-14B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, [32m [repeated 10x across cluster][0m
+[36m(LLMActor pid=99461, ip=10.4.37.103)[0m INFO 04-09 15:59:20 config.py:478] This model supports multiple tasks: {'score', 'classify', 'generate', 'reward', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99463, ip=10.4.37.103)[0m INFO 04-09 15:59:20 config.py:478] This model supports multiple tasks: {'generate', 'embed', 'score', 'reward', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99462, ip=10.4.37.103)[0m INFO 04-09 15:59:20 config.py:478] This model supports multiple tasks: {'classify', 'generate', 'embed', 'reward', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292974)[0m INFO 04-09 15:59:20 weight_utils.py:243] Using model weights format ['*.safetensors']
+[36m(LLMActor pid=99464, ip=10.4.37.103)[0m INFO 04-09 15:59:20 config.py:478] This model supports multiple tasks: {'embed', 'generate', 'classify', 'score', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98243, ip=10.4.68.84)[0m INFO 04-09 15:59:21 config.py:478] This model supports multiple tasks: {'classify', 'score', 'embed', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98245, ip=10.4.68.84)[0m INFO 04-09 15:59:21 config.py:478] This model supports multiple tasks: {'embed', 'classify', 'score', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98250, ip=10.4.68.84)[0m INFO 04-09 15:59:22 config.py:478] This model supports multiple tasks: {'classify', 'embed', 'score', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98249, ip=10.4.68.84)[0m INFO 04-09 15:59:21 config.py:478] This model supports multiple tasks: {'classify', 'score', 'generate', 'embed', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98248, ip=10.4.68.84)[0m INFO 04-09 15:59:22 config.py:478] This model supports multiple tasks: {'generate', 'score', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98246, ip=10.4.68.84)[0m INFO 04-09 15:59:22 config.py:478] This model supports multiple tasks: {'reward', 'embed', 'generate', 'classify', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98247, ip=10.4.68.84)[0m INFO 04-09 15:59:22 config.py:478] This model supports multiple tasks: {'embed', 'score', 'generate', 'reward', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99466, ip=10.4.37.103)[0m INFO 04-09 15:59:23 config.py:478] This model supports multiple tasks: {'score', 'classify', 'reward', 'generate', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=292977)[0m INFO 04-09 15:59:17 selector.py:120] Using Flash Attention backend.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=98244, ip=10.4.68.84)[0m INFO 04-09 15:59:24 config.py:478] This model supports multiple tasks: {'generate', 'reward', 'score', 'embed', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99465, ip=10.4.37.103)[0m INFO 04-09 15:59:19 config.py:478] This model supports multiple tasks: {'score', 'reward', 'classify', 'generate', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=98246, ip=10.4.68.84)[0m INFO 04-09 15:59:26 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-14B...[32m [repeated 8x across cluster][0m
+[36m(LLMActor pid=98244, ip=10.4.68.84)[0m WARNING 04-09 15:59:24 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used[32m [repeated 13x across cluster][0m
+[36m(LLMActor pid=98244, ip=10.4.68.84)[0m WARNING 04-09 15:59:24 config.py:604] Async output processing is not supported on the current platform type cuda.[32m [repeated 13x across cluster][0m
+[36m(LLMActor pid=98244, ip=10.4.68.84)[0m INFO 04-09 15:59:24 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-14B', speculative_config=None, tokenizer='Qwen/Qwen2.5-14B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=52, served_model_name=Qwen/Qwen2.5-14B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, [32m [repeated 13x across cluster][0m
+[36m(LLMActor pid=292977)[0m INFO 04-09 15:59:20 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=99460, ip=10.4.37.103)[0m INFO 04-09 15:59:29 selector.py:120] Using Flash Attention backend.[32m [repeated 9x across cluster][0m
+[36m(LLMActor pid=120328, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'generate', 'embed', 'reward', 'classify', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=120330, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'score', 'reward', 'generate', 'classify', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=120332, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'embed', 'generate', 'classify', 'reward', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=120331, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'classify', 'embed', 'score', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=120327, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'reward', 'classify', 'score', 'generate', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=120333, ip=10.4.69.251)[0m INFO 04-09 15:59:31 config.py:478] This model supports multiple tasks: {'embed', 'generate', 'classify', 'score', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=99464, ip=10.4.37.103)[0m INFO 04-09 15:59:31 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-14B...[32m [repeated 15x across cluster][0m
+[36m(LLMActor pid=120333, ip=10.4.69.251)[0m WARNING 04-09 15:59:31 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=120333, ip=10.4.69.251)[0m WARNING 04-09 15:59:31 config.py:604] Async output processing is not supported on the current platform type cuda.[32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=120333, ip=10.4.69.251)[0m INFO 04-09 15:59:31 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-14B', speculative_config=None, tokenizer='Qwen/Qwen2.5-14B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=65, served_model_name=Qwen/Qwen2.5-14B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, [32m [repeated 6x across cluster][0m
+[36m(LLMActor pid=99461, ip=10.4.37.103)[0m INFO 04-09 15:59:31 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 11x across cluster][0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: ffffffffffffffffcbadd6ea27fc48ed30a816360e000000 Worker ID: 572439d9b2104c40a205677898c67f5dc84d996539ac23b0934b6fe3 Node ID: 365227e4179cdb9b78639d4084eb62c113b88c9536c2f7fc99ef73b9 Worker IP address: 10.4.35.183 Worker port: 11477 Worker PID: 292972 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker exits unexpectedly. Worker exits with an exit code 1. The process receives a SIGTERM.
+[36m(LLMActor pid=120333, ip=10.4.69.251)[0m INFO 04-09 15:59:33 selector.py:120] Using Flash Attention backend.[32m [repeated 13x across cluster][0m
+[36m(LLMActor pid=99466, ip=10.4.37.103)[0m INFO 04-09 15:59:32 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 5x across cluster][0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: ffffffffffffffffb811678070cda4684833a2980e000000 Worker ID: 708d809e7a074a2b006955228c8d866d44fd5ad44e479f8217ec755f Node ID: 365227e4179cdb9b78639d4084eb62c113b88c9536c2f7fc99ef73b9 Worker IP address: 10.4.35.183 Worker port: 11482 Worker PID: 292977 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker exits unexpectedly. Worker exits with an exit code 1. The process receives a SIGTERM.[32m [repeated 6x across cluster][0m

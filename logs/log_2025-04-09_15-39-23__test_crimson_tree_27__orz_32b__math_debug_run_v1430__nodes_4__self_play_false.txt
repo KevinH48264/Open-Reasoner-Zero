@@ -1,0 +1,1404 @@
+[2025-04-09 15:39:35,321] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+2025-04-09 15:39:42.048 | INFO     | __main__:PPOExpConfig:162 - prompt_data: ['data/orz_math_57k_collected.json'], eval_prompt_data: ['data/eval_data/math500.json', 'data/eval_data/aime2024.json', 'data/eval_data/gpqa_diamond.json'], prompt_data_probs: [1.0]
+2025-04-09 15:39:42.059 | INFO     | __main__:<module>:2758 - --------- config key ---------                  ------ value ------
+seed                                            42
+ref_num_nodes                                   12
+ref_num_gpus_per_node                           1
+reward_num_nodes                                12
+reward_num_gpus_per_node                        1
+actor_num_nodes                                 12
+actor_num_gpus_per_node                         1
+critic_num_nodes                                12
+critic_num_gpus_per_node                        1
+colocate_critic_reward                          True
+colocate_actor_ref                              True
+colocate_all                                    False
+vllm_num_engines                                2
+vllm_tensor_parallel_size                       4
+vllm_sync_backend                               nccl
+local_rank                                      -1
+pretrain                                        Qwen/Qwen2.5-32B
+critic_pretrain                                 Qwen/Qwen2.5-32B
+reward_pretrain                                 <class 'NoneType'>
+ckpt_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1432__self_play_False
+save_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1432__self_play_False
+tensorboard_log_dir                             orz_logs/debug_orz_7b_ppo_self_play__math__v1432__self_play_False
+prompt_data                                     <class 'omegaconf.listconfig.ListConfig'>
+load_checkpoint                                 True
+zero_stage                                      3
+bf16                                            True
+zpg                                             1
+adam_offload                                    False
+flash_attn                                      True
+grad_accum_dtype                                <class 'NoneType'>
+disable_trace_cache                             False
+gradient_checkpointing                          True
+gradient_checkpointing_use_reentrant            False
+disable_fast_tokenizer                          False
+target_modules                                  all-linear
+enable_prefix_caching                           True
+enable_chunked_prefill                          False
+max_num_batched_tokens                          2048
+enforce_eager                                   False
+gpu_memory_utilization                          0.5
+eval_steps                                      -1
+save_steps                                      -1
+save_interval                                   50
+actor_learning_rate                             1e-06
+critic_learning_rate                            5e-06
+num_episodes                                    20
+max_epochs                                      1
+prompt_max_len                                  8000
+generate_max_len                                8000
+train_batch_size                                256
+micro_train_batch_size                          1
+rollout_batch_size                              8
+micro_rollout_batch_size                        128
+micro_forward_batch_size                        1
+policy_update_steps                             1
+critic_update_steps                             1
+max_len                                         8192
+max_norm                                        1.0
+num_warmup_steps                                50
+l2                                              0.0
+eps_clip                                        0.2
+value_clip                                      0.2
+lambd                                           1.0
+gamma                                           1.0
+normalize_reward                                True
+top_p                                           1.0
+temperature                                     1.0
+freezing_actor_steps                            -1
+n_samples_per_prompt                            8
+kl_target                                       <class 'NoneType'>
+init_kl_coef                                    0
+use_kl_estimator_k3                             True
+use_abs_kl                                      False
+use_kl_loss                                     True
+kl_loss_coef                                    0.0
+adam_betas                                      (0.9, 0.95)
+reward_clip_range                               (-10, 10)
+use_compute_reward_fn                           True
+advantage_normalize                             True
+value_head_prefix                               value_head
+ref_reward_offload                              False
+enable_eval                                     True
+eval_interval                                   10
+update_ref_every_epoch                          True
+use_orm_score                                   False
+train_num_nodes_per_group                       12
+n_policy_evaluator_samples_per_policy_response  1
+eval_prompt_data                                <class 'omegaconf.listconfig.ListConfig'>
+prompt_data_probs                               <class 'omegaconf.listconfig.ListConfig'>
+packing_max_len                                 16384
+top_k                                           -1
+stop                                            <class 'omegaconf.listconfig.ListConfig'>
+use_grpo                                        False
+2025-04-09 15:39:42,157	INFO worker.py:1636 -- Connecting to existing Ray cluster at address: 10.4.35.183:6379...
+2025-04-09 15:39:42,174	INFO worker.py:1821 -- Connected to Ray cluster.
+2025-04-09 15:39:46.723 | INFO     | __main__:train_dataset:2702 - Start processing 56878 dialogues
+[36m(LLMActor pid=282296)[0m Connecting to existing Ray cluster at address: 10.4.35.183:6379...
+[36m(LLMActor pid=282296)[0m Calling ray.init() again after it has already been called.
+2025-04-09 15:40:26.689 | INFO     | __main__:train_dataset:2713 - Finished processing 56878 dialogues
+2025-04-09 15:40:26.740 | INFO     | __main__:eval_dataset:2731 - Start processing 728 dialogues
+2025-04-09 15:40:27.255 | INFO     | __main__:eval_dataset:2752 - Finished processing 728 dialogues
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Loading safetensors checkpoint shards:   0% Completed | 0/17 [00:00<?, ?it/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Connecting to existing Ray cluster at address: 10.4.35.183:6379...
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Calling ray.init() again after it has already been called.
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Loading safetensors checkpoint shards:   6% Completed | 1/17 [00:00<00:04,  3.80it/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Loading safetensors checkpoint shards:  12% Completed | 2/17 [00:00<00:04,  3.46it/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m 
+[36m(LLMActor pid=282296)[0m Loading safetensors checkpoint shards:   0% Completed | 0/17 [00:00<?, ?it/s]
+[36m(LLMActor pid=282296)[0m Loading safetensors checkpoint shards:  88% Completed | 15/17 [00:04<00:00,  3.00it/s][32m [repeated 31x across cluster][0m
+[36m(LLMActor pid=282296)[0m 
+[36m(PolicyRayActorBase pid=115660, ip=10.4.69.251)[0m [W409 15:41:20.906977636 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(LLMActor pid=282296)[0m Loading safetensors checkpoint shards: 100% Completed | 17/17 [00:05<00:00,  3.09it/s][32m [repeated 3x across cluster][0m
+[36m(PolicyRayActorBase pid=115660, ip=10.4.69.251)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(RefRayActorBase pid=116060, ip=10.4.69.251)[0m [W409 15:41:29.928080670 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 22x across cluster][0m
+[36m(RefRayActorBase pid=116057, ip=10.4.69.251)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 21x across cluster][0m
+[36m(CriticRayActorBase pid=283320)[0m Loading checkpoint shards:   0%|          | 0/17 [00:00<?, ?it/s]
+[36m(CriticRayActorBase pid=283318)[0m Loading checkpoint shards:   6%|▌         | 1/17 [00:00<00:03,  4.30it/s]
+[36m(CriticRayActorBase pid=283320)[0m [W409 15:41:33.478532852 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 4x across cluster][0m
+[36m(RefRayActorBase pid=116060, ip=10.4.69.251)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 2x across cluster][0m
+[36m(CriticRayActorBase pid=283319)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:03<00:00,  5.18it/s]
+[36m(CriticRayActorBase pid=283319)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:03<00:00,  5.24it/s]Loading checkpoint shards: 100%|██████████| 17/17 [00:03<00:00,  4.84it/s]
+[36m(CriticRayActorBase pid=283319)[0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+[36m(PolicyRayActorBase pid=93901, ip=10.4.68.84)[0m Loading checkpoint shards:   0%|          | 0/17 [00:00<?, ?it/s][32m [repeated 18x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Loading checkpoint shards:  12%|█▏        | 2/17 [00:01<00:14,  1.03it/s][32m [repeated 117x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m [W409 15:41:39.045290945 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 8x across cluster][0m
+[36m(CriticRayActorBase pid=94133, ip=10.4.37.103)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=94133, ip=10.4.37.103)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:03<00:00,  4.77it/s][32m [repeated 6x across cluster][0m
+[36m(CriticRayActorBase pid=94133, ip=10.4.37.103)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:03<00:00,  4.81it/s]Loading checkpoint shards: 100%|██████████| 17/17 [00:03<00:00,  4.77it/s][32m [repeated 6x across cluster][0m
+[36m(CriticRayActorBase pid=94133, ip=10.4.37.103)[0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.[32m [repeated 6x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m Loading checkpoint shards:   0%|          | 0/17 [00:00<?, ?it/s][32m [repeated 5x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m Loading checkpoint shards:  65%|██████▍   | 11/17 [00:03<00:01,  3.22it/s][32m [repeated 114x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [W409 15:41:39.758575477 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(CriticRayActorBase pid=283142)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(CriticRayActorBase pid=116530, ip=10.4.69.251)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:05<00:00,  3.83it/s][32m [repeated 5x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:05<00:00,  3.92it/s]Loading checkpoint shards: 100%|██████████| 17/17 [00:05<00:00,  3.17it/s][32m [repeated 5x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.[32m [repeated 5x across cluster][0m
+[36m(PolicyRayActorBase pid=115660, ip=10.4.69.251)[0m Loading checkpoint shards:  47%|████▋     | 8/17 [00:13<00:20,  2.23s/it][32m [repeated 33x across cluster][0m
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 3x across cluster][0m
+[36m(RefRayActorBase pid=116059, ip=10.4.69.251)[0m Loading checkpoint shards:   0%|          | 0/17 [00:00<?, ?it/s]
+[36m(CriticRayActorBase pid=283142)[0m Loading checkpoint shards:  12%|█▏        | 2/17 [00:02<00:16,  1.10s/it][32m [repeated 60x across cluster][0m
+[36m(CriticRayActorBase pid=94134, ip=10.4.37.103)[0m Loading checkpoint shards:   0%|          | 0/17 [00:00<?, ?it/s][32m [repeated 23x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Loading checkpoint shards:  76%|███████▋  | 13/17 [00:25<00:09,  2.26s/it][32m [repeated 108x across cluster][0m
+[36m(CriticRayActorBase pid=283318)[0m Loading checkpoint shards:  71%|███████   | 12/17 [00:13<00:05,  1.07s/it][32m [repeated 132x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:31<00:02,  2.14s/it]
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.99s/it]Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.96s/it]
+[36m(PolicyRayActorBase pid=93899, ip=10.4.68.84)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m Detected CUDA files, patching ldflags
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m Emitting ninja build file /home/aiscuser/.cache/torch_extensions/py310_cu124/fused_adam/build.ninja...
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m /scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py:1964: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m   warnings.warn(
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m Building extension module fused_adam...
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[36m(RefRayActorBase pid=94796, ip=10.4.68.84)[0m Loading checkpoint shards:  59%|█████▉    | 10/17 [00:19<00:11,  1.58s/it][32m [repeated 84x across cluster][0m
+[36m(CriticRayActorBase pid=116529, ip=10.4.69.251)[0m Some weights of CriticModel were not initialized from the model checkpoint at Qwen/Qwen2.5-32B and are newly initialized: ['value_head.weight']
+[36m(CriticRayActorBase pid=116529, ip=10.4.69.251)[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[36m(CriticRayActorBase pid=116529, ip=10.4.69.251)[0m 2025-04-09 15:42:13.516 | INFO     | orz.ppo.models:get_llm_for_sequence_regression:572 - initialize value_head for ZeRO-3 reward model training.
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Loading extension module fused_adam...
+[36m(CriticRayActorBase pid=283142)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:17<00:01,  1.16s/it][32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:18<00:00,  1.04s/it]Loading checkpoint shards: 100%|██████████| 17/17 [00:18<00:00,  1.10s/it][32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=94134, ip=10.4.37.103)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...[32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m Detected CUDA files, patching ldflags[32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m Emitting ninja build file /home/aiscuser/.cache/torch_extensions/py310_cu124/fused_adam/build.ninja...[32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m /scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py:1964: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. [32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].[32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m   warnings.warn([32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m Building extension module fused_adam...[32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=94132, ip=10.4.37.103)[0m Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)[32m [repeated 3x across cluster][0m
+[36m(RefRayActorBase pid=116059, ip=10.4.69.251)[0m Loading checkpoint shards:  76%|███████▋  | 13/17 [00:24<00:06,  1.67s/it][32m [repeated 36x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m Some weights of CriticModel were not initialized from the model checkpoint at Qwen/Qwen2.5-32B and are newly initialized: ['value_head.weight'][32m [repeated 11x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.[32m [repeated 11x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m 2025-04-09 15:42:13.719 | INFO     | orz.ppo.models:get_llm_for_sequence_regression:572 - initialize value_head for ZeRO-3 reward model training.[32m [repeated 11x across cluster][0m
+[36m(CriticRayActorBase pid=283320)[0m Loading extension module fused_adam...[32m [repeated 23x across cluster][0m
+[36m(RefRayActorBase pid=94799, ip=10.4.68.84)[0m Loading checkpoint shards:  88%|████████▊ | 15/17 [00:29<00:04,  2.11s/it][32m [repeated 35x across cluster][0m
+[36m(RefRayActorBase pid=116059, ip=10.4.69.251)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:31<00:02,  2.06s/it]
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.91s/it]Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.94s/it]
+2025-04-09 15:42:27.834 | INFO     | orz.ppo.trainer:build_models:1949 - init policy/ref/critic/reward models done
+2025-04-09 15:42:29.032 | INFO     | orz.ppo.trainer:train:79 - Create vllm engine groups done.
+2025-04-09 15:44:40.744 | INFO     | orz.ppo.trainer:train:81 - Sync actor weights to vllm engines, time cost: 131.71s
+2025-04-09 15:44:40.744 | DEBUG    | orz.ppo.trainer:train:89 - train_dataset size: 56878
+2025-04-09 15:44:40.744 | DEBUG    | orz.ppo.trainer:train:90 - train_dataset sample: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\n$P(x)$ is a polynomial of degree $3n$ such that\n\\begin{eqnarray*} P(0) = P(3) = \\cdots &=& P(3n) = 2, \\\\ P(1) = P(4) = \\cdots &=& P(3n-2) = 1, \\\\ P(2) = P(5) = \\cdots &=& P(3n-1) = 0, \\quad\\text{ and }\\\\ && P(3n+1) = 730.\\end{eqnarray*}\nDetermine $n$.\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\n$P(x)$ is a polynomial of degree $3n$ such that\n\\begin{eqnarray*} P(0) = P(3) = \\cdots &=& P(3n) = 2, \\\\ P(1) = P(4) = \\cdots &=& P(3n-2) = 1, \\\\ P(2) = P(5) = \\cdots &=& P(3n-1) = 0, \\quad\\text{ and }\\\\ && P(3n+1) = 730.\\end{eqnarray*}\nDetermine $n$.\nAssistant: <think>', 'answer': 'n = 4', 'target': 'n = 4'})
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:40:06 config.py:478] This model supports multiple tasks: {'embed', 'score', 'generate', 'classify', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=282296)[0m WARNING 04-09 15:40:06 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(LLMActor pid=282296)[0m WARNING 04-09 15:40:06 config.py:604] Async output processing is not supported on the current platform type cuda.
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:40:06 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-32B', speculative_config=None, tokenizer='Qwen/Qwen2.5-32B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=43, served_model_name=Qwen/Qwen2.5-32B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:40:06 ray_gpu_executor.py:122] use_ray_spmd_worker: False
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:07 config.py:478] This model supports multiple tasks: {'score', 'generate', 'reward', 'embed', 'classify'}. Defaulting to 'generate'.
+[36m(pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:40:37,255] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m WARNING 04-09 15:40:07 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m WARNING 04-09 15:40:07 config.py:604] Async output processing is not supported on the current platform type cuda.
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:07 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-32B', speculative_config=None, tokenizer='Qwen/Qwen2.5-32B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=Qwen/Qwen2.5-32B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:07 ray_gpu_executor.py:122] use_ray_spmd_worker: False
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:42 selector.py:120] Using Flash Attention backend.
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:44 utils.py:922] Found nccl from library libnccl.so.2
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:44 pynccl.py:69] vLLM is using nccl==2.21.5
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m NCCL version 2.21.5+cuda12.4
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:45 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /home/aiscuser/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:46 shm_broadcast.py:255] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_3e6cdbd9'), local_subscribe_port=38395, remote_subscribe_port=None)
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:40:46 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-32B...
+[36m(RayWorkerWrapper pid=93505, ip=10.4.37.103)[0m INFO 04-09 15:40:46 weight_utils.py:243] Using model weights format ['*.safetensors']
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:40:45 selector.py:120] Using Flash Attention backend.[32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(RayWorkerWrapper pid=93505, ip=10.4.37.103)[0m INFO 04-09 15:40:52 model_runner.py:1097] Loading model weights took 15.4136 GB
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:40:47 utils.py:922] Found nccl from library libnccl.so.2[32m [repeated 7x across cluster][0m
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:40:47 pynccl.py:69] vLLM is using nccl==2.21.5[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=282296)[0m NCCL version 2.21.5+cuda12.4
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:40:48 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /home/aiscuser/.cache/vllm/gpu_p2p_access_cache_for_0,1,2,3.json[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:40:48 shm_broadcast.py:255] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_e3cec747'), local_subscribe_port=33935, remote_subscribe_port=None)
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:40:48 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-32B...[32m [repeated 7x across cluster][0m
+[36m(RayWorkerWrapper pid=282634)[0m INFO 04-09 15:40:49 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 7x across cluster][0m
+[36m(pid=93896, ip=10.4.68.84)[0m [2025-04-09 15:40:56,985] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(RayWorkerWrapper pid=282634)[0m INFO 04-09 15:40:55 model_runner.py:1097] Loading model weights took 15.4136 GB[32m [repeated 7x across cluster][0m
+[36m(RayWorkerWrapper pid=93505, ip=10.4.37.103)[0m INFO 04-09 15:41:00 worker.py:241] Memory profiling takes 6.03 seconds
+[36m(RayWorkerWrapper pid=93505, ip=10.4.37.103)[0m INFO 04-09 15:41:00 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB
+[36m(RayWorkerWrapper pid=93505, ip=10.4.37.103)[0m INFO 04-09 15:41:00 worker.py:241] model weights take 15.41GiB; non_torch_memory takes 2.21GiB; PyTorch activation peak memory takes 0.72GiB; the rest of the memory reserved for KV Cache is 21.24GiB.
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:41:00 distributed_gpu_executor.py:57] # GPU blocks: 1349, # CPU blocks: 256
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:41:00 distributed_gpu_executor.py:61] Maximum concurrency for 8192 tokens per request: 42.16x
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m INFO 04-09 15:41:02 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 8.69 seconds
+[36m(pid=115660, ip=10.4.69.251)[0m [2025-04-09 15:41:01,924] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 11x across cluster][0m
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:41:01 worker.py:241] Memory profiling takes 5.61 seconds[32m [repeated 7x across cluster][0m
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:41:01 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB[32m [repeated 7x across cluster][0m
+[36m(RayWorkerWrapper pid=282741)[0m INFO 04-09 15:41:01 worker.py:241] model weights take 15.41GiB; non_torch_memory takes 1.93GiB; PyTorch activation peak memory takes 0.72GiB; the rest of the memory reserved for KV Cache is 21.52GiB.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:41:01 distributed_gpu_executor.py:57] # GPU blocks: 1349, # CPU blocks: 256
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:41:01 distributed_gpu_executor.py:61] Maximum concurrency for 8192 tokens per request: 42.16x
+[36m(LLMActor pid=282296)[0m INFO 04-09 15:41:03 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 8.26 seconds
+[36m(pid=283142)[0m [2025-04-09 15:41:11,933] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(pid=94794, ip=10.4.68.84)[0m [2025-04-09 15:41:13,002] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:41:20,192] [INFO] [comm.py:652:init_distributed] cdb=None
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:41:20,193] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[36m(pid=116060, ip=10.4.69.251)[0m [2025-04-09 15:41:17,279] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 10x across cluster][0m
+[36m(PolicyRayActorBase pid=115659, ip=10.4.69.251)[0m [2025-04-09 15:41:20,696] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m NCCL version 2.21.5+cuda12.4
+[36m(RefRayActorBase pid=116057, ip=10.4.69.251)[0m [2025-04-09 15:41:24,197] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:41:20,166] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl[32m [repeated 2x across cluster][0m
+[36m(pid=94135, ip=10.4.37.103)[0m [2025-04-09 15:41:25,295] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 4x across cluster][0m
+[36m(RefRayActorBase pid=116057, ip=10.4.69.251)[0m [2025-04-09 15:41:24,639] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 21x across cluster][0m
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m NCCL version 2.21.5+cuda12.4
+[36m(CriticRayActorBase pid=283318)[0m [2025-04-09 15:41:32,121] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 2x across cluster][0m
+[36m(pid=116530, ip=10.4.69.251)[0m [2025-04-09 15:41:29,050] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 7x across cluster][0m
+[36m(RefRayActorBase pid=116060, ip=10.4.69.251)[0m [2025-04-09 15:41:29,740] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:41:37,227] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 771, num_elems = 32.76B
+[36m(CriticRayActorBase pid=94134, ip=10.4.37.103)[0m [2025-04-09 15:41:34,534] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 6x across cluster][0m
+[36m(CriticRayActorBase pid=283319)[0m [2025-04-09 15:41:37,628] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m [2025-04-09 15:41:39,317] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 4x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:41:43,620] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m NCCL version 2.21.5+cuda12.4
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:41:53,716] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 771, num_elems = 32.76B
+[36m(CriticRayActorBase pid=116532, ip=10.4.69.251)[0m [2025-04-09 15:41:45,797] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 4x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Time to load fused_adam op: 3.521740436553955 seconds
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,306] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,306] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:41:54,856] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 771, num_elems = 31.99B
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,306] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(PolicyRayActorBase pid=93900, ip=10.4.68.84)[0m [2025-04-09 15:42:14,319] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(PolicyRayActorBase pid=93897, ip=10.4.68.84)[0m ninja: no work to do.
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,321] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,323] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,323] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,383] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,383] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,383] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,383] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,585] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,586] [INFO] [utils.py:782:see_memory_usage] MA 5.13 GB         Max_MA 8.03 GB         CA 8.38 GB         Max_CA 8 GB 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,586] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.59 GB, percent = 4.3%
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,589] [INFO] [stage3.py:167:__init__] Reduce bucket size 500000000
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,589] [INFO] [stage3.py:168:__init__] Prefetch bucket size 50000000
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,793] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,794] [INFO] [utils.py:782:see_memory_usage] MA 5.13 GB         Max_MA 5.13 GB         CA 8.38 GB         Max_CA 8 GB 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:14,794] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.6 GB, percent = 4.3%
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Parameter Offload: Total persistent parameters: 1119232 in 321 params
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,034] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,035] [INFO] [utils.py:782:see_memory_usage] MA 5.13 GB         Max_MA 5.13 GB         CA 8.38 GB         Max_CA 8 GB 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,035] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.61 GB, percent = 4.3%
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,245] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,246] [INFO] [utils.py:782:see_memory_usage] MA 5.13 GB         Max_MA 5.13 GB         CA 8.38 GB         Max_CA 8 GB 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:15,246] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.62 GB, percent = 4.3%
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:20,270] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 4
+[36m(CriticRayActorBase pid=283320)[0m Time to load fused_adam op: 2.4167468547821045 seconds[32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,154] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,154] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(CriticRayActorBase pid=283320)[0m [2025-04-09 15:42:16,153] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 22x across cluster][0m
+[36m(CriticRayActorBase pid=283319)[0m ninja: no work to do.[32m [repeated 3x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,171] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,173] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,173] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,233] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,233] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,233] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,233] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,452] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:20,271] [INFO] [utils.py:782:see_memory_usage] MA 5.09 GB         Max_MA 5.13 GB         CA 5.09 GB         Max_CA 8 GB [32m [repeated 5x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:20,271] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.6 GB, percent = 4.3%[32m [repeated 5x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,456] [INFO] [stage3.py:167:__init__] Reduce bucket size 500000000
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,456] [INFO] [stage3.py:168:__init__] Prefetch bucket size 50000000
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,681] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(CriticRayActorBase pid=283142)[0m Parameter Offload: Total persistent parameters: 1124352 in 322 params
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:16,942] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:17,168] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:20,478] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:21,354] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:22,269] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:22,490] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:22,492] [INFO] [stage3.py:525:_setup_for_real_optimizer] optimizer state initialized
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,341] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,343] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,343] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,343] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7ff80ee7fe50>
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,343] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95)]
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,345] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,345] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+[36m(CriticRayActorBase pid=283142)[0m     "partition_activations": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "contiguous_memory_optimization": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "cpu_checkpointing": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "number_checkpoints": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "synchronize_checkpoint_boundary": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "profile": false
+[36m(CriticRayActorBase pid=283142)[0m }
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   amp_enabled .................. False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   amp_params ................... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   autotuning_config ............ {
+[36m(CriticRayActorBase pid=283142)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "start_step": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "end_step": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "metric_path": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "arg_mappings": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "metric": "throughput", 
+[36m(CriticRayActorBase pid=283142)[0m     "model_info": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "results_dir": "autotuning_results", 
+[36m(CriticRayActorBase pid=283142)[0m     "exps_dir": "autotuning_exps", 
+[36m(CriticRayActorBase pid=283142)[0m     "overwrite": true, 
+[36m(CriticRayActorBase pid=283142)[0m     "fast": true, 
+[36m(CriticRayActorBase pid=283142)[0m     "start_profile_step": 3, 
+[36m(CriticRayActorBase pid=283142)[0m     "end_profile_step": 5, 
+[36m(CriticRayActorBase pid=283142)[0m     "tuner_type": "gridsearch", 
+[36m(CriticRayActorBase pid=283142)[0m     "tuner_early_stopping": 5, 
+[36m(CriticRayActorBase pid=283142)[0m     "tuner_num_trials": 50, 
+[36m(CriticRayActorBase pid=283142)[0m     "model_info_path": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "mp_size": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "max_train_batch_size": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "min_train_batch_size": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[36m(CriticRayActorBase pid=283142)[0m     "min_train_micro_batch_size_per_gpu": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "num_tuning_micro_batch_sizes": 3
+[36m(CriticRayActorBase pid=283142)[0m }
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7ff80d8be1d0>
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   communication_data_type ...... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   disable_allgather ............ False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   dump_state ................... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,346] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+[36m(CriticRayActorBase pid=283142)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "recompute_fwd_factor": 0.0, 
+[36m(CriticRayActorBase pid=283142)[0m     "profile_step": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "module_depth": -1, 
+[36m(CriticRayActorBase pid=283142)[0m     "top_modules": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "detailed": true, 
+[36m(CriticRayActorBase pid=283142)[0m     "output_file": null
+[36m(CriticRayActorBase pid=283142)[0m }
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   global_rank .................. 0
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   grad_accum_dtype ............. fp32
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 1
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   nebula_config ................ {
+[36m(CriticRayActorBase pid=283142)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "persistent_storage_path": null, 
+[36m(CriticRayActorBase pid=283142)[0m     "persistent_time_interval": 100, 
+[36m(CriticRayActorBase pid=283142)[0m     "num_of_version_in_retention": 2, 
+[36m(CriticRayActorBase pid=283142)[0m     "enable_nebula_load": true, 
+[36m(CriticRayActorBase pid=283142)[0m     "load_path": null
+[36m(CriticRayActorBase pid=283142)[0m }
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   optimizer_name ............... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   optimizer_params ............. None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,347] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   pld_enabled .................. False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   pld_params ................... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   scheduler_name ............... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   scheduler_params ............. None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   sparse_attention ............. None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   steps_per_print .............. 100
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   train_batch_size ............. 12
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   world_size ................... 12
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='none', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=False) offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='none', nvme_path=None, buffer_count=4, pin_memory=True, pipeline_read=False, pipeline_write=False, fast_init=False, ratio=1.0) sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   zero_enabled ................. True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,348] [INFO] [config.py:989:print_user_config]   json = {
+[36m(CriticRayActorBase pid=283142)[0m     "steps_per_print": 100, 
+[36m(CriticRayActorBase pid=283142)[0m     "zero_optimization": {
+[36m(CriticRayActorBase pid=283142)[0m         "stage": 3, 
+[36m(CriticRayActorBase pid=283142)[0m         "offload_param": {
+[36m(CriticRayActorBase pid=283142)[0m             "device": "none"
+[36m(CriticRayActorBase pid=283142)[0m         }, 
+[36m(CriticRayActorBase pid=283142)[0m         "offload_optimizer": {
+[36m(CriticRayActorBase pid=283142)[0m             "device": "none", 
+[36m(CriticRayActorBase pid=283142)[0m             "pin_memory": true
+[36m(CriticRayActorBase pid=283142)[0m         }, 
+[36m(CriticRayActorBase pid=283142)[0m         "sub_group_size": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "stage3_max_live_parameters": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "stage3_max_reuse_distance": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "stage3_param_persistence_threshold": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "stage3_prefetch_bucket_size": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "reduce_bucket_size": "auto", 
+[36m(CriticRayActorBase pid=283142)[0m         "zero_hpz_partition_size": 1, 
+[36m(CriticRayActorBase pid=283142)[0m         "zero_quantized_weights": false, 
+[36m(CriticRayActorBase pid=283142)[0m         "zero_quantized_gradients": false
+[36m(CriticRayActorBase pid=283142)[0m     }, 
+[36m(CriticRayActorBase pid=283142)[0m     "bf16": {
+[36m(CriticRayActorBase pid=283142)[0m         "enabled": true
+[36m(CriticRayActorBase pid=283142)[0m     }, 
+[36m(CriticRayActorBase pid=283142)[0m     "gradient_clipping": 1.0, 
+[36m(CriticRayActorBase pid=283142)[0m     "prescale_gradients": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "wall_clock_breakdown": false, 
+[36m(CriticRayActorBase pid=283142)[0m     "data_types": {
+[36m(CriticRayActorBase pid=283142)[0m         "grad_accum_dtype": "fp32"
+[36m(CriticRayActorBase pid=283142)[0m     }, 
+[36m(CriticRayActorBase pid=283142)[0m     "train_micro_batch_size_per_gpu": 1, 
+[36m(CriticRayActorBase pid=283142)[0m     "gradient_accumulation_steps": 1
+[36m(CriticRayActorBase pid=283142)[0m }
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:20,892] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 4
+[36m(RefRayActorBase pid=94796, ip=10.4.68.84)[0m [2025-04-09 15:42:26,938] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,342] [INFO] [utils.py:782:see_memory_usage] MA 25.76 GB         Max_MA 28.66 GB         CA 30.43 GB         Max_CA 30 GB [32m [repeated 10x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:24,342] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 77.11 GB, percent = 4.4%[32m [repeated 10x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m [2025-04-09 15:42:21,105] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:22,213] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[36m(RefRayActorBase pid=94794, ip=10.4.68.84)[0m [2025-04-09 15:42:26,939] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,069] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,069] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,087] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,090] [INFO] [logging.py:128:log_dist] [Rank 0] Creating ZeRO Offload
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:22,426] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,296] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m Parameter Offload: Total persistent parameters: 1119232 in 321 params
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,541] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,546] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
+[36m(RefRayActorBase pid=93903, ip=10.4.68.84)[0m [2025-04-09 15:42:27,547] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='none', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=True) offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:22,643] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:22,645] [INFO] [stage3.py:525:_setup_for_real_optimizer] optimizer state initialized
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m WARNING:using --vllm_sync_backend=gloo for vLLM version > 0.4.2 (or export NCCL_P2P_DISABLE=1)
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m init_process_group: master_address=10.4.68.84, master_port=38735,  rank=1, world_size=9, group_name=openrlhf
+Episode [1/20]:   0%|          | 0/7110 [00:00<?, ?it/s][36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Broadcast actor weights to vllm engines done
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,821] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7fccc66c9ea0>
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95)]
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,824] [INFO] [config.py:999:print] DeepSpeedEngine configuration:[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   activation_checkpointing_config  {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "partition_activations": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "contiguous_memory_optimization": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "cpu_checkpointing": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "number_checkpoints": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "synchronize_checkpoint_boundary": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "profile": false[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m }[32m [repeated 11x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   amp_enabled .................. False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   amp_params ................... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   autotuning_config ............ {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "enabled": false, [32m [repeated 6x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "start_step": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "end_step": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "metric_path": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "arg_mappings": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "metric": "throughput", [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "model_info": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "results_dir": "autotuning_results", [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "exps_dir": "autotuning_exps", [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "overwrite": true, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "fast": true, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "start_profile_step": 3, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "end_profile_step": 5, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "tuner_type": "gridsearch", [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "tuner_early_stopping": 5, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "tuner_num_trials": 50, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "model_info_path": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "mp_size": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "max_train_batch_size": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "min_train_batch_size": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "max_train_micro_batch_size_per_gpu": 1.024000e+03, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "min_train_micro_batch_size_per_gpu": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "num_tuning_micro_batch_sizes": 3[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False[32m [repeated 4x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7fccc6510ee0>[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   communication_data_type ...... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,825] [INFO] [config.py:1003:print]   disable_allgather ............ False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   dump_state ................... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   elasticity_enabled ........... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   flops_profiler_config ........ {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "recompute_fwd_factor": 0.0, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "profile_step": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "module_depth": -1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "top_modules": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "detailed": true, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "output_file": null[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   fp16_enabled ................. False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   global_rank .................. 0[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   grad_accum_dtype ............. fp32
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   graph_harvesting ............. False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   loss_scale ................... 1.0[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   memory_breakdown ............. False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   mics_shard_size .............. -1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,826] [INFO] [config.py:1003:print]   nebula_config ................ {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "persistent_storage_path": null, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "persistent_time_interval": 100, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "num_of_version_in_retention": 2, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "enable_nebula_load": true, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "load_path": null[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   optimizer_name ............... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   optimizer_params ............. None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   pld_enabled .................. False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   pld_params ................... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   prescale_gradients ........... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   scheduler_name ............... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   scheduler_params ............. None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   sparse_attention ............. None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   steps_per_print .............. 100[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   train_batch_size ............. 12[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   use_node_local_storage ....... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   weight_quantization_config ... None[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   world_size ................... 12[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='none', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=False) offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='none', nvme_path=None, buffer_count=4, pin_memory=True, pipeline_read=False, pipeline_write=False, fast_init=False, ratio=1.0) sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   zero_enabled ................. True[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,827] [INFO] [config.py:989:print_user_config]   json = {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "steps_per_print": 100, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "zero_optimization": {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "stage": 3, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "offload_param": {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m             "device": "none"
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     }, [32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "offload_optimizer": {
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m             "device": "none", [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m             "pin_memory": true[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "sub_group_size": "auto", 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "stage3_prefetch_bucket_size": "auto", [32m [repeated 5x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "reduce_bucket_size": "auto", 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "zero_hpz_partition_size": 1, 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "zero_quantized_weights": false, 
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "zero_quantized_gradients": false
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "bf16": {[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "enabled": true[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "gradient_clipping": 1.0, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "prescale_gradients": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "wall_clock_breakdown": false, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "data_types": {
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m         "grad_accum_dtype": "fp32"
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "train_micro_batch_size_per_gpu": 1, [32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m     "gradient_accumulation_steps": 1[32m [repeated 2x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [utils.py:782:see_memory_usage] MA 26.36 GB         Max_MA 29.26 GB         CA 31.03 GB         Max_CA 31 GB [32m [repeated 3x across cluster][0m
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m [2025-04-09 15:42:27,822] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 75.73 GB, percent = 4.3%[32m [repeated 3x across cluster][0m
+[36m(RefRayActorBase pid=94799, ip=10.4.68.84)[0m [2025-04-09 15:42:27,290] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 12[32m [repeated 10x across cluster][0m
+[36m(RayWorkerWrapper pid=282741)[0m init_process_group: master_address=10.4.68.84, master_port=38735,  rank=8, world_size=9, group_name=openrlhf[32m [repeated 7x across cluster][0m
+2025-04-09 15:44:40.992 | INFO     | __main__:eval:2563 - Start evaluating on val set
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:   0%|          | 0/364 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]
+[36m(RefRayActorBase pid=94799, ip=10.4.68.84)[0m Loading checkpoint shards:  94%|█████████▍| 16/17 [00:31<00:02,  2.10s/it][32m [repeated 11x across cluster][0m
+[36m(RefRayActorBase pid=94799, ip=10.4.68.84)[0m Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.93s/it]Loading checkpoint shards: 100%|██████████| 17/17 [00:33<00:00,  1.95s/it][32m [repeated 11x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:   0%|          | 1/364 [00:04<29:14,  4.83s/it, est. speed input: 46.76 toks/s, output: 5.38 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts:   0%|          | 0/364 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts:   4%|▍         | 14/364 [00:10<01:58,  2.95it/s, est. speed input: 241.17 toks/s, output: 71.79 toks/s][32m [repeated 19x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:   7%|▋         | 26/364 [00:15<02:01,  2.78it/s, est. speed input: 319.43 toks/s, output: 130.90 toks/s][32m [repeated 29x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  13%|█▎        | 47/364 [00:20<01:11,  4.44it/s, est. speed input: 428.53 toks/s, output: 234.49 toks/s][32m [repeated 27x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  20%|█▉        | 71/364 [00:25<00:51,  5.72it/s, est. speed input: 534.47 toks/s, output: 331.67 toks/s][32m [repeated 26x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  25%|██▌       | 91/364 [00:30<00:53,  5.06it/s, est. speed input: 562.98 toks/s, output: 402.29 toks/s][32m [repeated 32x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  26%|██▌       | 94/364 [00:35<01:22,  3.29it/s, est. speed input: 528.02 toks/s, output: 383.09 toks/s][32m [repeated 24x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  35%|███▌      | 128/364 [00:40<01:08,  3.47it/s, est. speed input: 591.79 toks/s, output: 474.06 toks/s][32m [repeated 30x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  42%|████▏     | 152/364 [00:45<00:37,  5.63it/s, est. speed input: 625.48 toks/s, output: 520.98 toks/s][32m [repeated 31x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  39%|███▉      | 142/364 [00:50<01:14,  2.97it/s, est. speed input: 593.86 toks/s, output: 508.34 toks/s][32m [repeated 27x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  43%|████▎     | 157/364 [00:56<01:03,  3.27it/s, est. speed input: 600.96 toks/s, output: 530.07 toks/s][32m [repeated 28x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  47%|████▋     | 171/364 [01:01<01:44,  1.84it/s, est. speed input: 649.23 toks/s, output: 544.75 toks/s][32m [repeated 24x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  52%|█████▏    | 189/364 [01:06<00:55,  3.16it/s, est. speed input: 682.11 toks/s, output: 564.24 toks/s][32m [repeated 32x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  57%|█████▋    | 206/364 [01:11<00:50,  3.16it/s, est. speed input: 711.84 toks/s, output: 576.09 toks/s][32m [repeated 28x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  61%|██████▏   | 223/364 [01:17<00:50,  2.80it/s, est. speed input: 734.47 toks/s, output: 605.93 toks/s][32m [repeated 32x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  87%|████████▋ | 315/364 [01:22<00:11,  4.42it/s, est. speed input: 750.02 toks/s, output: 768.31 toks/s][32m [repeated 30x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  74%|███████▍  | 271/364 [01:27<00:26,  3.55it/s, est. speed input: 831.44 toks/s, output: 709.21 toks/s][32m [repeated 25x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  91%|█████████▏| 333/364 [01:28<00:10,  2.98it/s, est. speed input: 738.59 toks/s, output: 790.07 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  92%|█████████▏| 334/364 [01:30<00:17,  1.69it/s, est. speed input: 729.25 toks/s, output: 781.75 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  92%|█████████▏| 335/364 [01:30<00:14,  2.00it/s, est. speed input: 729.30 toks/s, output: 782.90 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  92%|█████████▏| 336/364 [01:30<00:15,  1.86it/s, est. speed input: 727.53 toks/s, output: 781.85 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  93%|█████████▎| 337/364 [01:31<00:14,  1.84it/s, est. speed input: 724.86 toks/s, output: 780.70 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  93%|█████████▎| 338/364 [01:32<00:16,  1.58it/s, est. speed input: 722.13 toks/s, output: 778.53 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts:  81%|████████▏ | 296/364 [01:32<00:14,  4.81it/s, est. speed input: 873.15 toks/s, output: 754.48 toks/s][32m [repeated 19x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  93%|█████████▎| 339/364 [01:33<00:20,  1.20it/s, est. speed input: 714.59 toks/s, output: 772.23 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  93%|█████████▎| 340/364 [01:35<00:29,  1.24s/it, est. speed input: 700.08 toks/s, output: 758.24 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  94%|█████████▎| 341/364 [01:36<00:22,  1.01it/s, est. speed input: 698.97 toks/s, output: 760.97 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  94%|█████████▍| 342/364 [01:36<00:17,  1.26it/s, est. speed input: 699.06 toks/s, output: 765.64 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  94%|█████████▍| 343/364 [01:37<00:16,  1.27it/s, est. speed input: 697.57 toks/s, output: 763.96 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts:  86%|████████▌ | 313/364 [01:37<00:22,  2.31it/s, est. speed input: 879.05 toks/s, output: 786.88 toks/s][32m [repeated 12x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  95%|█████████▍| 344/364 [01:38<00:16,  1.24it/s, est. speed input: 693.33 toks/s, output: 761.12 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  95%|█████████▍| 345/364 [01:40<00:22,  1.20s/it, est. speed input: 680.57 toks/s, output: 749.89 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  95%|█████████▌| 346/364 [01:42<00:25,  1.42s/it, est. speed input: 671.17 toks/s, output: 743.07 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  95%|█████████▌| 347/364 [01:42<00:18,  1.06s/it, est. speed input: 671.64 toks/s, output: 746.47 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts:  91%|█████████ | 331/364 [01:43<00:12,  2.71it/s, est. speed input: 890.03 toks/s, output: 822.64 toks/s][32m [repeated 11x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  92%|█████████▏| 336/364 [01:47<00:23,  1.19it/s, est. speed input: 868.92 toks/s, output: 806.60 toks/s][32m [repeated 5x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  91%|█████████ | 332/364 [01:43<00:12,  2.47it/s, est. speed input: 891.13 toks/s, output: 825.39 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  98%|█████████▊| 355/364 [01:52<00:07,  1.13it/s, est. speed input: 626.56 toks/s, output: 722.95 toks/s][32m [repeated 10x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  96%|█████████▌| 350/364 [01:58<00:08,  1.70it/s, est. speed input: 828.53 toks/s, output: 807.01 toks/s][32m [repeated 9x across cluster][0m
+[36m(LLMActor pid=282296)[0m Processed prompts:  98%|█████████▊| 357/364 [02:03<00:04,  1.56it/s, est. speed input: 811.41 toks/s, output: 806.29 toks/s][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  99%|█████████▊| 359/364 [02:11<00:18,  3.69s/it, est. speed input: 542.16 toks/s, output: 646.67 toks/s][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  99%|█████████▉| 361/364 [02:20<00:12,  4.26s/it, est. speed input: 511.05 toks/s, output: 621.76 toks/s][32m [repeated 2x across cluster][0m
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts:  99%|█████████▉| 362/364 [02:29<00:11,  5.70s/it, est. speed input: 481.03 toks/s, output: 590.83 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts: 100%|█████████▉| 363/364 [02:37<00:06,  6.34s/it, est. speed input: 462.13 toks/s, output: 571.15 toks/s]
+[36m(LLMActor pid=93280, ip=10.4.37.103)[0m Processed prompts: 100%|██████████| 364/364 [02:53<00:00,  9.16s/it, est. speed input: 421.16 toks/s, output: 527.16 toks/s]Processed prompts: 100%|██████████| 364/364 [02:53<00:00,  2.10it/s, est. speed input: 421.16 toks/s, output: 527.16 toks/s]
+[36m(LLMActor pid=282296)[0m Processed prompts: 100%|██████████| 364/364 [03:20<00:00, 21.18s/it, est. speed input: 510.37 toks/s, output: 524.96 toks/s]Processed prompts: 100%|██████████| 364/364 [03:20<00:00,  1.82it/s, est. speed input: 510.37 toks/s, output: 524.96 toks/s]
+2025-04-09 15:48:04.380 | INFO     | __main__:eval:2675 - math500/response_len_in_char: 736.0220,math500/accuracy: 0.1940,aime2024/response_len_in_char: 1327.7667,aime2024/accuracy: 0.0000,gpqa_diamond/response_len_in_char: 994.3535,gpqa_diamond/accuracy: 0.0101,eval_accuracy: 0.0680
+2025-04-09 15:48:04.386 | DEBUG    | orz.ppo.trainer:make_experience:287 - starting make_experience
+2025-04-09 15:48:04.386 | DEBUG    | orz.ppo.trainer:make_experience:288 - (before query branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-09 15:48:04.386 | DEBUG    | orz.ppo.trainer:make_experience:531 - 
+--- Policy Branch ---
+
+2025-04-09 15:48:04.386 | DEBUG    | orz.ppo.trainer:make_experience:532 - (before policy branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-09 15:48:04.386 | DEBUG    | orz.ppo.trainer:make_experience:533 - (before policy branch) sample all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nLet $a_1,a_2,\\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \\[a_1+a_2+\\cdots+a_{2021}=2021^{2021}.\\] Find the remainder when $a_1^3+a_2^3+\\cdots+a_{2021}^3$ is divided by $6$.\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nLet $a_1,a_2,\\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \\[a_1+a_2+\\cdots+a_{2021}=2021^{2021}.\\] Find the remainder when $a_1^3+a_2^3+\\cdots+a_{2021}^3$ is divided by $6$.\nAssistant: <think>', 'answer': '5', 'target': '5'})
+2025-04-09 15:48:04.386 | INFO     | orz.ppo.trainer:make_experience:564 - start generation
+2025-04-09 15:49:11.080 | INFO     | orz.ppo.trainer:make_experience:567 - generate local rollout batch done
+2025-04-09 15:49:11.080 | INFO     | orz.ppo.trainer:make_experience:552 - Generate sequences via vllm engines, time cost: 66.69s
+2025-04-09 15:49:11.081 | DEBUG    | orz.ppo.trainer:make_experience:576 - 
+
+INSPECT POLICY BRANCH PROMPTS AND RESPONSES
+2025-04-09 15:49:11.081 | DEBUG    | orz.ppo.trainer:make_experience:577 - (policy branch) sample prompt, all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nLet $a_1,a_2,\\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \\[a_1+a_2+\\cdots+a_{2021}=2021^{2021}.\\] Find the remainder when $a_1^3+a_2^3+\\cdots+a_{2021}^3$ is divided by $6$.\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nLet $a_1,a_2,\\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \\[a_1+a_2+\\cdots+a_{2021}=2021^{2021}.\\] Find the remainder when $a_1^3+a_2^3+\\cdots+a_{2021}^3$ is divided by $6$.\nAssistant: <think>', 'answer': '5', 'target': '5'})
+
+2025-04-09 15:49:11.081 | DEBUG    | orz.ppo.trainer:make_experience:578 - (policy branch) sample response, outputs[0]: {'response': " First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: \n\n2021^2 ≡ 1^2 ≡ 1 (mod 6)\n\nNow, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. \n\nNext, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:\n\n1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).\n2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).\n3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).\n4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).\n5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).\n6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).\n\nSo, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:\n\na_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)\n\nTherefore, the remainder of the sum of cubes when divided by 6 is 1.</think>\n\nThere is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point \n \n<answer> Stress point of sum of cubes is 1 </answer>", 'iscorrect': False, 'stop_reason': 'stop', 'final_answer': '', 'extra': {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nLet $a_1,a_2,\\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \\[a_1+a_2+\\cdots+a_{2021}=2021^{2021}.\\] Find the remainder when $a_1^3+a_2^3+\\cdots+a_{2021}^3$ is divided by $6$.\nAssistant: <think>', 'answer': '5', 'target': '5'}}
+
+
+2025-04-09 15:49:30.050 | INFO     | __main__:custom_reward_fn:337 - [STEP 0] [policy_reward_fn/log]: - prompt: A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$.
+Assistant: <think>
+
+- output:  First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: 
+
+2021^2 ≡ 1^2 ≡ 1 (mod 6)
+
+Now, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. 
+
+Next, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:
+
+1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).
+2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).
+3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).
+4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).
+5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).
+6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).
+
+So, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:
+
+a_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)
+
+Therefore, the remainder of the sum of cubes when divided by 6 is 1.</think>
+
+There is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point 
+ 
+<answer> Stress point of sum of cubes is 1 </answer>
+
+- final_answer: 
+
+- extras: prompt: A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$.
+Assistant: <think>
+answer: 5
+target: 5
+
+
+- is_correct: False
+2025-04-09 15:49:30.164 | DEBUG    | __main__:custom_reward_fn:362 - [STEP 0] | avg_non_stop_count=0 | percent_score_0=98.21% | percent_score_0_5=0.00% | percent_score_1=1.79% | percent_score_1_exclude_0_5=1.79% | num_tokens=[640, 159, 271, 323, 665, 356, 236, 107, 337, 186, 61, 483, 873, 416, 567, 838, 812, 827, 804, 369, 445, 351, 477, 154, 215, 160, 271, 319, 293, 241, 215, 165, 574, 36, 96, 458, 262, 668, 39, 305, 176, 154, 207, 140, 74, 157, 185, 241, 182, 144, 247, 421, 218, 706, 285, 230, 353, 114, 152, 236, 201, 130, 342, 195] | stop_percentage=87.50
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:792 - Before balancing, len(evaluator_res_score_tensors): 56
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:799 - Final score values before balancing: [1.0, 0.0, 0.0, -0.5, 1.0, 1.0, -0.5, 0.0, 0.0, 1.0, 1.0, 1.0, -0.5, 1.0, 0.0, 1.0, 0.0, 1.0, -0.5, -0.5, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, -0.5, 0.0, 0.0, -0.5, -0.5, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.5, 0.0, 0.0, 1.0, -0.5, 1.0, 1.0, 1.0, 1.0, 0.0]
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:800 - rf_verification_list: ['no', 'yes', 'yes', None, 'no', 'no', None, 'yes', 'yes', 'no', 'no', 'no', None, 'no', 'yes', 'no', 'yes', 'no', None, None, 'no', 'yes', 'yes', 'no', 'yes', 'yes', None, 'yes', 'yes', None, None, 'no', 'no', 'yes', 'no', 'no', 'yes', 'no', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'no', None, 'yes', 'yes', 'no', None, 'no', 'no', 'no', 'no', 'yes']
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:823 - group_1_yes: 0, group_1_no: 22
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:824 - group_0_yes: 24, group_0_no: 0
+2025-04-09 15:50:46.628 | DEBUG    | __main__:custom_reward_fn:847 - Selected indices after balancing: [3, 6, 12, 18, 19, 26, 29, 30, 46, 50]
+2025-04-09 15:50:46.629 | DEBUG    | __main__:custom_reward_fn:896 - After balancing, len(evaluator_res_score_tensors): 10
+2025-04-09 15:50:46.629 | DEBUG    | __main__:custom_reward_fn:897 - final_filtered_scores: [-0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5]
+2025-04-09 15:50:46.629 | DEBUG    | __main__:custom_reward_fn:918 - [STEP 0] [Policy Evaluator Full Log]: 
+
+# Policy Index:
+0
+
+# Prompt:
+A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$.
+Assistant: <think>
+
+# Policy Response:
+ First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: 
+
+2021^2 ≡ 1^2 ≡ 1 (mod 6)
+
+Now, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. 
+
+Next, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:
+
+1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).
+2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).
+3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).
+4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).
+5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).
+6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).
+
+So, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:
+
+a_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)
+
+Therefore, the remainder of the sum of cubes when divided by 6 is 1.</think>
+
+There is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point 
+ 
+<answer> Stress point of sum of cubes is 1 </answer>
+
+# p_correct:
+N/A
+
+# RG Prompt:
+You are a math teacher. Grade the Solution, verifying correctness step by step. Use Expected Answer to find any erroneous step in the Solution.
+
+Question: "Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$."
+
+Solution: "<think> First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: 
+
+2021^2 ≡ 1^2 ≡ 1 (mod 6)
+
+Now, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. 
+
+Next, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:
+
+1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).
+2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).
+3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).
+4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).
+5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).
+6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).
+
+So, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:
+
+a_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)
+
+Therefore, the remainder of the sum of cubes when divided by 6 is 1.</think>
+
+There is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point 
+ 
+<answer> Stress point of sum of cubes is 1 </answer>" (INCORRECT)
+
+Expected Answer: "<think>N/A"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# RG Response:
+temp</think>
+<answer> Yes </answer>
+
+# RG Final Answer:
+Yes
+
+# RF Prompt:
+You are a math teacher. Grade the Solution, verifying correctness step by step.
+
+Question: "Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$."
+
+Solution: "<think> First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: 
+
+2021^2 ≡ 1^2 ≡ 1 (mod 6)
+
+Now, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. 
+
+Next, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:
+
+1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).
+2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).
+3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).
+4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).
+5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).
+6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).
+
+So, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:
+
+a_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)
+
+Therefore, the remainder of the sum of cubes when divided by 6 is 1.</think>
+
+There is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point 
+ 
+<answer> Stress point of sum of cubes is 1 </answer>"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# RF Response:
+ The solution is correct. The reasoning is clear and the calculations are accurate. The solution starts by finding the sum of the numbers in the sequence modulo 6, which is indeed 1. Then, it proves that if two numbers in the sequence are congruent modulo 6, their cubes are also congruent modulo 6. Finally, it concludes that the sum of the cubes modulo 6 is also 1. The solution does a good job of demonstrating the steps and justifications for the answer.</think>
+<answer> Yes </answer>
+
+# RF Final Score Value:
+None
+
+# RF Final Answer:
+Yes
+
+# Judge Prompt:
+You are an evaluator supervisor. Your task is to judge whether the Evaluation Response correctly evaluates the given solution by comparing it to the Reference Ground Truth. Do not evaluate the underlying mathematical solution again—only assess if the Evaluation Response correctly reflects the errors highlighted by the Reference Ground Truth.
+Follow this output format:
+<think> [Your detailed step-by-step analysis] </think>
+<answer> X </answer>
+
+Question: "An isosceles trapezoid has side lengths as labeled below. Determine the length of segment AC.
+
+\[
+\text{[asy]}
+\text{unitsize(1.5mm);}
+\text{defaultpen(linewidth(.7pt)+fontsize(10pt));}
+\text{dotfactor=3;}
+
+\text{pair A=(0,0), B=(26,0), C=(17,12), D=(9,12);}
+\text{pair[] dots={A,B,C,D};}
+
+\text{draw(A--B--C--D--cycle);}
+\text{dot(dots);}
+\text{label("A",A,SW);}
+\text{label("B",B,SE);}
+\text{label("C",C,NE);}
+\text{label("D",D,NW);}
+\text{label("12",midpoint(C--D),N);}
+\text{label("13",midpoint(D--A),NW);}
+\text{label("26",midpoint(A--B),S);}
+\text{label("13",midpoint(B--C),NE);}
+\text{[/asy]}
+\]"
+
+Solution: "<think> First, let's find the sum of all numbers in the sequence modulo 6. Since 2021 is congruent to 1 modulo 6 (as 2021 = 6*336 + 5), we have: 
+
+2021^2 ≡ 1^2 ≡ 1 (mod 6)
+
+Now, we are given that a_1 + a_2 + ... + a_2021 = 2021^2021, so we can infer that the sum of all numbers in the sequence modulo 6 is congruent to 1. 
+
+Next, we need to prove that if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). To do this, observe the following cases:
+
+1. If a_i and a_j are both congruent to 0 (mod 6), then a_i^3 and a_j^3 are also congruent to 0 (mod 6).
+2. If a_i and a_j are both congruent to 1 (mod 6), then a_i^3 and a_j^3 are also congruent to 1 (mod 6).
+3. If a_i and a_j are both congruent to 2 (mod 6), then a_i^3 and a_j^3 are both congruent to 8 (mod 6), which is equivalent to 2 (mod 6).
+4. If a_i and a_j are both congruent to 3 (mod 6), then a_i^3 and a_j^3 are both congruent to 27 (mod 6), which is equivalent to 3 (mod 6).
+5. If a_i and a_j are both congruent to 4 (mod 6), then a_i^3 and a_j^3 are both congruent to 64 (mod 6), which is equivalent to 4 (mod 6).
+6. If a_i and a_j are both congruent to 5 (mod 6), then a_i^3 and a_j^3 are both congruent to 125 (mod 6), which is equivalent to 5 (mod 6).
+
+So, if a_i ≡ a_j (mod 6), then a_i^3 ≡ a_j^3 (mod 6). Since the sum of all numbers in the sequence modulo 6 is congruent to 1 and equality is maintained for cubes, we can now calculate the sum of the cubes modulo 6:
+
+a_1^3 + a_2^3 + ... + a_2021^3 ≡ 1 (mod 6)
+
+Therefore, the remainder of the sum of cubes when divided by 6 is 1.</think>
+
+There is some stress points to you please tell me all stress point one by zero forgety to focus me one more please tell me stress point 
+ 
+<answer> Stress point of sum of cubes is 1 </answer>"
+
+Evaluation Response: "<think> The solution is correct. The reasoning is clear and the calculations are accurate. The solution starts by finding the sum of the numbers in the sequence modulo 6, which is indeed 1. Then, it proves that if two numbers in the sequence are congruent modulo 6, their cubes are also congruent modulo 6. Finally, it concludes that the sum of the cubes modulo 6 is also 1. The solution does a good job of demonstrating the steps and justifications for the answer.</think>
+<answer> Yes </answer>"
+
+Reference Ground Truth: "<think>temp</think>
+<answer> Yes </answer>"
+
+Please output your Evaluation Response verification in the following format:
+<think> [Your detailed step-by-step analysis comparing the Evaluation Response with the Reference Ground Truth on how correct of an assessment the Evaluation Response is] </think>
+<answer> X </answer> where X is either Yes or No. Yes means that the Evaluation Response correctly reflects the errors highlighted by the Reference Ground Truth, and No means it does not.
+
+Evaluator Supervisor Response: <think>
+
+# Judge Response:
+temp</think>
+<answer>yes</answer>
+
+# Judge Decision:
+1.0
+
+# RF Final Score Value:
+None
+
+
+2025-04-09 15:50:46.629 | INFO     | __main__:custom_reward_fn:925 - p_correct exists percentage: 12.50%
+2025-04-09 15:50:46.629 | INFO     | __main__:custom_reward_fn:951 - RG match iscorrect percentage: 1.79%
+2025-04-09 15:50:46.643 | INFO     | __main__:custom_reward_fn:1027 - [STEP 0] RF extraction rate: 82.81% over 64 responses, match rate: 43.75% over 53 valid extractions, yes percentage: 47.17% (25/53), GT iscorrect rate: 0.00% (0/53), yes+GT precision: 0.00% (0/25), no+notGT precision: 100.00% (28/28), yes recall: 0.00% (0/0), no recall: 52.83% (28/53)
+2025-04-09 15:50:46.645 | INFO     | __main__:custom_reward_fn:1045 - RG extraction success: 100.00% of responses
+2025-04-09 15:50:46.646 | INFO     | __main__:custom_reward_fn:1051 - RF extraction success: 87.50% of responses
+2025-04-09 15:50:46.652 | INFO     | __main__:custom_reward_fn:1075 - Judge decisions equal rule-based iscorrect score: 34.38% (22/64)
+2025-04-09 15:50:46.653 | INFO     | __main__:custom_reward_fn:1083 - Judge decisions = 0 when rule-based iscorrect score = 0: 0.00% (0/0)
+2025-04-09 15:50:46.654 | INFO     | __main__:custom_reward_fn:1085 - Judge decisions: 100.00% 1's, 0.00% 0's, 100.00% valid (0 or 1) out of 64 decisions
+2025-04-09 15:50:46.669 | INFO     | __main__:custom_reward_fn:1139 - avg_non_stop_count: 0.0000,avg_repeat_score: 0.0167,avg_reflection_pattern_score: 0.0000,avg_pass_at_n: 0.0000,avg_num_tokens: 321.3125,std_num_tokens: 214.6121,avg_correct_num_tokens: 445.0000,std_correct_num_tokens: 0.0000,avg_incorrect_num_tokens: 298.4909,std_incorrect_num_tokens: 201.6145
+2025-04-09 15:50:46.681 | INFO     | orz.ppo.trainer:make_experience:593 - Calculate custom rewards, time cost: 95.60s
+2025-04-09 15:50:46.681 | DEBUG    | orz.ppo.trainer:make_experience:609 - (policy branch) after custom reward calculation, len(all_prompts): 10
+2025-04-09 15:50:46.688 | INFO     | orz.ppo.trainer:make_experience:617 - Packing samples, time cost: 0.01s
+2025-04-09 15:50:59.589 | INFO     | orz.ppo.trainer:make_experience:643 - experiences size: 1
+2025-04-09 15:50:59.589 | INFO     | orz.ppo.trainer:make_experience:633 - Inference and calculate values, log probs, rewards, kl divergence, time cost: 12.90s
+2025-04-09 15:50:59.589 | DEBUG    | orz.ppo.trainer:make_experience:671 - [STEP 0] [Policy SAR Log]
+# Policy Prompt
+A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+As shown in the figure, identical equilateral triangles are joined downward progressively to form larger equilateral triangles. The number of vertices (counting overlapping vertices just once) of the smallest triangles in sequence are $3, 6, 10, 15, 21, \cdots$. What is the 9th term in this sequence?
+Assistant: <think>
+
+# Policy Response
+ This sequence looks like a sequence of triangular numbers. The nth triangular number is given by the formula n(n+1)/2. The 9th term in this sequence can be found by substituting n=9 into the triangular number formula: 9(9+1)/2 = 45. </think>
+<answer> 45 </answer>
+
+# Policy Reward
+0.0
+
+# Policy Evaluator Prompt
+You are a math teacher. Grade the Solution, verifying correctness step by step.
+
+Question: "Let $a_1,a_2,\dots,a_{2021}$ be a strictly increasing sequence of positive integers such that \[a_1+a_2+\cdots+a_{2021}=2021^{2021}.\] Find the remainder when $a_1^3+a_2^3+\cdots+a_{2021}^3$ is divided by $6$."
+
+Solution: "<think> 
+To solve this problem, we can use the concept of modular arithmetic and properties of cubes modulo 6. First, we will find some patterns of cubes modulo 6, and then we will apply these patterns to our sequence \(a_1, a_2, \ldots, a_{2021}\). 
+
+Let's analyze cubes modulo 6:
+
+1. If a number is congruent to 0 modulo 6, its cube is also congruent to 0 modulo 6.
+2. If a number is congruent to 1 modulo 6, its cube is congruent to 1 modulo 6.
+3. If a number is congruent to 2 modulo 6, its cube is congruent to 8, which is congruent to 2 modulo 6.
+4. If a number is congruent to 3 modulo 6, its cube is congruent to 27, which is congruent to 3 modulo 6.
+5. If a number is congruent to 4 modulo 6, its cube is congruent to 64, which is congruent to 4 modulo 6.
+6. If a number is congruent to 5 modulo 6, its cube is congruent to 125, which is congruent to 5 modulo 6.
+
+We can see that a number's cube modulo 6 is the same as that number itself modulo 6. Therefore, \(a_n^3 \equiv a_n \pmod{6}\) for any positive integer \(a_n\).
+
+Now, let's analyze the sum \(a_1 + a_2 + \cdots + a_{2021}\) modulo 6. We have \[a_1 + a_2 + \cdots + a_{2021} = 2021^{2021}.\]
+
+Note that 2021 is congruent to 1 modulo 6, as \(2021 = 6 \times 336 + 5\). Therefore, we have:
+
+\[2021^{2021} \equiv 1^{2021} \equiv 1 \pmod{6}.\]
+
+So, the sum of the sequence \(a_1 + a_2 + \cdots + a_{2021}\) is congruent to 1 modulo 6. Then, the sum of cubes modulo 6 will be:
+
+\[a_1^3 + a_2^3 + \cdots + a_{2021}^3 \equiv a_1 + a_2 + \cdots + a_{2021} \equiv 1 \pmod{6}.\]
+
+Thus, the remainder when \(a_1^3 + a_2^3 + \cdots + a_{2021}^3\) is divided by 6 is 1.</think>
+
+<answer> 
+The remainder when \(a_1^3 + a_2^3 + \cdots + a_{2021}^3\) is divided by 6 is 1.
+</answer>"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# Policy Evaluator Response
+ 
+The solution is largely correct. Here's a step-by-step verification of the student's reasoning:
+
+1. The student correctly analyzes the cubes modulo 6 and finds that \(a_n^3 \equiv a_n \pmod{6}\).
+2. The student also correctly notes that \(2021 \equiv 1 \pmod{6}\), and thus \(2021^{2021} \equiv 1^{2021} \equiv 1 \pmod{6}\).
+3. From the above two steps, the conclusion is that \(a_1^3 + a_2^3 + \cdots + a_{2021}^3 \equiv a_1 + a_2 + \cdots + a_{2021} \equiv 1 \pmod{6}\) is correct.
+
+However, there is a missing detail: we need to ensure that the given sequence of 2021 positive integers can indeed add up to \(2021^{2021}\) while maintaining the sequence strictly increasing. Given that \(2021^{2021}\) is an astronomically large number compared to what the sum of the first 2021 positive integers would be (which is \(\frac{2021 \cdot 2022}{2} = 2021 \cdot 1011\)), it is quite clear that such a sequence exists, and the analysis can proceed as proposed.
+
+Given that all critical steps and reasoning are correct, and ensuring that the problem constraints can be satisfied, the solution appears to be correct.
+
+<answer> Yes </answer>
+
+# Policy Evaluator Reward
+-0.5
+
+# Exact Match is_correct Reward
+False
+
+# Ground Truth Answer
+5
+2025-04-09 15:50:59.769 | INFO     | orz.ppo.trainer:make_experience:689 - Calculate advantages and returns, time cost: 0.17s
+2025-04-09 15:50:59.769 | INFO     | orz.ppo.trainer:make_experience:748 - avg_raw_rewards: -0.05000000074505806, avg_kl: 0.0, avg_response_length: 246.10000610351562, avg_orm_score: 0.0, avg_custom_rewards: -0.05000000074505806
+2025-04-09 15:50:59.800 | INFO     | orz.ppo.trainer:make_experience:782 - Packing policy evaluator samples, time cost: 0.01s
+2025-04-09 15:51:17.883 | INFO     | orz.ppo.trainer:make_experience:797 - Evaluator experiences size: 1
+2025-04-09 15:51:17.883 | INFO     | orz.ppo.trainer:make_experience:791 - Evaluator Inference and calculate values, log probs, rewards, kl divergence, time cost: 18.08s
+2025-04-09 15:51:18.146 | INFO     | orz.ppo.trainer:make_experience:807 - Calculate evaluator advantages and returns, time cost: 0.26s
+2025-04-09 15:51:18.194 | INFO     | orz.ppo.trainer:train:144 - dumping replay buffer to /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1432__self_play_False/dumped_replay_buffer/iter0_replay_buffer.jsonl
+2025-04-09 15:51:18.240 | INFO     | orz.ppo.trainer:train:139 - Dumping replay buffer, time cost: 0.08s
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Actor Train epoch [1/1]:   0%|          | 0/1 [00:00<?, ?it/s]
+[36m(CriticRayActorBase pid=283142)[0m Critic Train epoch [1/1]:   0%|          | 0/1 [00:00<?, ?it/s]
+2025-04-09 15:51:47.770 | INFO     | orz.ppo.trainer:ppo_local_train_policy:1953 - Policy model training, time cost: 29.48s
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Actor Train epoch [1/1]:   0%|          | 0/1 [00:29<?, ?it/s, pg=1.14e-5, ret=-0.0275, glen=371, tlen=791, kl=0, act_lr=2e-8, ent=0.756]Actor Train epoch [1/1]:   0%|          | 0/1 [00:29<?, ?it/s, pg=1.14e-5, ret=-0.0275, glen=371, tlen=791, kl=0, act_lr=2e-8, ent=0.756]
+2025-04-09 15:51:47.825 | INFO     | orz.ppo.trainer:ppo_local_train_critic:1969 - Critic model training, time cost: 29.52s
+[36m(CriticRayActorBase pid=283142)[0m Critic Train epoch [1/1]:   0%|          | 0/1 [00:29<?, ?it/s, critic_loss=0.0673, values=0.0124, critic_lr=1e-7]Critic Train epoch [1/1]:   0%|          | 0/1 [00:29<?, ?it/s, critic_loss=0.0673, values=0.0124, critic_lr=1e-7]
+2025-04-09 15:51:48.007 | INFO     | orz.ppo.trainer:train:171 - Actor and Critic model training, time cost: 29.72s
+2025-04-09 15:51:48.007 | INFO     | orz.ppo.trainer:train:189 - {'policy_loss': 1.1436641216278076e-05, 'actor_lr': 1.999999987845058e-08, 'clip_ratio': 0.0, 'entropy': 0.7563594579696655, 'kl': 0.0, 'response_length': 370.9499816894531, 'total_length': 791.35009765625, 'exp_type': 0.6500000357627869, 'return': -0.027499999850988388, 'policy_update_steps': 1.0}
+Episode [1/20]:   0%|          | 1/7110 [07:07<843:43:21, 427.26s/it]2025-04-09 15:51:48.008 | DEBUG    | orz.ppo.trainer:make_experience:287 - starting make_experience
+2025-04-09 15:51:48.008 | DEBUG    | orz.ppo.trainer:make_experience:288 - (before query branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-09 15:51:48.008 | DEBUG    | orz.ppo.trainer:make_experience:531 - 
+--- Policy Branch ---
+
+2025-04-09 15:51:48.008 | DEBUG    | orz.ppo.trainer:make_experience:532 - (before policy branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-09 15:51:48.008 | DEBUG    | orz.ppo.trainer:make_experience:533 - (before policy branch) sample all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nCompute\n\\[\n\\frac{(1 + 22) \\left( 1 + \\dfrac{22}{2} \\right) \\left( 1 + \\dfrac{22}{3} \\right) \\dotsm \\left( 1 + \\dfrac{22}{25} \\right)}{(1 + 25) \\left( 1 + \\dfrac{25}{2} \\right) \\left( 1 + \\dfrac{25}{3} \\right) \\dotsm \\left( 1 + \\dfrac{25}{22} \\right)}.\n\\]\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nCompute\n\\[\n\\frac{(1 + 22) \\left( 1 + \\dfrac{22}{2} \\right) \\left( 1 + \\dfrac{22}{3} \\right) \\dotsm \\left( 1 + \\dfrac{22}{25} \\right)}{(1 + 25) \\left( 1 + \\dfrac{25}{2} \\right) \\left( 1 + \\dfrac{25}{3} \\right) \\dotsm \\left( 1 + \\dfrac{25}{22} \\right)}.\n\\]\nAssistant: <think>', 'answer': '1', 'target': '1'})
+2025-04-09 15:51:48.008 | INFO     | orz.ppo.trainer:make_experience:564 - start generation
+2025-04-09 15:52:43.941 | INFO     | orz.ppo.trainer:make_experience:567 - generate local rollout batch done
+2025-04-09 15:52:43.941 | INFO     | orz.ppo.trainer:make_experience:552 - Generate sequences via vllm engines, time cost: 55.93s
+2025-04-09 15:52:43.941 | DEBUG    | orz.ppo.trainer:make_experience:576 - 
+
+INSPECT POLICY BRANCH PROMPTS AND RESPONSES
+2025-04-09 15:52:43.941 | DEBUG    | orz.ppo.trainer:make_experience:577 - (policy branch) sample prompt, all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nCompute\n\\[\n\\frac{(1 + 22) \\left( 1 + \\dfrac{22}{2} \\right) \\left( 1 + \\dfrac{22}{3} \\right) \\dotsm \\left( 1 + \\dfrac{22}{25} \\right)}{(1 + 25) \\left( 1 + \\dfrac{25}{2} \\right) \\left( 1 + \\dfrac{25}{3} \\right) \\dotsm \\left( 1 + \\dfrac{25}{22} \\right)}.\n\\]\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nCompute\n\\[\n\\frac{(1 + 22) \\left( 1 + \\dfrac{22}{2} \\right) \\left( 1 + \\dfrac{22}{3} \\right) \\dotsm \\left( 1 + \\dfrac{22}{25} \\right)}{(1 + 25) \\left( 1 + \\dfrac{25}{2} \\right) \\left( 1 + \\dfrac{25}{3} \\right) \\dotsm \\left( 1 + \\dfrac{25}{22} \\right)}.\n\\]\nAssistant: <think>', 'answer': '1', 'target': '1'})
+
+2025-04-09 15:52:43.941 | DEBUG    | orz.ppo.trainer:make_experience:578 - (policy branch) sample response, outputs[0]: {'response': ' The answer is\n\\[\\frac{23}{22} \\cdot \\frac{\\frac{24}{2}}{\\frac{25}{2}} \\cdot \\frac{\\frac{25}{3}}{\\frac{26}{3}} \\dotsm \\frac{\\frac{46}{22}}{\\frac{47}{22}} = \\frac{23}{1} \\cdot \\frac{2}{25} \\cdot \\frac{3}{26} \\dotsm \\frac{22}{45} \\cdot \\frac{46}{47} = \\frac{46}{25} \\cdot \\frac{23}{22} = \\frac{253}{300}.\\]</think>\n\n<answer>\nYou must put your answer inside <answer> </answer>', 'iscorrect': False, 'stop_reason': 'stop', 'final_answer': 'You must put your answer inside <answer>', 'extra': {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nCompute\n\\[\n\\frac{(1 + 22) \\left( 1 + \\dfrac{22}{2} \\right) \\left( 1 + \\dfrac{22}{3} \\right) \\dotsm \\left( 1 + \\dfrac{22}{25} \\right)}{(1 + 25) \\left( 1 + \\dfrac{25}{2} \\right) \\left( 1 + \\dfrac{25}{3} \\right) \\dotsm \\left( 1 + \\dfrac{25}{22} \\right)}.\n\\]\nAssistant: <think>', 'answer': '1', 'target': '1'}}
+
+
+2025-04-09 15:52:44.095 | DEBUG    | __main__:custom_reward_fn:362 - [STEP 1] | avg_non_stop_count=0 | percent_score_0=88.52% | percent_score_0_5=0.00% | percent_score_1=11.48% | percent_score_1_exclude_0_5=11.48% | num_tokens=[181, 553, 260, 345, 358, 445, 90, 432, 522, 93, 441, 226, 189, 735, 235, 535, 715, 595, 195, 119, 548, 169, 657, 103, 230, 337, 376, 388, 160, 70, 136, 89, 11, 462, 603, 697, 473, 468, 637, 555, 161, 271, 129, 198, 172, 316, 108, 113, 174, 232, 133, 382, 88, 106, 134, 220, 50, 89, 87, 129, 117, 107, 114, 123] | stop_percentage=95.31
+2025-04-09 15:54:02.670 | DEBUG    | __main__:custom_reward_fn:792 - Before balancing, len(evaluator_res_score_tensors): 61
+2025-04-09 15:54:02.670 | DEBUG    | __main__:custom_reward_fn:799 - Final score values before balancing: [1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, -0.5, -0.5, 1.0, 0.0, -0.5, 0.0, 1.0, -0.5, -0.5, 1.0, 0.0, -0.5, 0.0, -0.5, 1.0, -0.5, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, -0.5, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, -0.5, 1.0, 1.0, 1.0, 0.0, 1.0, -0.5, 0.0, 1.0]
+2025-04-09 15:54:02.670 | DEBUG    | __main__:custom_reward_fn:800 - rf_verification_list: ['no', 'no', 'no', 'no', 'yes', 'no', 'yes', None, None, 'no', 'yes', None, 'yes', 'no', None, None, 'no', 'yes', None, 'yes', None, 'no', None, 'no', 'yes', 'yes', 'no', 'no', 'no', 'no', 'no', None, 'yes', 'yes', 'no', 'yes', 'no', 'yes', 'no', 'no', 'yes', 'no', 'yes', None, None, 'yes', 'yes', 'yes', 'yes', None, 'yes', 'yes', None, 'yes', 'yes', 'no', 'yes', 'yes', None, 'yes', 'yes']
+2025-04-09 15:54:02.670 | DEBUG    | __main__:custom_reward_fn:823 - group_1_yes: 6, group_1_no: 20
+2025-04-09 15:54:02.670 | DEBUG    | __main__:custom_reward_fn:824 - group_0_yes: 20, group_0_no: 1
+2025-04-09 15:54:02.671 | DEBUG    | __main__:custom_reward_fn:847 - Selected indices after balancing: [0, 3, 7, 8, 11, 14, 15, 16, 18, 20, 22, 23, 25, 27, 31, 32, 34, 35, 43, 44, 49, 52, 53, 54, 55, 57, 58, 60]
+2025-04-09 15:54:02.671 | DEBUG    | __main__:custom_reward_fn:896 - After balancing, len(evaluator_res_score_tensors): 28
+2025-04-09 15:54:02.671 | DEBUG    | __main__:custom_reward_fn:897 - final_filtered_scores: [1.0, 1.0, -0.5, -0.5, -0.5, -0.5, -0.5, 1.0, -0.5, -0.5, -0.5, 1.0, 0.0, 1.0, -0.5, 1.0, 0.0, 1.0, -0.5, -0.5, -0.5, -0.5, 1.0, 1.0, 1.0, 1.0, -0.5, 1.0]
+2025-04-09 15:54:02.671 | DEBUG    | __main__:custom_reward_fn:918 - [STEP 1] [Policy Evaluator Full Log]: 
+
+# Policy Index:
+0
+
+# Prompt:
+A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Compute
+\[
+\frac{(1 + 22) \left( 1 + \dfrac{22}{2} \right) \left( 1 + \dfrac{22}{3} \right) \dotsm \left( 1 + \dfrac{22}{25} \right)}{(1 + 25) \left( 1 + \dfrac{25}{2} \right) \left( 1 + \dfrac{25}{3} \right) \dotsm \left( 1 + \dfrac{25}{22} \right)}.
+\]
+Assistant: <think>
+
+# Policy Response:
+ The answer is
+\[\frac{23}{22} \cdot \frac{\frac{24}{2}}{\frac{25}{2}} \cdot \frac{\frac{25}{3}}{\frac{26}{3}} \dotsm \frac{\frac{46}{22}}{\frac{47}{22}} = \frac{23}{1} \cdot \frac{2}{25} \cdot \frac{3}{26} \dotsm \frac{22}{45} \cdot \frac{46}{47} = \frac{46}{25} \cdot \frac{23}{22} = \frac{253}{300}.\]</think>
+
+<answer>
+You must put your answer inside <answer> </answer>
+
+# p_correct:
+N/A
+
+# RG Prompt:
+You are a math teacher. Grade the Solution, verifying correctness step by step. Use Expected Answer to find any erroneous step in the Solution.
+
+Question: "Compute
+\[
+\frac{(1 + 22) \left( 1 + \dfrac{22}{2} \right) \left( 1 + \dfrac{22}{3} \right) \dotsm \left( 1 + \dfrac{22}{25} \right)}{(1 + 25) \left( 1 + \dfrac{25}{2} \right) \left( 1 + \dfrac{25}{3} \right) \dotsm \left( 1 + \dfrac{25}{22} \right)}.
+\]"
+
+Solution: "<think> The answer is
+\[\frac{23}{22} \cdot \frac{\frac{24}{2}}{\frac{25}{2}} \cdot \frac{\frac{25}{3}}{\frac{26}{3}} \dotsm \frac{\frac{46}{22}}{\frac{47}{22}} = \frac{23}{1} \cdot \frac{2}{25} \cdot \frac{3}{26} \dotsm \frac{22}{45} \cdot \frac{46}{47} = \frac{46}{25} \cdot \frac{23}{22} = \frac{253}{300}.\]</think>
+
+<answer>
+You must put your answer inside <answer> </answer>" (INCORRECT)
+
+Expected Answer: "<think>N/A"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# RG Response:
+temp</think>
+<answer> Yes </answer>
+
+# RG Final Answer:
+Yes
+
+# RF Prompt:
+You are a math teacher. Grade the Solution, verifying correctness step by step.
+
+Question: "Compute
+\[
+\frac{(1 + 22) \left( 1 + \dfrac{22}{2} \right) \left( 1 + \dfrac{22}{3} \right) \dotsm \left( 1 + \dfrac{22}{25} \right)}{(1 + 25) \left( 1 + \dfrac{25}{2} \right) \left( 1 + \dfrac{25}{3} \right) \dotsm \left( 1 + \dfrac{25}{22} \right)}.
+\]"
+
+Solution: "<think> The answer is
+\[\frac{23}{22} \cdot \frac{\frac{24}{2}}{\frac{25}{2}} \cdot \frac{\frac{25}{3}}{\frac{26}{3}} \dotsm \frac{\frac{46}{22}}{\frac{47}{22}} = \frac{23}{1} \cdot \frac{2}{25} \cdot \frac{3}{26} \dotsm \frac{22}{45} \cdot \frac{46}{47} = \frac{46}{25} \cdot \frac{23}{22} = \frac{253}{300}.\]</think>
+
+<answer>
+You must put your answer inside <answer> </answer>"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# RF Response:
+Let's verify the solution step-by-step.</think>
+
+<answer>No</answer>
+
+# RF Final Score Value:
+1.0
+
+# RF Final Answer:
+No
+
+# Judge Prompt:
+You are an evaluator supervisor. Your task is to judge whether the Evaluation Response correctly evaluates the given solution by comparing it to the Reference Ground Truth. Do not evaluate the underlying mathematical solution again—only assess if the Evaluation Response correctly reflects the errors highlighted by the Reference Ground Truth.
+Follow this output format:
+<think> [Your detailed step-by-step analysis] </think>
+<answer> X </answer>
+
+Question: "A sorcerer is crafting a magical elixir. He must choose one of four magical herbs and one of six enchanted crystals to complete his elixir. However, two of the crystals are incompatible with three of the herbs each. How many valid combinations can the sorcerer use to create his elixir?"
+
+Solution: "<think> The answer is
+\[\frac{23}{22} \cdot \frac{\frac{24}{2}}{\frac{25}{2}} \cdot \frac{\frac{25}{3}}{\frac{26}{3}} \dotsm \frac{\frac{46}{22}}{\frac{47}{22}} = \frac{23}{1} \cdot \frac{2}{25} \cdot \frac{3}{26} \dotsm \frac{22}{45} \cdot \frac{46}{47} = \frac{46}{25} \cdot \frac{23}{22} = \frac{253}{300}.\]</think>
+
+<answer>
+You must put your answer inside <answer> </answer>"
+
+Evaluation Response: "<think>Let's verify the solution step-by-step.</think>
+
+<answer>No</answer>"
+
+Reference Ground Truth: "<think>temp</think>
+<answer> Yes </answer>"
+
+Please output your Evaluation Response verification in the following format:
+<think> [Your detailed step-by-step analysis comparing the Evaluation Response with the Reference Ground Truth on how correct of an assessment the Evaluation Response is] </think>
+<answer> X </answer> where X is either Yes or No. Yes means that the Evaluation Response correctly reflects the errors highlighted by the Reference Ground Truth, and No means it does not.
+
+Evaluator Supervisor Response: <think>
+
+# Judge Response:
+temp</think>
+<answer>yes</answer>
+
+# Judge Decision:
+1.0
+
+# RF Final Score Value:
+1.0
+
+
+2025-04-09 15:54:02.672 | INFO     | __main__:custom_reward_fn:925 - p_correct exists percentage: 25.00%
+2025-04-09 15:54:02.672 | INFO     | __main__:custom_reward_fn:951 - RG match iscorrect percentage: 11.48%
+2025-04-09 15:54:02.683 | INFO     | __main__:custom_reward_fn:1027 - [STEP 1] RF extraction rate: 78.12% over 64 responses, match rate: 42.19% over 50 valid extractions, yes percentage: 56.00% (28/50), GT iscorrect rate: 14.00% (7/50), yes+GT precision: 21.43% (6/28), no+notGT precision: 95.45% (21/22), yes recall: 85.71% (6/7), no recall: 48.84% (21/43)
+2025-04-09 15:54:02.685 | INFO     | __main__:custom_reward_fn:1045 - RG extraction success: 100.00% of responses
+2025-04-09 15:54:02.686 | INFO     | __main__:custom_reward_fn:1051 - RF extraction success: 87.50% of responses
+2025-04-09 15:54:02.692 | INFO     | __main__:custom_reward_fn:1075 - Judge decisions equal rule-based iscorrect score: 40.62% (26/64)
+2025-04-09 15:54:02.693 | INFO     | __main__:custom_reward_fn:1083 - Judge decisions = 0 when rule-based iscorrect score = 0: 0.00% (0/0)
+2025-04-09 15:54:02.693 | INFO     | __main__:custom_reward_fn:1085 - Judge decisions: 100.00% 1's, 0.00% 0's, 100.00% valid (0 or 1) out of 64 decisions
+2025-04-09 15:54:02.707 | INFO     | __main__:custom_reward_fn:1139 - avg_non_stop_count: 0.0000,avg_repeat_score: 0.0166,avg_reflection_pattern_score: 0.0000,avg_pass_at_n: 0.2500,avg_num_tokens: 284.1562,std_num_tokens: 196.6893,avg_correct_num_tokens: 298.1429,std_correct_num_tokens: 240.6589,avg_incorrect_num_tokens: 279.6296,std_incorrect_num_tokens: 193.4360
+2025-04-09 15:54:02.719 | INFO     | orz.ppo.trainer:make_experience:593 - Calculate custom rewards, time cost: 78.78s
+2025-04-09 15:54:02.719 | DEBUG    | orz.ppo.trainer:make_experience:609 - (policy branch) after custom reward calculation, len(all_prompts): 28
+2025-04-09 15:54:02.730 | INFO     | orz.ppo.trainer:make_experience:617 - Packing samples, time cost: 0.01s
+2025-04-09 15:54:21.699 | INFO     | orz.ppo.trainer:make_experience:643 - experiences size: 1
+2025-04-09 15:54:21.699 | INFO     | orz.ppo.trainer:make_experience:633 - Inference and calculate values, log probs, rewards, kl divergence, time cost: 18.97s
+2025-04-09 15:54:21.700 | DEBUG    | orz.ppo.trainer:make_experience:671 - [STEP 1] [Policy SAR Log]
+# Policy Prompt
+A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+The convex pentagon $ABCDE$ has $\angle A = \angle B = 120^\circ$, $EA = AB = BC = 2$ and $CD = DE = 4$.  What is the area of $ABCDE$?
+
+[asy]
+
+unitsize(1 cm);
+
+pair A, B, C, D, E;
+
+A = (0,0);
+
+B = (1,0);
+
+C = B + dir(60);
+
+D = C + 2*dir(120);
+
+E = dir(120);
+
+draw(A--B--C--D--E--cycle);
+
+label("$A$", A, SW);
+
+label("$B$", B, SE);
+
+label("$C$", C, dir(0));
+
+label("$D$", D, N);
+
+label("$E$", E, W);
+
+[/asy]
+Assistant: <think>
+
+# Policy Response
+ To find the area of the convex pentagon ABCDE, we can first find the areas of the triangles ABE and BCD, and then subtract the area of their intersection.</think>
+
+<answer> 
+
+To find the area of triangle ABE, we can use the formula for the area of a triangle with two sides and an included angle: area = (1/2) * a * b * sin(C), where a and b are the lengths of the sides and C is the included angle. In this case, a = AB = 2, b = EA = 2, and C = angle A = 120 degrees. So, the area of triangle ABE is (1/2) * 2 * 2 * sin(120) = 2 * sqrt(3).
+
+To find the area of triangle BCD, we can use the same formula. In this case, a = BC = 2, b = CD = 4, and C = angle B = 120 degrees. So, the area of triangle BCD is (1/2) * 2 * 4 * sin(120) = 4 * sqrt(3).
+
+Now, we need to find the area of their intersection. Since both triangles share the same angle at point B, we can create a larger triangle BFA with an extended segment FA. This way, we can find the common side BF and use it to find the area of the smaller triangle BFD. We have a = BF = 2, b = FD = 2, and C = angle B = 120 degrees. So, the area of triangle BFD is (1/2) * 2 * 2 * sin(120) = 2 * sqrt(3).
+
+Finally, to find the area of the pentagon ABCDE, we can subtract the area of triangle BFD from the sum of the areas of triangles ABE and BCD: (2 * sqrt(3) + 4 * sqrt(3) - 2 * sqrt(3)) = 6 * sqrt(3).</answer>
+
+# Policy Reward
+0.0
+
+# Policy Evaluator Prompt
+You are a math teacher. Grade the Solution, verifying correctness step by step.
+
+Question: "Compute
+\[
+\frac{(1 + 22) \left( 1 + \dfrac{22}{2} \right) \left( 1 + \dfrac{22}{3} \right) \dotsm \left( 1 + \dfrac{22}{25} \right)}{(1 + 25) \left( 1 + \dfrac{25}{2} \right) \left( 1 + \dfrac{25}{3} \right) \dotsm \left( 1 + \dfrac{25}{22} \right)}.
+\]"
+
+Solution: "<think> The answer is
+\[\frac{23}{22} \cdot \frac{\frac{24}{2}}{\frac{25}{2}} \cdot \frac{\frac{25}{3}}{\frac{26}{3}} \dotsm \frac{\frac{46}{22}}{\frac{47}{22}} = \frac{23}{1} \cdot \frac{2}{25} \cdot \frac{3}{26} \dotsm \frac{22}{45} \cdot \frac{46}{47} = \frac{46}{25} \cdot \frac{23}{22} = \frac{253}{300}.\]</think>
+
+<answer>
+You must put your answer inside <answer> </answer>"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> X </answer> where X is either Yes or No.
+
+Math Teacher Response: <think>
+
+# Policy Evaluator Response
+Let's verify the solution step-by-step.</think>
+
+<answer>No</answer>
+
+# Policy Evaluator Reward
+1.0
+
+# Exact Match is_correct Reward
+False
+
+# Ground Truth Answer
+1
+2025-04-09 15:54:22.151 | INFO     | orz.ppo.trainer:make_experience:689 - Calculate advantages and returns, time cost: 0.45s
+2025-04-09 15:54:22.152 | INFO     | orz.ppo.trainer:make_experience:748 - avg_raw_rewards: 0.1071428582072258, avg_kl: 0.0, avg_response_length: 318.8571472167969, avg_orm_score: 0.0, avg_custom_rewards: 0.1071428582072258
+2025-04-09 15:54:22.190 | INFO     | orz.ppo.trainer:make_experience:782 - Packing policy evaluator samples, time cost: 0.02s
+2025-04-09 15:54:44.699 | INFO     | orz.ppo.trainer:make_experience:797 - Evaluator experiences size: 2
+2025-04-09 15:54:44.699 | INFO     | orz.ppo.trainer:make_experience:791 - Evaluator Inference and calculate values, log probs, rewards, kl divergence, time cost: 22.51s
+2025-04-09 15:54:45.116 | INFO     | orz.ppo.trainer:make_experience:807 - Calculate evaluator advantages and returns, time cost: 0.42s
+2025-04-09 15:54:45.148 | INFO     | orz.ppo.trainer:train:144 - dumping replay buffer to /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1432__self_play_False/dumped_replay_buffer/iter1_replay_buffer.jsonl
+2025-04-09 15:54:45.225 | INFO     | orz.ppo.trainer:train:139 - Dumping replay buffer, time cost: 0.09s
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Actor Train epoch [1/1]:   0%|          | 0/1 [00:00<?, ?it/s]
+[36m(CriticRayActorBase pid=283142)[0m Critic Train epoch [1/1]:   0%|          | 0/1 [00:00<?, ?it/s]
+2025-04-09 15:54:54.768 | INFO     | orz.ppo.trainer:ppo_local_train_policy:1953 - Policy model training, time cost: 9.47s
+2025-04-09 15:54:54.769 | INFO     | orz.ppo.trainer:train:171 - Actor and Critic model training, time cost: 9.47s
+2025-04-09 15:54:54.835 | INFO     | orz.ppo.trainer:ppo_local_train_critic:1969 - Critic model training, time cost: 9.51s
+Traceback (most recent call last):
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 2765, in <module>
+    asyncio.run(exp.run())
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/exps/examples/ppo/ppo_base_exp.py", line 231, in run
+    await self.trainer.train()
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/trainer.py", line 172, in train
+    status = await asyncio.gather(
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/trainer.py", line 1954, in ppo_local_train_policy
+    status = await self.policy_model.async_ppo_train(global_steps, replay_buffers)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/actors.py", line 339, in async_ppo_train
+    return await asyncio.gather(
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/tasks.py", line 650, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::PolicyRayActorBase.ppo_train()[39m (pid=115662, ip=10.4.69.251, actor_id=c9c372defd4c2c9a7bd61cfc0c000000, repr=<orz.ppo.actors.PolicyRayActorBase object at 0x7ff30c4f8670>)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/actors.py", line 448, in ppo_train
+    status = self.training_step(experience, global_steps, local_step, accumulation_steps)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/actors.py", line 625, in training_step
+    self.strategy.backward(loss, self.model, self.optimizer)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/openrlhf_deepspeed.py", line 162, in backward
+    model.backward(loss)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/utils/nvtx.py", line 18, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 2048, in backward
+    self.optimizer.backward(loss, retain_graph=retain_graph)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/utils/nvtx.py", line 18, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 2263, in backward
+    self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 63, in backward
+    scaled_loss.backward(retain_graph=retain_graph)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/_tensor.py", line 581, in backward
+    torch.autograd.backward(
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.24 GiB. GPU 0 has a total capacity of 79.15 GiB of which 907.69 MiB is free. Process 1969629 has 71.83 GiB memory in use. Process 1972925 has 6.42 GiB memory in use. Of the allocated memory 69.19 GiB is allocated by PyTorch, and 1.36 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[36m(PolicyRayActorBase pid=93735, ip=10.4.68.84)[0m Actor Train epoch [1/1]:   0%|          | 0/1 [00:09<?, ?it/s]
+[36m(extract_final_answers_batch pid=282210)[0m [2025-04-09 15:49:15,675] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[36m(extract_final_answers_batch pid=282210)[0m [2025-04-09 15:49:15,679] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)
+[36m(pid=96264, ip=10.4.37.103)[0m [2025-04-09 15:49:20,734] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.[32m [repeated 49x across cluster][0m
+[36m(pid=96264, ip=10.4.37.103)[0m [2025-04-09 15:49:20,736] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)[32m [repeated 49x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m Invalidate trace cache @ step 838 and module 0: cache has only 838 modules
+[36m(pid=96782, ip=10.4.37.103)[0m [2025-04-09 15:49:21,633] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.[32m [repeated 14x across cluster][0m
+[36m(pid=96782, ip=10.4.37.103)[0m [2025-04-09 15:49:21,635] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)[32m [repeated 14x across cluster][0m
+[36m(CriticRayActorBase pid=283142)[0m Invalidate trace cache @ step 838 and module 0: cache has only 838 modules[32m [repeated 2x across cluster][0m
+Episode [1/20]:   0%|          | 1/7110 [10:15<1215:28:53, 615.52s/it]

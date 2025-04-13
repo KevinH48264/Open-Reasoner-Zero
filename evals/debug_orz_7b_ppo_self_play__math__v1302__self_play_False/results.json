@@ -1,0 +1,34 @@
+[
+  {
+    "checkpoint": "policy",
+    "iteration": 50,
+    "normal_accuracy": 0.2032967032967033,
+    "gpt4o_accuracy": 0.47280334728033474,
+    "valid_response_rate": 0.9848901098901099,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 100,
+    "normal_accuracy": 0.3241758241758242,
+    "gpt4o_accuracy": 0.5629322268326418,
+    "valid_response_rate": 0.9931318681318682,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 200,
+    "normal_accuracy": 0.4010989010989011,
+    "gpt4o_accuracy": 0.5674157303370787,
+    "valid_response_rate": 0.978021978021978,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 250,
+    "normal_accuracy": 0.385989010989011,
+    "gpt4o_accuracy": 0.5612813370473537,
+    "valid_response_rate": 0.9862637362637363,
+    "total_samples": 728
+  }
+]

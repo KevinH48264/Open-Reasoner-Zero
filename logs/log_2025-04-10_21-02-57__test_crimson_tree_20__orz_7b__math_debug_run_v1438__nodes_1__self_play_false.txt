@@ -1,0 +1,937 @@
+[2025-04-10 21:03:11,863] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+2025-04-10 21:03:20.319 | INFO     | __main__:PPOExpConfig:164 - prompt_data: ['data/orz_math_57k_collected.json'], eval_prompt_data: ['data/eval_data/math500.json', 'data/eval_data/aime2024.json', 'data/eval_data/gpqa_diamond.json'], prompt_data_probs: [1.0]
+2025-04-10 21:03:20.329 | INFO     | __main__:<module>:2831 - --------- config key ---------                  ------ value ------
+seed                                            42
+ref_num_nodes                                   8
+ref_num_gpus_per_node                           1
+reward_num_nodes                                1
+reward_num_gpus_per_node                        2
+actor_num_nodes                                 8
+actor_num_gpus_per_node                         1
+critic_num_nodes                                8
+critic_num_gpus_per_node                        1
+colocate_critic_reward                          True
+colocate_actor_ref                              True
+colocate_all                                    True
+vllm_num_engines                                8
+vllm_tensor_parallel_size                       1
+vllm_sync_backend                               nccl
+local_rank                                      -1
+pretrain                                        Qwen/Qwen2.5-7B
+critic_pretrain                                 Qwen/Qwen2.5-7B
+reward_pretrain                                 <class 'NoneType'>
+ckpt_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1438__self_play_False
+save_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1438__self_play_False
+tensorboard_log_dir                             orz_logs/debug_orz_7b_ppo_self_play__math__v1438__self_play_False
+prompt_data                                     <class 'omegaconf.listconfig.ListConfig'>
+load_checkpoint                                 True
+zero_stage                                      3
+bf16                                            True
+zpg                                             1
+adam_offload                                    False
+flash_attn                                      True
+grad_accum_dtype                                <class 'NoneType'>
+disable_trace_cache                             False
+gradient_checkpointing                          True
+gradient_checkpointing_use_reentrant            False
+disable_fast_tokenizer                          False
+target_modules                                  all-linear
+enable_prefix_caching                           True
+enable_chunked_prefill                          False
+max_num_batched_tokens                          2048
+enforce_eager                                   False
+gpu_memory_utilization                          0.5
+eval_steps                                      -1
+save_steps                                      -1
+save_interval                                   50
+actor_learning_rate                             1e-06
+critic_learning_rate                            5e-06
+num_episodes                                    20
+max_epochs                                      1
+prompt_max_len                                  8000
+generate_max_len                                8000
+train_batch_size                                256
+micro_train_batch_size                          1
+rollout_batch_size                              8
+micro_rollout_batch_size                        128
+micro_forward_batch_size                        1
+policy_update_steps                             1
+critic_update_steps                             1
+max_len                                         8192
+max_norm                                        1.0
+num_warmup_steps                                50
+l2                                              0.0
+eps_clip                                        0.2
+value_clip                                      0.2
+lambd                                           1.0
+gamma                                           1.0
+normalize_reward                                True
+top_p                                           1.0
+temperature                                     1.0
+freezing_actor_steps                            -1
+n_samples_per_prompt                            8
+kl_target                                       <class 'NoneType'>
+init_kl_coef                                    0
+use_kl_estimator_k3                             True
+use_abs_kl                                      False
+use_kl_loss                                     True
+kl_loss_coef                                    0.0
+adam_betas                                      (0.9, 0.95)
+reward_clip_range                               (-10, 10)
+use_compute_reward_fn                           True
+advantage_normalize                             True
+value_head_prefix                               value_head
+ref_reward_offload                              False
+enable_eval                                     True
+eval_interval                                   10
+update_ref_every_epoch                          True
+use_orm_score                                   False
+total_num_nodes                                 8
+n_policy_evaluator_samples_per_policy_response  1
+eval_prompt_data                                <class 'omegaconf.listconfig.ListConfig'>
+prompt_data_probs                               <class 'omegaconf.listconfig.ListConfig'>
+packing_max_len                                 16384
+top_k                                           -1
+stop                                            <class 'omegaconf.listconfig.ListConfig'>
+use_grpo                                        False
+2025-04-10 21:03:22,750	WARNING utils.py:580 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.
+2025-04-10 21:03:22,750	WARNING utils.py:592 -- Ray currently does not support initializing Ray with fractional cpus. Your num_cpus will be truncated from 90.16 to 90.
+2025-04-10 21:03:22,974	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(LLMActor pid=2243029)[0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[36m(LLMActor pid=2243029)[0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.59it/s]
+[36m(LLMActor pid=2243030)[0m 
+[36m(LLMActor pid=2243029)[0m 
+[36m(LLMActor pid=2243032)[0m 
+[36m(LLMActor pid=2243025)[0m 
+[36m(LLMActor pid=2243027)[0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243033)[0m 
+[36m(LLMActor pid=2243026)[0m 
+[36m(LLMActor pid=2243026)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.11it/s][32m [repeated 35x across cluster][0m
+[36m(LLMActor pid=2243031)[0m 
+[36m(LLMActor pid=2243027)[0m 
+2025-04-10 21:04:09.403 | INFO     | orz.ppo.utils:create_vllm_engines:501 - Offloaded all vLLM engines to CPU
+2025-04-10 21:04:10.479 | INFO     | __main__:train_dataset:2775 - Start processing 56878 dialogues
+2025-04-10 21:04:50.084 | INFO     | __main__:train_dataset:2786 - Finished processing 56878 dialogues
+2025-04-10 21:04:50.133 | INFO     | __main__:eval_dataset:2804 - Start processing 728 dialogues
+2025-04-10 21:04:50.645 | INFO     | __main__:eval_dataset:2825 - Finished processing 728 dialogues
+[36m(RefRayActorBase pid=2245122)[0m [W410 21:05:43.132165658 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(LLMActor pid=2243027)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.17it/s][32m [repeated 4x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(RefRayActorBase pid=2245122)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(RefRayActorBase pid=2246063)[0m [W410 21:05:43.118569139 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 7x across cluster][0m
+[36m(RefRayActorBase pid=2246063)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 7x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.16s/it]
+[36m(RefRayActorBase pid=2246061)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.18s/it]
+[36m(RefRayActorBase pid=2246063)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2245116)[0m [W410 21:06:04.702426639 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(RefRayActorBase pid=2246063)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.24s/it][32m [repeated 23x across cluster][0m
+[36m(PolicyRayActorBase pid=2244926)[0m [W410 21:06:04.756670109 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(PolicyRayActorBase pid=2244926)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(RefRayActorBase pid=2246063)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.21s/it][32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2244926)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(PolicyRayActorBase pid=2245120)[0m [W410 21:06:04.745566657 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 6x across cluster][0m
+[36m(PolicyRayActorBase pid=2245120)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2245116)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(PolicyRayActorBase pid=2245116)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.06s/it]
+[36m(PolicyRayActorBase pid=2245116)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+[36m(PolicyRayActorBase pid=2245117)[0m Detected CUDA files, patching ldflags
+[36m(PolicyRayActorBase pid=2245117)[0m Emitting ninja build file /home/aiscuser/.cache/torch_extensions/py310_cu124/fused_adam/build.ninja...
+[36m(PolicyRayActorBase pid=2245117)[0m /scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py:1964: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[36m(PolicyRayActorBase pid=2245117)[0m If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+[36m(PolicyRayActorBase pid=2245117)[0m   warnings.warn(
+[36m(PolicyRayActorBase pid=2245117)[0m Building extension module fused_adam...
+[36m(PolicyRayActorBase pid=2245117)[0m Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[36m(PolicyRayActorBase pid=2245115)[0m Loading extension module fused_adam...
+[36m(PolicyRayActorBase pid=2245120)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it][32m [repeated 8x across cluster][0m
+[36m(PolicyRayActorBase pid=2245120)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 6x across cluster][0m
+[36m(PolicyRayActorBase pid=2245117)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.12s/it][32m [repeated 23x across cluster][0m
+[36m(PolicyRayActorBase pid=2244926)[0m set_mempolicy: Operation not permitted
+[36m(PolicyRayActorBase pid=2244926)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m [W410 21:06:36.273410482 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[36m(PolicyRayActorBase pid=2245120)[0m Loading extension module fused_adam...[32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2245120)[0m set_mempolicy: Operation not permitted[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(CriticRayActorBase pid=2246064)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.22it/s]
+[36m(CriticRayActorBase pid=2246064)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  4.16it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.93it/s]
+[36m(CriticRayActorBase pid=2246064)[0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+[36m(CriticRayActorBase pid=2246064)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(CriticRayActorBase pid=2247007)[0m [W410 21:06:36.266229095 Utils.hpp:135] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 8x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.26it/s][32m [repeated 23x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.43it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.28it/s][32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m Some weights of CriticModel were not initialized from the model checkpoint at Qwen/Qwen2.5-7B and are newly initialized: ['value_head.weight']
+[36m(CriticRayActorBase pid=2246064)[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[36m(CriticRayActorBase pid=2247003)[0m 2025-04-10 21:07:02.040 | INFO     | orz.ppo.models:get_llm_for_sequence_regression:572 - initialize value_head for ZeRO-3 reward model training.
+[36m(CriticRayActorBase pid=2246064)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+[36m(CriticRayActorBase pid=2246064)[0m Detected CUDA files, patching ldflags
+[36m(CriticRayActorBase pid=2246064)[0m Emitting ninja build file /home/aiscuser/.cache/torch_extensions/py310_cu124/fused_adam/build.ninja...
+[36m(CriticRayActorBase pid=2246064)[0m /scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py:1964: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[36m(CriticRayActorBase pid=2246064)[0m If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+[36m(CriticRayActorBase pid=2246064)[0m   warnings.warn(
+[36m(CriticRayActorBase pid=2246064)[0m Building extension module fused_adam...
+[36m(CriticRayActorBase pid=2246064)[0m Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[36m(CriticRayActorBase pid=2246064)[0m Loading extension module fused_adam...
+[36m(CriticRayActorBase pid=2246064)[0m set_mempolicy: Operation not permitted
+[36m(CriticRayActorBase pid=2247007)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.22s/it][32m [repeated 24x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.11s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.15s/it][32m [repeated 8x across cluster][0m
+2025-04-10 21:07:10.489 | INFO     | orz.ppo.trainer:build_models:1949 - init policy/ref/critic/reward models done
+2025-04-10 21:07:13.246 | INFO     | orz.ppo.trainer:train:79 - Create vllm engine groups done.
+2025-04-10 21:07:16.411 | INFO     | orz.ppo.trainer:train:81 - Sync actor weights to vllm engines, time cost: 3.16s
+2025-04-10 21:07:17.721 | INFO     | orz.ppo.trainer:train:85 - Offload policy model to cpu, time cost: 1.31s
+2025-04-10 21:07:17.721 | DEBUG    | orz.ppo.trainer:train:89 - train_dataset size: 56878
+2025-04-10 21:07:17.722 | DEBUG    | orz.ppo.trainer:train:90 - train_dataset sample: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\n$P(x)$ is a polynomial of degree $3n$ such that\n\\begin{eqnarray*} P(0) = P(3) = \\cdots &=& P(3n) = 2, \\\\ P(1) = P(4) = \\cdots &=& P(3n-2) = 1, \\\\ P(2) = P(5) = \\cdots &=& P(3n-1) = 0, \\quad\\text{ and }\\\\ && P(3n+1) = 730.\\end{eqnarray*}\nDetermine $n$.\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\n$P(x)$ is a polynomial of degree $3n$ such that\n\\begin{eqnarray*} P(0) = P(3) = \\cdots &=& P(3n) = 2, \\\\ P(1) = P(4) = \\cdots &=& P(3n-2) = 1, \\\\ P(2) = P(5) = \\cdots &=& P(3n-1) = 0, \\quad\\text{ and }\\\\ && P(3n+1) = 730.\\end{eqnarray*}\nDetermine $n$.\nAssistant: <think>', 'answer': 'n = 4', 'target': 'n = 4'})
+[36m(LLMActor pid=2243029)[0m INFO 04-10 21:03:54 config.py:478] This model supports multiple tasks: {'reward', 'embed', 'generate', 'classify', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243029)[0m WARNING 04-10 21:03:54 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(LLMActor pid=2243029)[0m WARNING 04-10 21:03:54 config.py:604] Async output processing is not supported on the current platform type cuda.
+[36m(LLMActor pid=2243029)[0m INFO 04-10 21:03:54 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-7B', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=45, served_model_name=Qwen/Qwen2.5-7B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:03:54 config.py:478] This model supports multiple tasks: {'classify', 'generate', 'score', 'embed', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243025)[0m INFO 04-10 21:03:54 config.py:478] This model supports multiple tasks: {'score', 'classify', 'reward', 'embed', 'generate'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243031)[0m INFO 04-10 21:03:55 config.py:478] This model supports multiple tasks: {'classify', 'embed', 'generate', 'score', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:03:55 config.py:478] This model supports multiple tasks: {'generate', 'embed', 'reward', 'classify', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243032)[0m INFO 04-10 21:03:55 config.py:478] This model supports multiple tasks: {'score', 'generate', 'embed', 'classify', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243033)[0m INFO 04-10 21:03:55 config.py:478] This model supports multiple tasks: {'generate', 'score', 'embed', 'reward', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243026)[0m INFO 04-10 21:03:55 config.py:478] This model supports multiple tasks: {'embed', 'score', 'classify', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:03:55 selector.py:120] Using Flash Attention backend.
+[36m(LLMActor pid=2243029)[0m INFO 04-10 21:03:57 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-7B...
+[36m(LLMActor pid=2243029)[0m INFO 04-10 21:03:57 weight_utils.py:243] Using model weights format ['*.safetensors']
+[36m(LLMActor pid=2243029)[0m INFO 04-10 21:04:00 model_runner.py:1097] Loading model weights took 14.2716 GB
+[36m(LLMActor pid=2243026)[0m WARNING 04-10 21:03:55 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used[32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(LLMActor pid=2243026)[0m WARNING 04-10 21:03:55 config.py:604] Async output processing is not supported on the current platform type cuda.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243026)[0m INFO 04-10 21:03:55 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-7B', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=44, served_model_name=Qwen/Qwen2.5-7B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, [32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243031)[0m INFO 04-10 21:03:55 selector.py:120] Using Flash Attention backend.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:01 worker.py:241] Memory profiling takes 1.33 seconds
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:01 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:01 worker.py:241] model weights take 14.27GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.09GiB; the rest of the memory reserved for KV Cache is 24.05GiB.
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:03:57 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-7B...[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:02 gpu_executor.py:76] # GPU blocks: 1759, # CPU blocks: 292
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:02 gpu_executor.py:80] Maximum concurrency for 8192 tokens per request: 54.97x
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:03:58 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243030)[0m INFO 04-10 21:04:05 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 4.66 seconds
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:04 model_runner.py:1097] Loading model weights took 14.2716 GB[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:05 worker.py:241] Memory profiling takes 1.26 seconds[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:05 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:05 worker.py:241] model weights take 14.27GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.09GiB; the rest of the memory reserved for KV Cache is 24.05GiB.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:05 gpu_executor.py:76] # GPU blocks: 1759, # CPU blocks: 292[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:05 gpu_executor.py:80] Maximum concurrency for 8192 tokens per request: 54.97x[32m [repeated 7x across cluster][0m
+[36m(pid=2244926)[0m [2025-04-10 21:04:57,686] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(LLMActor pid=2243027)[0m INFO 04-10 21:04:09 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 5.02 seconds[32m [repeated 7x across cluster][0m
+[36m(pid=2245116)[0m [2025-04-10 21:05:16,772] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(pid=2245120)[0m [2025-04-10 21:05:17,160] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(pid=2246058)[0m [2025-04-10 21:05:32,209] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 7x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:05:42,267] [INFO] [comm.py:652:init_distributed] cdb=None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:05:42,267] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[36m(pid=2246061)[0m [2025-04-10 21:05:32,720] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 7x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:05:43,776] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8
+[36m(RefRayActorBase pid=2245122)[0m NCCL version 2.21.5+cuda12.4
+[36m(RefRayActorBase pid=2246062)[0m [2025-04-10 21:05:42,266] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 7x across cluster][0m
+[36m(pid=2247002)[0m [2025-04-10 21:05:48,355] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(pid=2247003)[0m [2025-04-10 21:05:48,401] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:05:58,327] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 339, num_elems = 7.62B
+[36m(RefRayActorBase pid=2246062)[0m [2025-04-10 21:05:43,775] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 7x across cluster][0m
+[36m(pid=2247007)[0m [2025-04-10 21:05:48,426] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)[32m [repeated 5x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,321] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,321] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,330] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,332] [INFO] [logging.py:128:log_dist] [Rank 0] Creating ZeRO Offload
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,537] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,538] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 3.8 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,539] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 157.11 GB, percent = 8.9%
+[36m(RefRayActorBase pid=2245122)[0m Parameter Offload: Total persistent parameters: 333312 in 141 params
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,322] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 8x across cluster][0m
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,763] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,764] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,765] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 157.11 GB, percent = 8.9%
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+[36m(RefRayActorBase pid=2245122)[0m     "partition_activations": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "contiguous_memory_optimization": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "cpu_checkpointing": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "number_checkpoints": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "synchronize_checkpoint_boundary": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "profile": false
+[36m(RefRayActorBase pid=2245122)[0m }
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   amp_enabled .................. False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   amp_params ................... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   autotuning_config ............ {
+[36m(RefRayActorBase pid=2245122)[0m     "enabled": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "start_step": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "end_step": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "metric_path": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "arg_mappings": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "metric": "throughput", 
+[36m(RefRayActorBase pid=2245122)[0m     "model_info": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "results_dir": "autotuning_results", 
+[36m(RefRayActorBase pid=2245122)[0m     "exps_dir": "autotuning_exps", 
+[36m(RefRayActorBase pid=2245122)[0m     "overwrite": true, 
+[36m(RefRayActorBase pid=2245122)[0m     "fast": true, 
+[36m(RefRayActorBase pid=2245122)[0m     "start_profile_step": 3, 
+[36m(RefRayActorBase pid=2245122)[0m     "end_profile_step": 5, 
+[36m(RefRayActorBase pid=2245122)[0m     "tuner_type": "gridsearch", 
+[36m(RefRayActorBase pid=2245122)[0m     "tuner_early_stopping": 5, 
+[36m(RefRayActorBase pid=2245122)[0m     "tuner_num_trials": 50, 
+[36m(RefRayActorBase pid=2245122)[0m     "model_info_path": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "mp_size": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "max_train_batch_size": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "min_train_batch_size": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[36m(RefRayActorBase pid=2245122)[0m     "min_train_micro_batch_size_per_gpu": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "num_tuning_micro_batch_sizes": 3
+[36m(RefRayActorBase pid=2245122)[0m }
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,766] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7fc5df141c00>
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   communication_data_type ...... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   disable_allgather ............ False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   dump_state ................... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+[36m(RefRayActorBase pid=2245122)[0m     "enabled": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "recompute_fwd_factor": 0.0, 
+[36m(RefRayActorBase pid=2245122)[0m     "profile_step": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "module_depth": -1, 
+[36m(RefRayActorBase pid=2245122)[0m     "top_modules": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "detailed": true, 
+[36m(RefRayActorBase pid=2245122)[0m     "output_file": null
+[36m(RefRayActorBase pid=2245122)[0m }
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   global_rank .................. 0
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 1
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,767] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   nebula_config ................ {
+[36m(RefRayActorBase pid=2245122)[0m     "enabled": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "persistent_storage_path": null, 
+[36m(RefRayActorBase pid=2245122)[0m     "persistent_time_interval": 100, 
+[36m(RefRayActorBase pid=2245122)[0m     "num_of_version_in_retention": 2, 
+[36m(RefRayActorBase pid=2245122)[0m     "enable_nebula_load": true, 
+[36m(RefRayActorBase pid=2245122)[0m     "load_path": null
+[36m(RefRayActorBase pid=2245122)[0m }
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   optimizer_name ............... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   optimizer_params ............. None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   pld_enabled .................. False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   pld_params ................... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   scheduler_name ............... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   scheduler_params ............. None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   sparse_attention ............. None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   steps_per_print .............. 100
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   train_batch_size ............. 8
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   world_size ................... 8
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,768] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,769] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='cpu', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=True) offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,769] [INFO] [config.py:1003:print]   zero_enabled ................. True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,769] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,769] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+[36m(RefRayActorBase pid=2245122)[0m [2025-04-10 21:06:03,769] [INFO] [config.py:989:print_user_config]   json = {
+[36m(RefRayActorBase pid=2245122)[0m     "steps_per_print": 100, 
+[36m(RefRayActorBase pid=2245122)[0m     "zero_optimization": {
+[36m(RefRayActorBase pid=2245122)[0m         "stage": 3, 
+[36m(RefRayActorBase pid=2245122)[0m         "stage3_param_persistence_threshold": "auto", 
+[36m(RefRayActorBase pid=2245122)[0m         "offload_param": {
+[36m(RefRayActorBase pid=2245122)[0m             "device": "cpu", 
+[36m(RefRayActorBase pid=2245122)[0m             "pin_memory": true
+[36m(RefRayActorBase pid=2245122)[0m         }
+[36m(RefRayActorBase pid=2245122)[0m     }, 
+[36m(RefRayActorBase pid=2245122)[0m     "bf16": {
+[36m(RefRayActorBase pid=2245122)[0m         "enabled": true
+[36m(RefRayActorBase pid=2245122)[0m     }, 
+[36m(RefRayActorBase pid=2245122)[0m     "gradient_clipping": 1.0, 
+[36m(RefRayActorBase pid=2245122)[0m     "prescale_gradients": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "wall_clock_breakdown": false, 
+[36m(RefRayActorBase pid=2245122)[0m     "train_micro_batch_size_per_gpu": 1, 
+[36m(RefRayActorBase pid=2245122)[0m     "gradient_accumulation_steps": 1
+[36m(RefRayActorBase pid=2245122)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:03,895] [INFO] [comm.py:652:init_distributed] cdb=None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:03,895] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[36m(PolicyRayActorBase pid=2244926)[0m NCCL version 2.21.5+cuda12.4
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:19,139] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 339, num_elems = 7.62B
+[36m(PolicyRayActorBase pid=2245121)[0m [2025-04-10 21:06:05,273] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 8x across cluster][0m
+[36m(PolicyRayActorBase pid=2245121)[0m [2025-04-10 21:06:03,900] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2245115)[0m Time to load fused_adam op: 3.522080898284912 seconds
+[36m(PolicyRayActorBase pid=2245115)[0m [2025-04-10 21:06:26,938] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8
+[36m(PolicyRayActorBase pid=2245117)[0m ninja: no work to do.
+[36m(PolicyRayActorBase pid=2245117)[0m [2025-04-10 21:06:26,938] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,034] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,034] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,042] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,043] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,043] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,056] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,056] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,056] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,056] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,256] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,257] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 3.8 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,257] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.08 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,259] [INFO] [stage3.py:167:__init__] Reduce bucket size 500000000
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,259] [INFO] [stage3.py:168:__init__] Prefetch bucket size 50000000
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,459] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,460] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,460] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.07 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m Parameter Offload: Total persistent parameters: 333312 in 141 params
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,677] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,678] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,678] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.08 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,880] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,881] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:27,881] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.11 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,559] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 2
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,560] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 1.78 GB         Max_CA 4 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,560] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 163.65 GB, percent = 9.2%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,768] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,768] [INFO] [utils.py:782:see_memory_usage] MA 1.77 GB         Max_MA 1.77 GB         CA 1.78 GB         Max_CA 2 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,769] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.12 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,986] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,986] [INFO] [utils.py:782:see_memory_usage] MA 5.32 GB         Max_MA 7.09 GB         CA 7.1 GB         Max_CA 7 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:29,987] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.12 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,190] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,191] [INFO] [utils.py:782:see_memory_usage] MA 5.32 GB         Max_MA 5.32 GB         CA 7.1 GB         Max_CA 7 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,191] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.12 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,399] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,400] [INFO] [utils.py:782:see_memory_usage] MA 5.32 GB         Max_MA 8.87 GB         CA 10.64 GB         Max_CA 11 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,400] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.11 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,401] [INFO] [stage3.py:525:_setup_for_real_optimizer] optimizer state initialized
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,939] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,940] [INFO] [utils.py:782:see_memory_usage] MA 9.8 GB         Max_MA 11.83 GB         CA 12.67 GB         Max_CA 13 GB 
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,940] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 160.14 GB, percent = 9.0%
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,941] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,941] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,941] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7f7c2320a8f0>
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,941] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95)]
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,942] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,942] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+[36m(PolicyRayActorBase pid=2244926)[0m     "partition_activations": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "contiguous_memory_optimization": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "cpu_checkpointing": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "number_checkpoints": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "synchronize_checkpoint_boundary": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "profile": false
+[36m(PolicyRayActorBase pid=2244926)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,942] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,942] [INFO] [config.py:1003:print]   amp_enabled .................. False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,942] [INFO] [config.py:1003:print]   amp_params ................... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   autotuning_config ............ {
+[36m(PolicyRayActorBase pid=2244926)[0m     "enabled": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "start_step": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "end_step": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "metric_path": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "arg_mappings": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "metric": "throughput", 
+[36m(PolicyRayActorBase pid=2244926)[0m     "model_info": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "results_dir": "autotuning_results", 
+[36m(PolicyRayActorBase pid=2244926)[0m     "exps_dir": "autotuning_exps", 
+[36m(PolicyRayActorBase pid=2244926)[0m     "overwrite": true, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "fast": true, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "start_profile_step": 3, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "end_profile_step": 5, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "tuner_type": "gridsearch", 
+[36m(PolicyRayActorBase pid=2244926)[0m     "tuner_early_stopping": 5, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "tuner_num_trials": 50, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "model_info_path": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "mp_size": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "max_train_batch_size": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "min_train_batch_size": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "min_train_micro_batch_size_per_gpu": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "num_tuning_micro_batch_sizes": 3
+[36m(PolicyRayActorBase pid=2244926)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7f7c2302da50>
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   communication_data_type ...... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   disable_allgather ............ False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   dump_state ................... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+[36m(PolicyRayActorBase pid=2244926)[0m     "enabled": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "recompute_fwd_factor": 0.0, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "profile_step": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "module_depth": -1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "top_modules": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "detailed": true, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "output_file": null
+[36m(PolicyRayActorBase pid=2244926)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   global_rank .................. 0
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   grad_accum_dtype ............. fp32
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 1
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,943] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   nebula_config ................ {
+[36m(PolicyRayActorBase pid=2244926)[0m     "enabled": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "persistent_storage_path": null, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "persistent_time_interval": 100, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "num_of_version_in_retention": 2, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "enable_nebula_load": true, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "load_path": null
+[36m(PolicyRayActorBase pid=2244926)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   optimizer_name ............... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   optimizer_params ............. None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   pld_enabled .................. False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   pld_params ................... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   scheduler_name ............... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   scheduler_params ............. None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   sparse_attention ............. None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   steps_per_print .............. 100
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   train_batch_size ............. 8
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,944] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   world_size ................... 8
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='none', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=False) offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='none', nvme_path=None, buffer_count=4, pin_memory=True, pipeline_read=False, pipeline_write=False, fast_init=False, ratio=1.0) sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   zero_enabled ................. True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+[36m(PolicyRayActorBase pid=2244926)[0m [2025-04-10 21:06:30,945] [INFO] [config.py:989:print_user_config]   json = {
+[36m(PolicyRayActorBase pid=2244926)[0m     "steps_per_print": 100, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "zero_optimization": {
+[36m(PolicyRayActorBase pid=2244926)[0m         "stage": 3, 
+[36m(PolicyRayActorBase pid=2244926)[0m         "offload_param": {
+[36m(PolicyRayActorBase pid=2244926)[0m             "device": "none"
+[36m(PolicyRayActorBase pid=2244926)[0m         }, 
+[36m(PolicyRayActorBase pid=2244926)[0m         "offload_optimizer": {
+[36m(PolicyRayActorBase pid=2244926)[0m             "device": "none", 
+[36m(PolicyRayActorBase pid=2244926)[0m             "pin_memory": true
+[36m(PolicyRayActorBase pid=2244926)[0m         }, 
+[36m(PolicyRayActorBase pid=2244926)[0m         "sub_group_size": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "stage3_max_live_parameters": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "stage3_max_reuse_distance": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "stage3_param_persistence_threshold": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "stage3_prefetch_bucket_size": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "reduce_bucket_size": "auto", 
+[36m(PolicyRayActorBase pid=2244926)[0m         "zero_hpz_partition_size": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m         "zero_quantized_weights": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m         "zero_quantized_gradients": false
+[36m(PolicyRayActorBase pid=2244926)[0m     }, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "bf16": {
+[36m(PolicyRayActorBase pid=2244926)[0m         "enabled": true
+[36m(PolicyRayActorBase pid=2244926)[0m     }, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "gradient_clipping": 1.0, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "prescale_gradients": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "wall_clock_breakdown": false, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "data_types": {
+[36m(PolicyRayActorBase pid=2244926)[0m         "grad_accum_dtype": "fp32"
+[36m(PolicyRayActorBase pid=2244926)[0m     }, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "train_micro_batch_size_per_gpu": 1, 
+[36m(PolicyRayActorBase pid=2244926)[0m     "gradient_accumulation_steps": 1
+[36m(PolicyRayActorBase pid=2244926)[0m }
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:06:35,410] [INFO] [comm.py:652:init_distributed] cdb=None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:06:35,410] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[36m(PolicyRayActorBase pid=2245118)[0m Time to load fused_adam op: 3.624633550643921 seconds[32m [repeated 7x across cluster][0m
+[36m(PolicyRayActorBase pid=2245120)[0m [2025-04-10 21:06:27,036] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 6x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m NCCL version 2.21.5+cuda12.4
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:06:57,384] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 339, num_elems = 7.07B
+[36m(CriticRayActorBase pid=2247007)[0m [2025-04-10 21:06:35,411] [INFO] [comm.py:652:init_distributed] cdb=None[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m [2025-04-10 21:06:38,783] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 8x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m ninja: no work to do.
+[36m(CriticRayActorBase pid=2246064)[0m Time to load fused_adam op: 0.1436774730682373 seconds
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,303] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.16.0, git-hash=unknown, git-branch=unknown
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,303] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,312] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,313] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,313] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,326] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,326] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,326] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,326] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,544] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,545] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 3.68 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,545] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.54 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,547] [INFO] [stage3.py:167:__init__] Reduce bucket size 500000000
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,547] [INFO] [stage3.py:168:__init__] Prefetch bucket size 50000000
+[36m(CriticRayActorBase pid=2247007)[0m [2025-04-10 21:07:02,366] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 8[32m [repeated 8x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,762] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,763] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 1.65 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,763] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.55 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m Parameter Offload: Total persistent parameters: 336896 in 142 params
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,996] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,997] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 1.65 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:02,997] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.54 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:03,242] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:03,243] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 1.65 GB         CA 3.88 GB         Max_CA 4 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:03,243] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.54 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,777] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 2
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,778] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 1.65 GB         CA 1.65 GB         Max_CA 4 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,778] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.51 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,986] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,987] [INFO] [utils.py:782:see_memory_usage] MA 1.65 GB         Max_MA 1.65 GB         CA 1.65 GB         Max_CA 2 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:04,987] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.51 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,210] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,211] [INFO] [utils.py:782:see_memory_usage] MA 4.94 GB         Max_MA 6.59 GB         CA 6.59 GB         Max_CA 7 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,211] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.49 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,421] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,422] [INFO] [utils.py:782:see_memory_usage] MA 4.94 GB         Max_MA 4.94 GB         CA 6.59 GB         Max_CA 7 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,422] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.49 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,636] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,636] [INFO] [utils.py:782:see_memory_usage] MA 4.94 GB         Max_MA 8.23 GB         CA 9.88 GB         Max_CA 10 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,637] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.48 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:05,638] [INFO] [stage3.py:525:_setup_for_real_optimizer] optimizer state initialized
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,170] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,171] [INFO] [utils.py:782:see_memory_usage] MA 9.16 GB         Max_MA 11.2 GB         CA 11.91 GB         Max_CA 12 GB 
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,171] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 196.48 GB, percent = 11.1%
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,171] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,171] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,172] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7fc8b4e6c3d0>
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,172] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95)]
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+[36m(CriticRayActorBase pid=2246064)[0m     "partition_activations": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "contiguous_memory_optimization": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "cpu_checkpointing": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "number_checkpoints": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "synchronize_checkpoint_boundary": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "profile": false
+[36m(CriticRayActorBase pid=2246064)[0m }
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:1003:print]   amp_enabled .................. False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:1003:print]   amp_params ................... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,173] [INFO] [config.py:1003:print]   autotuning_config ............ {
+[36m(CriticRayActorBase pid=2246064)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "start_step": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "end_step": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "metric_path": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "arg_mappings": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "metric": "throughput", 
+[36m(CriticRayActorBase pid=2246064)[0m     "model_info": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "results_dir": "autotuning_results", 
+[36m(CriticRayActorBase pid=2246064)[0m     "exps_dir": "autotuning_exps", 
+[36m(CriticRayActorBase pid=2246064)[0m     "overwrite": true, 
+[36m(CriticRayActorBase pid=2246064)[0m     "fast": true, 
+[36m(CriticRayActorBase pid=2246064)[0m     "start_profile_step": 3, 
+[36m(CriticRayActorBase pid=2246064)[0m     "end_profile_step": 5, 
+[36m(CriticRayActorBase pid=2246064)[0m     "tuner_type": "gridsearch", 
+[36m(CriticRayActorBase pid=2246064)[0m     "tuner_early_stopping": 5, 
+[36m(CriticRayActorBase pid=2246064)[0m     "tuner_num_trials": 50, 
+[36m(CriticRayActorBase pid=2246064)[0m     "model_info_path": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "mp_size": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "max_train_batch_size": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "min_train_batch_size": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[36m(CriticRayActorBase pid=2246064)[0m     "min_train_micro_batch_size_per_gpu": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "num_tuning_micro_batch_sizes": 3
+[36m(CriticRayActorBase pid=2246064)[0m }
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7fc8a78b7040>
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   communication_data_type ...... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   disable_allgather ............ False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   dump_state ................... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+[36m(CriticRayActorBase pid=2246064)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "recompute_fwd_factor": 0.0, 
+[36m(CriticRayActorBase pid=2246064)[0m     "profile_step": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "module_depth": -1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "top_modules": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "detailed": true, 
+[36m(CriticRayActorBase pid=2246064)[0m     "output_file": null
+[36m(CriticRayActorBase pid=2246064)[0m }
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   global_rank .................. 0
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   grad_accum_dtype ............. fp32
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,174] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 1
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   nebula_config ................ {
+[36m(CriticRayActorBase pid=2246064)[0m     "enabled": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "persistent_storage_path": null, 
+[36m(CriticRayActorBase pid=2246064)[0m     "persistent_time_interval": 100, 
+[36m(CriticRayActorBase pid=2246064)[0m     "num_of_version_in_retention": 2, 
+[36m(CriticRayActorBase pid=2246064)[0m     "enable_nebula_load": true, 
+[36m(CriticRayActorBase pid=2246064)[0m     "load_path": null
+[36m(CriticRayActorBase pid=2246064)[0m }
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   optimizer_name ............... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   optimizer_params ............. None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   pld_enabled .................. False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   pld_params ................... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   scheduler_name ............... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   scheduler_params ............. None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   sparse_attention ............. None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   steps_per_print .............. 100
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   train_batch_size ............. 8
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,175] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   world_size ................... 8
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='none', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=False) offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='none', nvme_path=None, buffer_count=4, pin_memory=True, pipeline_read=False, pipeline_write=False, fast_init=False, ratio=1.0) sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   zero_enabled ................. True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+[36m(CriticRayActorBase pid=2246064)[0m [2025-04-10 21:07:06,176] [INFO] [config.py:989:print_user_config]   json = {
+[36m(CriticRayActorBase pid=2246064)[0m     "steps_per_print": 100, 
+[36m(CriticRayActorBase pid=2246064)[0m     "zero_optimization": {
+[36m(CriticRayActorBase pid=2246064)[0m         "stage": 3, 
+[36m(CriticRayActorBase pid=2246064)[0m         "offload_param": {
+[36m(CriticRayActorBase pid=2246064)[0m             "device": "none"
+[36m(CriticRayActorBase pid=2246064)[0m         }, 
+[36m(CriticRayActorBase pid=2246064)[0m         "offload_optimizer": {
+[36m(CriticRayActorBase pid=2246064)[0m             "device": "none", 
+[36m(CriticRayActorBase pid=2246064)[0m             "pin_memory": true
+[36m(CriticRayActorBase pid=2246064)[0m         }, 
+[36m(CriticRayActorBase pid=2246064)[0m         "sub_group_size": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "stage3_max_live_parameters": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "stage3_max_reuse_distance": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "stage3_param_persistence_threshold": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "stage3_prefetch_bucket_size": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "reduce_bucket_size": "auto", 
+[36m(CriticRayActorBase pid=2246064)[0m         "zero_hpz_partition_size": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m         "zero_quantized_weights": false, 
+[36m(CriticRayActorBase pid=2246064)[0m         "zero_quantized_gradients": false
+[36m(CriticRayActorBase pid=2246064)[0m     }, 
+[36m(CriticRayActorBase pid=2246064)[0m     "bf16": {
+[36m(CriticRayActorBase pid=2246064)[0m         "enabled": true
+[36m(CriticRayActorBase pid=2246064)[0m     }, 
+[36m(CriticRayActorBase pid=2246064)[0m     "gradient_clipping": 1.0, 
+[36m(CriticRayActorBase pid=2246064)[0m     "prescale_gradients": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "wall_clock_breakdown": false, 
+[36m(CriticRayActorBase pid=2246064)[0m     "data_types": {
+[36m(CriticRayActorBase pid=2246064)[0m         "grad_accum_dtype": "fp32"
+[36m(CriticRayActorBase pid=2246064)[0m     }, 
+[36m(CriticRayActorBase pid=2246064)[0m     "train_micro_batch_size_per_gpu": 1, 
+[36m(CriticRayActorBase pid=2246064)[0m     "gradient_accumulation_steps": 1
+[36m(CriticRayActorBase pid=2246064)[0m }
+[36m(PolicyRayActorBase pid=2244926)[0m WARNING:using --vllm_sync_backend=gloo for vLLM version > 0.4.2 (or export NCCL_P2P_DISABLE=1)
+[36m(CriticRayActorBase pid=2247007)[0m Time to load fused_adam op: 0.20534539222717285 seconds[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243027)[0m init_process_group: master_address=10.4.36.211, master_port=48841,  rank=2, world_size=9, group_name=openrlhf
+[36m(PolicyRayActorBase pid=2244926)[0m Broadcast actor weights to vllm engines done
+Episode [1/20]:   0%|          | 0/7110 [00:00<?, ?it/s]2025-04-10 21:07:17.986 | INFO     | __main__:eval:2635 - Start evaluating on val set
+[36m(LLMActor pid=2243026)[0m Processed prompts:   0%|          | 0/91 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]
+[36m(CriticRayActorBase pid=2247007)[0m Some weights of CriticModel were not initialized from the model checkpoint at Qwen/Qwen2.5-7B and are newly initialized: ['value_head.weight'][32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2246064)[0m 2025-04-10 21:07:02.142 | INFO     | orz.ppo.models:get_llm_for_sequence_regression:572 - initialize value_head for ZeRO-3 reward model training.[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m Using /home/aiscuser/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m Loading extension module fused_adam...[32m [repeated 7x across cluster][0m
+[36m(CriticRayActorBase pid=2247007)[0m set_mempolicy: Operation not permitted[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243033)[0m Processed prompts:   1%|          | 1/91 [00:01<02:50,  1.89s/it, est. speed input: 158.23 toks/s, output: 2.12 toks/s]
+[36m(LLMActor pid=2243033)[0m Processed prompts:   0%|          | 0/91 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=2243030)[0m Processed prompts:  13%|█▎        | 12/91 [00:06<00:21,  3.60it/s, est. speed input: 330.10 toks/s, output: 181.43 toks/s][32m [repeated 43x across cluster][0m
+[36m(LLMActor pid=2243027)[0m Processed prompts:  27%|██▋       | 25/91 [00:12<00:13,  4.87it/s, est. speed input: 377.86 toks/s, output: 387.98 toks/s][32m [repeated 97x across cluster][0m
+[36m(LLMActor pid=2243026)[0m Processed prompts:  53%|█████▎    | 48/91 [00:17<00:14,  2.88it/s, est. speed input: 518.46 toks/s, output: 664.70 toks/s][32m [repeated 123x across cluster][0m
+[36m(LLMActor pid=2243027)[0m Processed prompts:  71%|███████▏  | 65/91 [00:22<00:12,  2.14it/s, est. speed input: 595.92 toks/s, output: 854.81 toks/s][32m [repeated 116x across cluster][0m
+[36m(LLMActor pid=2243025)[0m Processed prompts:  86%|████████▌ | 78/91 [00:27<00:14,  1.13s/it, est. speed input: 526.79 toks/s, output: 819.01 toks/s][32m [repeated 73x across cluster][0m
+[36m(LLMActor pid=2243030)[0m Processed prompts:  92%|█████████▏| 84/91 [00:30<00:05,  1.29it/s, est. speed input: 541.21 toks/s, output: 989.73 toks/s] 
+[36m(LLMActor pid=2243029)[0m Processed prompts:  91%|█████████ | 83/91 [00:32<00:06,  1.26it/s, est. speed input: 527.84 toks/s, output: 943.58 toks/s][32m [repeated 41x across cluster][0m
+[36m(LLMActor pid=2243027)[0m Processed prompts:  95%|█████████▍| 86/91 [00:35<00:03,  1.47it/s, est. speed input: 510.17 toks/s, output: 947.85 toks/s][32m [repeated 27x across cluster][0m
+[36m(LLMActor pid=2243032)[0m Processed prompts:  91%|█████████ | 83/91 [00:34<00:03,  2.10it/s, est. speed input: 568.15 toks/s, output: 1010.76 toks/s][32m [repeated 9x across cluster][0m
+[36m(LLMActor pid=2243031)[0m Processed prompts: 100%|██████████| 91/91 [00:39<00:00,  1.44s/it, est. speed input: 859.17 toks/s, output: 970.97 toks/s] Processed prompts: 100%|██████████| 91/91 [00:39<00:00,  2.29it/s, est. speed input: 859.17 toks/s, output: 970.97 toks/s]
+[36m(LLMActor pid=2243032)[0m Processed prompts:  96%|█████████▌| 87/91 [00:41<00:05,  1.26s/it, est. speed input: 497.79 toks/s, output: 941.25 toks/s][32m [repeated 17x across cluster][0m
+[36m(LLMActor pid=2243029)[0m Processed prompts: 100%|██████████| 91/91 [00:44<00:00,  1.47s/it, est. speed input: 413.09 toks/s, output: 860.01 toks/s]Processed prompts: 100%|██████████| 91/91 [00:44<00:00,  2.03it/s, est. speed input: 413.09 toks/s, output: 860.01 toks/s][32m [repeated 2x across cluster][0m
+[36m(LLMActor pid=2243027)[0m Processed prompts:  98%|█████████▊| 89/91 [00:45<00:06,  3.05s/it, est. speed input: 405.26 toks/s, output: 801.35 toks/s][32m [repeated 4x across cluster][0m
+[36m(LLMActor pid=2243030)[0m Processed prompts: 100%|██████████| 91/91 [00:46<00:00,  3.45s/it, est. speed input: 381.78 toks/s, output: 781.25 toks/s]Processed prompts: 100%|██████████| 91/91 [00:46<00:00,  1.94it/s, est. speed input: 381.78 toks/s, output: 781.25 toks/s]
+[36m(LLMActor pid=2243033)[0m Processed prompts: 100%|██████████| 91/91 [00:53<00:00,  5.72s/it, est. speed input: 532.97 toks/s, output: 755.49 toks/s] Processed prompts: 100%|██████████| 91/91 [00:53<00:00,  1.69it/s, est. speed input: 532.97 toks/s, output: 755.49 toks/s]
+[36m(LLMActor pid=2243027)[0m Processed prompts:  99%|█████████▉| 90/91 [00:51<00:03,  3.89s/it, est. speed input: 366.02 toks/s, output: 738.23 toks/s][32m [repeated 4x across cluster][0m
+[36m(LLMActor pid=2243027)[0m Processed prompts: 100%|██████████| 91/91 [01:00<00:00,  5.37s/it, est. speed input: 316.08 toks/s, output: 658.77 toks/s]Processed prompts: 100%|██████████| 91/91 [01:00<00:00,  1.51it/s, est. speed input: 316.08 toks/s, output: 658.77 toks/s]
+[36m(LLMActor pid=2243032)[0m Processed prompts:  99%|█████████▉| 90/91 [00:55<00:03,  3.71s/it, est. speed input: 384.82 toks/s, output: 768.44 toks/s]
+[36m(LLMActor pid=2243032)[0m Processed prompts: 100%|██████████| 91/91 [01:05<00:00,  5.60s/it, est. speed input: 329.88 toks/s, output: 679.60 toks/s]Processed prompts: 100%|██████████| 91/91 [01:05<00:00,  1.38it/s, est. speed input: 329.88 toks/s, output: 679.60 toks/s]
+[36m(LLMActor pid=2243026)[0m Processed prompts: 100%|██████████| 91/91 [02:11<00:00, 26.84s/it, est. speed input: 140.62 toks/s, output: 309.96 toks/s]Processed prompts: 100%|██████████| 91/91 [02:11<00:00,  1.44s/it, est. speed input: 140.62 toks/s, output: 309.96 toks/s]
+2025-04-10 21:09:31.950 | INFO     | __main__:eval:2748 - math500/response_len_in_char: 1189.6080,math500/accuracy: 0.2240,aime2024/response_len_in_char: 1678.8000,aime2024/accuracy: 0.0000,gpqa_diamond/response_len_in_char: 1591.3535,gpqa_diamond/accuracy: 0.0556,eval_accuracy: 0.0932
+2025-04-10 21:09:31.958 | DEBUG    | orz.ppo.trainer:make_experience:287 - starting make_experience
+2025-04-10 21:09:31.958 | DEBUG    | orz.ppo.trainer:make_experience:288 - (before query branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-10 21:09:31.958 | DEBUG    | orz.ppo.trainer:make_experience:531 - 
+--- Policy Branch ---
+
+2025-04-10 21:09:31.959 | DEBUG    | orz.ppo.trainer:make_experience:532 - (before policy branch) prompt batch size (bs): len(all_inputs): 8
+2025-04-10 21:09:31.959 | DEBUG    | orz.ppo.trainer:make_experience:533 - (before policy branch) sample all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nEach of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nEach of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?\nAssistant: <think>', 'answer': '8', 'target': '8'})
+2025-04-10 21:09:31.960 | INFO     | orz.ppo.trainer:make_experience:564 - start generation
+2025-04-10 21:10:05.943 | INFO     | orz.ppo.trainer:make_experience:567 - generate local rollout batch done
+2025-04-10 21:10:05.943 | INFO     | orz.ppo.trainer:make_experience:552 - Generate sequences via vllm engines, time cost: 33.98s
+2025-04-10 21:10:05.944 | DEBUG    | orz.ppo.trainer:make_experience:576 - 
+
+INSPECT POLICY BRANCH PROMPTS AND RESPONSES
+2025-04-10 21:10:05.945 | DEBUG    | orz.ppo.trainer:make_experience:577 - (policy branch) sample prompt, all_inputs[0]: ('A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nEach of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?\nAssistant: <think>', {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nEach of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?\nAssistant: <think>', 'answer': '8', 'target': '8'})
+
+2025-04-10 21:10:05.946 | DEBUG    | orz.ppo.trainer:make_experience:578 - (policy branch) sample response, outputs[0]: {'response': ' To solve this problem, let\'s analyze the statements made by the people. The first person claims "My number is greater than 1," which means the first person\'s number must be 2 or higher if they are a knight, and 1 or lower if they are a liar. If there are any knights, they must make statements that align with being knights (truth-tellers), otherwise, if they are liars, their statements will contradict being a liar (liar). Let\'s review all statements by considering they are all made by people who could potentially be knights or liars.\n\nIf every person said they had a number "greater than n" for their number n, then the first person saying "My number is greater than 1", the second saying "My number is greater than 2", and so forth, indicates that if any of them were telling the truth (being knights), their stated numbers (2 through 10) should be valid. However, when they each follow by saying "My number is less than (n+1)", it appears contradictory unless we assume they are lying.\n\nThat said, let\'s count possible knights and liars. The only time someone can consistently verify this pattern without contradiction is if the statement sequence is carefully composed in a specific manner. How can this be resolved?\n\nNote that the first example given doesn\'t directly specify if there are any knights or if they are all liars or some of each — it only provides a statement framework for analysis.\n\nHowever, the setup doesn\'t provide definitive information about how specific people are stated as knights or liars because it just gives the pattern of statements without explicitly stating their actual number distribution, making it impossible to determine the exact knight-liar composition based on only the statement pattern given.\n\nTo resolve this, we can use logic to deduce the most valid maximum of knights possible while incorporating contradictory conditions from both sides of the statements.\n\nConsidering the statement made, the only consistent scenario is if there are no knights. \n\nIf at least one was a knight, their statements would all have to be true given their numbers and consecutive numbers up until 10. However, then their subsequent "less than statements" would contradict their consistent truth-telling.\n\nTherefore, given the problem\'s setup and contradictory nature, none of these people could be valid knights maintaining consistency with the established conditions in a typical logical system without additional information such as more precise number distribution sequences.\n\nSo, without further assumptions, the most fitting answer in a purely logical context is none of these people can be knights without breaking down the given pattern statement consistency.</think>\n\n<answer>0</answer>', 'iscorrect': False, 'stop_reason': 'stop', 'final_answer': '0', 'extra': {'prompt': 'A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>\n\n<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.\nThis is the problem:\nEach of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?\nAssistant: <think>', 'answer': '8', 'target': '8'}}
+
+
+2025-04-10 21:10:35.412 | INFO     | __main__:custom_reward_fn:339 - [STEP 0] [policy_reward_fn/log]: - prompt: A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Each of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?
+Assistant: <think>
+
+- output:  To solve this problem, let's analyze the statements made by the people. The first person claims "My number is greater than 1," which means the first person's number must be 2 or higher if they are a knight, and 1 or lower if they are a liar. If there are any knights, they must make statements that align with being knights (truth-tellers), otherwise, if they are liars, their statements will contradict being a liar (liar). Let's review all statements by considering they are all made by people who could potentially be knights or liars.
+
+If every person said they had a number "greater than n" for their number n, then the first person saying "My number is greater than 1", the second saying "My number is greater than 2", and so forth, indicates that if any of them were telling the truth (being knights), their stated numbers (2 through 10) should be valid. However, when they each follow by saying "My number is less than (n+1)", it appears contradictory unless we assume they are lying.
+
+That said, let's count possible knights and liars. The only time someone can consistently verify this pattern without contradiction is if the statement sequence is carefully composed in a specific manner. How can this be resolved?
+
+Note that the first example given doesn't directly specify if there are any knights or if they are all liars or some of each — it only provides a statement framework for analysis.
+
+However, the setup doesn't provide definitive information about how specific people are stated as knights or liars because it just gives the pattern of statements without explicitly stating their actual number distribution, making it impossible to determine the exact knight-liar composition based on only the statement pattern given.
+
+To resolve this, we can use logic to deduce the most valid maximum of knights possible while incorporating contradictory conditions from both sides of the statements.
+
+Considering the statement made, the only consistent scenario is if there are no knights. 
+
+If at least one was a knight, their statements would all have to be true given their numbers and consecutive numbers up until 10. However, then their subsequent "less than statements" would contradict their consistent truth-telling.
+
+Therefore, given the problem's setup and contradictory nature, none of these people could be valid knights maintaining consistency with the established conditions in a typical logical system without additional information such as more precise number distribution sequences.
+
+So, without further assumptions, the most fitting answer in a purely logical context is none of these people can be knights without breaking down the given pattern statement consistency.</think>
+
+<answer>0</answer>
+
+- final_answer: 0
+
+- extras: prompt: A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process in the mind and then provides the User with the answer. The reasoning process is enclosed within <think> </think> and answer is enclosed within <answer> </answer> tags, respectively, i.e. your response format should be: <think> reasoning process here </think>
+
+<answer> answer here </answer>. User: You must put your answer inside <answer> </answer> tags, i.e., <answer> answer here </answer>.
+This is the problem:
+Each of the 10 people is either a knight, who always tells the truth, or a liar, who always lies. Each of them picked an integer. Then the first person said, "My number is greater than 1," the second said, "My number is greater than 2," and so on, with the tenth person saying, "My number is greater than 10." After that, all ten, speaking in some order, said one of the following statements: "My number is less than 1," "My number is less than 2," ..., "My number is less than 10" (each person said exactly one of these ten phrases). What is the maximum number of knights that could be among these 10 people?
+Assistant: <think>
+answer: 8
+target: 8
+
+
+- is_correct: False
+2025-04-10 21:10:35.556 | DEBUG    | __main__:custom_reward_fn:364 - [STEP 0] | avg_non_stop_count=0 | percent_score_0=68.97% | percent_score_0_5=0.00% | percent_score_1=31.03% | percent_score_1_exclude_0_5=31.03% | num_tokens=[531, 472, 427, 430, 422, 698, 670, 585, 152, 192, 255, 171, 208, 245, 268, 237, 285, 387, 281, 309, 188, 210, 270, 247, 519, 391, 533, 448, 760, 436, 562, 162, 267, 438, 299, 217, 115, 277, 393, 1, 277, 353, 255, 266, 125, 176, 500, 372, 619, 1106, 449, 361, 587, 523, 742, 329, 655, 221, 592, 512, 690, 549, 570, 616] | stop_percentage=90.62
+2025-04-10 21:10:35.559 | INFO     | orz.ppo.trainer:make_experience:593 - Calculate custom rewards, time cost: 29.61s
+Traceback (most recent call last):
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 2838, in <module>
+    asyncio.run(exp.run())
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/exps/examples/ppo/ppo_base_exp.py", line 231, in run
+    await self.trainer.train()
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/trainer.py", line 120, in train
+    await self.make_experience(rand_prompts)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/ppo/trainer.py", line 596, in make_experience
+    all_prompts, outputs, custom_rewards, policy_evaluator_all_prompts, policy_evaluator_all_outputs, policy_evaluator_all_custom_rewards = await reward_fn(all_prompts, outputs, all_extras, gen_func)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 380, in custom_reward_fn
+    sampling_params: SamplingParams,
+UnboundLocalError: local variable 'SamplingParams' referenced before assignment
+[36m(get_repeat_score pid=2242729)[0m [2025-04-10 21:10:12,522] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[36m(get_repeat_score pid=2242729)[0m [2025-04-10 21:10:12,527] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)
+[36m(LLMActor pid=2243033)[0m init_process_group: master_address=10.4.36.211, master_port=48841,  rank=8, world_size=9, group_name=openrlhf[32m [repeated 7x across cluster][0m
+[36m(pid=2252117)[0m [2025-04-10 21:10:17,596] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.[32m [repeated 22x across cluster][0m
+[36m(pid=2252117)[0m [2025-04-10 21:10:17,598] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)[32m [repeated 22x across cluster][0m
+[36m(pid=2254309)[0m [2025-04-10 21:10:21,011] [WARNING] [real_accelerator.py:174:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.[32m [repeated 41x across cluster][0m
+[36m(pid=2254309)[0m [2025-04-10 21:10:21,013] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cpu (auto detect)[32m [repeated 41x across cluster][0m
+Episode [1/20]:   0%|          | 0/7110 [03:21<?, ?it/s]

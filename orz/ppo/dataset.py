@@ -27,6 +27,8 @@ class PromptDataset:
         strategy,
         pretrain_mode: bool = False,
         num_processors: int = 8,
+        remove_half_GT_answers_from_train_dataset: bool = False,
+        allow_do_not_know: bool = False,
         **kwargs,
     ):
         self.tokenizer = tokenizer
@@ -36,14 +38,14 @@ class PromptDataset:
 
         # Preprocess dialogues
         if num_processors < 2:
-            self.dialogues = [self.process_dialogue(x) for x in dialogues]
+            self.dialogues = [self.process_dialogue(x, remove_half_GT_answers_from_train_dataset, allow_do_not_know) for x in dialogues]
         else:
             pool = multiprocessing.Pool(processes=num_processors)
-            self.dialogues = pool.map(self.process_dialogue, dialogues)
+            self.dialogues = pool.map(self.process_dialogue, dialogues, remove_half_GT_answers_from_train_dataset, allow_do_not_know)
             pool.close()
             pool.join()
 
-    def process_dialogue(self, dialogue: dict):
+    def process_dialogue(self, dialogue: dict, remove_half_GT_answers_from_train_dataset=False, allow_do_not_know=False):
         prompt_template = ""
         if self.tokenizer.bos_token_id is not None:
             prompt_template += f"{self.tokenizer.decode([self.tokenizer.bos_token_id])}"

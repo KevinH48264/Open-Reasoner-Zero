@@ -1,0 +1,42 @@
+[
+  {
+    "checkpoint": "policy",
+    "iteration": 50,
+    "normal_accuracy": 0.12362637362637363,
+    "gpt4o_accuracy": 0.3755274261603376,
+    "valid_response_rate": 0.9766483516483516,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 100,
+    "normal_accuracy": 0.14697802197802198,
+    "gpt4o_accuracy": 0.5201109570041609,
+    "valid_response_rate": 0.9903846153846154,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 150,
+    "normal_accuracy": 0.3626373626373626,
+    "gpt4o_accuracy": 0.5511049723756906,
+    "valid_response_rate": 0.9945054945054945,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 200,
+    "normal_accuracy": 0.3942307692307692,
+    "gpt4o_accuracy": 0.5413223140495868,
+    "valid_response_rate": 0.9972527472527473,
+    "total_samples": 728
+  },
+  {
+    "checkpoint": "policy",
+    "iteration": 350,
+    "normal_accuracy": 0.4175824175824176,
+    "gpt4o_accuracy": 0.541374474053296,
+    "valid_response_rate": 0.9793956043956044,
+    "total_samples": 728
+  }
+]

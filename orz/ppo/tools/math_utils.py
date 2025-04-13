@@ -1,3 +1,4 @@
+import ast
 import asyncio
 import re
 from itertools import islice, zip_longest
@@ -412,11 +413,41 @@ def get_answer_str(s: str) -> str:
 
 
 async def is_equal(str1, str2, executor, math_mode="legacy"):
+    if str1.lower().strip() == str2.lower().strip():
+        return True # just ensuring we cover the basic case of reward model eval
     first_equal = is_equiv(str1, str2)
     if first_equal:
         return True
     return await is_latex_equal(str1, str2, executor, math_mode)
 
+async def is_countdown_equal(final_answer, extra):
+    try:
+        if 'boxed' in final_answer:
+            equation = solution2answer(final_answer)
+        else:
+            equation = final_answer
+
+        # Extract all numbers from the equation
+        used_numbers = [int(n) for n in re.findall(r'\d+', equation)]
+        numbers = ast.literal_eval(str(extra["nums"]))
+        
+        # Check if all numbers are used exactly once
+        if sorted(used_numbers) != sorted(numbers):
+            return False
+        # Define a regex pattern that only allows numbers, operators, parentheses, and whitespace
+        allowed_pattern = r'^[\d+\-*/().\s]+$'
+        if not re.match(allowed_pattern, equation):
+            return False
+        
+        # Evaluate the equation with restricted globals and locals
+        result = eval(equation, {"__builtins__": None}, {})
+        # Check if the equation is correct and matches the ground truth
+        if abs(float(result) - float(extra["target"])) < 1e-5:
+            return True
+        else:
+            return False
+    except Exception as e:
+        return False
 
 def solution2answer(solution: str, math_mode="eval_peeking") -> str:
     answer = solution

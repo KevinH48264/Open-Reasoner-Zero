@@ -1,0 +1,172 @@
+[2025-04-11 05:48:29,038] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+2025-04-11 05:48:35.818 | INFO     | __main__:PPOExpConfig:165 - prompt_data: ['data/orz_math_57k_collected.json'], eval_prompt_data: ['data/eval_data/math500.json', 'data/eval_data/aime2024.json', 'data/eval_data/gpqa_diamond.json', 'prm800k_100_correct_100_incorrect_rm_eval.json'], prompt_data_probs: [1.0]
+2025-04-11 05:48:35.828 | INFO     | __main__:<module>:2928 - --------- config key ---------                  ------ value ------
+seed                                            42
+ref_num_nodes                                   8
+ref_num_gpus_per_node                           1
+reward_num_nodes                                1
+reward_num_gpus_per_node                        2
+actor_num_nodes                                 8
+actor_num_gpus_per_node                         1
+critic_num_nodes                                8
+critic_num_gpus_per_node                        1
+colocate_critic_reward                          True
+colocate_actor_ref                              True
+colocate_all                                    True
+vllm_num_engines                                8
+vllm_tensor_parallel_size                       1
+vllm_sync_backend                               nccl
+local_rank                                      -1
+pretrain                                        Qwen/Qwen2.5-7B
+critic_pretrain                                 Qwen/Qwen2.5-7B
+reward_pretrain                                 <class 'NoneType'>
+ckpt_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1441__self_play_False
+save_path                                       /vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1441__self_play_False
+tensorboard_log_dir                             orz_logs/debug_orz_7b_ppo_self_play__math__v1441__self_play_False
+prompt_data                                     <class 'omegaconf.listconfig.ListConfig'>
+load_checkpoint                                 True
+zero_stage                                      3
+bf16                                            True
+zpg                                             1
+adam_offload                                    False
+flash_attn                                      True
+grad_accum_dtype                                <class 'NoneType'>
+disable_trace_cache                             False
+gradient_checkpointing                          True
+gradient_checkpointing_use_reentrant            False
+disable_fast_tokenizer                          False
+target_modules                                  all-linear
+enable_prefix_caching                           True
+enable_chunked_prefill                          False
+max_num_batched_tokens                          2048
+enforce_eager                                   False
+gpu_memory_utilization                          0.5
+eval_steps                                      -1
+save_steps                                      -1
+save_interval                                   50
+actor_learning_rate                             1e-06
+critic_learning_rate                            5e-06
+num_episodes                                    20
+max_epochs                                      1
+prompt_max_len                                  8000
+generate_max_len                                8000
+train_batch_size                                256
+micro_train_batch_size                          1
+rollout_batch_size                              8
+micro_rollout_batch_size                        128
+micro_forward_batch_size                        1
+policy_update_steps                             1
+critic_update_steps                             1
+max_len                                         8192
+max_norm                                        1.0
+num_warmup_steps                                50
+l2                                              0.0
+eps_clip                                        0.2
+value_clip                                      0.2
+lambd                                           1.0
+gamma                                           1.0
+normalize_reward                                True
+top_p                                           1.0
+temperature                                     1.0
+freezing_actor_steps                            -1
+n_samples_per_prompt                            8
+kl_target                                       <class 'NoneType'>
+init_kl_coef                                    0
+use_kl_estimator_k3                             True
+use_abs_kl                                      False
+use_kl_loss                                     True
+kl_loss_coef                                    0.0
+adam_betas                                      (0.9, 0.95)
+reward_clip_range                               (-10, 10)
+use_compute_reward_fn                           True
+advantage_normalize                             True
+value_head_prefix                               value_head
+ref_reward_offload                              False
+enable_eval                                     True
+eval_interval                                   10
+update_ref_every_epoch                          True
+use_orm_score                                   False
+total_num_nodes                                 8
+n_policy_evaluator_samples_per_policy_response  1
+eval_prompt_data                                <class 'omegaconf.listconfig.ListConfig'>
+prompt_data_probs                               <class 'omegaconf.listconfig.ListConfig'>
+packing_max_len                                 16384
+top_k                                           -1
+stop                                            <class 'omegaconf.listconfig.ListConfig'>
+use_grpo                                        False
+2025-04-11 05:48:37,794	WARNING utils.py:580 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.
+2025-04-11 05:48:37,794	WARNING utils.py:592 -- Ray currently does not support initializing Ray with fractional cpus. Your num_cpus will be truncated from 90.16 to 90.
+2025-04-11 05:48:38,013	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(LLMActor pid=104564)[0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[36m(LLMActor pid=104564)[0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.82it/s]
+[36m(LLMActor pid=104564)[0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.54it/s]
+[36m(LLMActor pid=104564)[0m 
+[36m(LLMActor pid=104566)[0m 
+[36m(LLMActor pid=104565)[0m 
+[36m(LLMActor pid=104562)[0m 
+[36m(LLMActor pid=104569)[0m 
+[36m(LLMActor pid=104563)[0m 
+[36m(LLMActor pid=104567)[0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104568)[0m 
+[36m(LLMActor pid=104568)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.39it/s][32m [repeated 36x across cluster][0m
+[36m(LLMActor pid=104567)[0m 
+2025-04-11 05:49:19.369 | INFO     | orz.ppo.utils:create_vllm_engines:501 - Offloaded all vLLM engines to CPU
+2025-04-11 05:49:20.415 | INFO     | __main__:train_dataset:2872 - Start processing 56878 dialogues
+2025-04-11 05:50:00.124 | INFO     | __main__:train_dataset:2883 - Finished processing 56878 dialogues
+Traceback (most recent call last):
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/conda/envs/ptca/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 2935, in <module>
+    asyncio.run(exp.run())
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/opt/conda/envs/ptca/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/orz/exps/examples/ppo/ppo_base_exp.py", line 228, in run
+    await self.trainer.build_models(self.PolicyRayActor, self.CriticRayActor, self.RefRayActor, self.RewardRayActor)
+  File "/opt/conda/envs/ptca/lib/python3.10/functools.py", line 981, in __get__
+    val = self.func(instance)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 2859, in trainer
+    eval_dataset=self.eval_dataset,
+  File "/opt/conda/envs/ptca/lib/python3.10/functools.py", line 981, in __get__
+    val = self.func(instance)
+  File "/scratch/AzureNfsServer_INPUT1/data/users/kevihuang/projects/Open-Reasoner-Zero/playground/orz_7b_ppo_self_play.py", line 2895, in eval_dataset
+    with open(file_path, "r") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'prm800k_100_correct_100_incorrect_rm_eval.json'
+[36m(LLMActor pid=104567)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.41it/s][32m [repeated 2x across cluster][0m
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:04 config.py:478] This model supports multiple tasks: {'generate', 'classify', 'score', 'embed', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104564)[0m WARNING 04-11 05:49:04 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(LLMActor pid=104564)[0m WARNING 04-11 05:49:04 config.py:604] Async output processing is not supported on the current platform type cuda.
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:04 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-7B', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=44, served_model_name=Qwen/Qwen2.5-7B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(LLMActor pid=104566)[0m INFO 04-11 05:49:05 config.py:478] This model supports multiple tasks: {'score', 'generate', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:05 selector.py:120] Using Flash Attention backend.
+[36m(LLMActor pid=104562)[0m INFO 04-11 05:49:05 config.py:478] This model supports multiple tasks: {'reward', 'generate', 'classify', 'embed', 'score'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104565)[0m INFO 04-11 05:49:05 config.py:478] This model supports multiple tasks: {'reward', 'generate', 'score', 'embed', 'classify'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104569)[0m INFO 04-11 05:49:05 config.py:478] This model supports multiple tasks: {'score', 'classify', 'embed', 'generate', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104568)[0m INFO 04-11 05:49:06 config.py:478] This model supports multiple tasks: {'generate', 'embed', 'score', 'classify', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104563)[0m INFO 04-11 05:49:06 config.py:478] This model supports multiple tasks: {'reward', 'classify', 'embed', 'score', 'generate'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:07 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-7B...
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:08 weight_utils.py:243] Using model weights format ['*.safetensors']
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:11 model_runner.py:1097] Loading model weights took 14.2716 GB
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:05 config.py:478] This model supports multiple tasks: {'generate', 'classify', 'score', 'embed', 'reward'}. Defaulting to 'generate'.
+[36m(LLMActor pid=104563)[0m WARNING 04-11 05:49:06 cuda.py:98] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used[32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(LLMActor pid=104563)[0m WARNING 04-11 05:49:06 config.py:604] Async output processing is not supported on the current platform type cuda.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104563)[0m INFO 04-11 05:49:06 llm_engine.py:249] Initializing an LLM engine (v0.6.5) with config: model='Qwen/Qwen2.5-7B', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=43, served_model_name=Qwen/Qwen2.5-7B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=False, use_async_output_proc=False, mm_cache_preprocessor=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, [32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104563)[0m INFO 04-11 05:49:07 selector.py:120] Using Flash Attention backend.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104569)[0m INFO 04-11 05:49:08 model_runner.py:1092] Starting to load model Qwen/Qwen2.5-7B...[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:12 worker.py:241] Memory profiling takes 1.36 seconds
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:12 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:12 worker.py:241] model weights take 14.27GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.09GiB; the rest of the memory reserved for KV Cache is 24.05GiB.
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:13 gpu_executor.py:76] # GPU blocks: 1759, # CPU blocks: 292
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:13 gpu_executor.py:80] Maximum concurrency for 8192 tokens per request: 54.97x
+[36m(LLMActor pid=104568)[0m INFO 04-11 05:49:09 weight_utils.py:243] Using model weights format ['*.safetensors'][32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104564)[0m INFO 04-11 05:49:16 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 4.84 seconds
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:14 model_runner.py:1097] Loading model weights took 14.2716 GB[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:15 worker.py:241] Memory profiling takes 1.29 seconds[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:15 worker.py:241] the current vLLM instance can use total_gpu_memory (79.15GiB) x gpu_memory_utilization (0.50) = 39.58GiB[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:15 worker.py:241] model weights take 14.27GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.09GiB; the rest of the memory reserved for KV Cache is 24.05GiB.[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:15 gpu_executor.py:76] # GPU blocks: 1759, # CPU blocks: 292[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:15 gpu_executor.py:80] Maximum concurrency for 8192 tokens per request: 54.97x[32m [repeated 7x across cluster][0m
+[36m(LLMActor pid=104567)[0m INFO 04-11 05:49:19 llm_engine.py:446] init engine (profile, create kv cache, warmup model) took 4.80 seconds[32m [repeated 7x across cluster][0m

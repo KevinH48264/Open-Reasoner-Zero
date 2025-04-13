@@ -3,6 +3,8 @@ EleutherAI/pythia-14m base model + ppo
 
 debug running command in single GPU:
 DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
+
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_24__orz_14m_debug_run__nodes_1.txt &
 """
 
 import asyncio
@@ -23,10 +25,11 @@ import torch
 from loguru import logger
 from omegaconf.listconfig import ListConfig
 from typing_extensions import override
+import ast
 
 from orz.exps.examples.ppo.ppo_base_exp import BasePPOExp, BasePPOExpConfig
 from orz.ppo import RayPPOTrainer
-from orz.ppo.tools.math_utils import is_equal, solution2answer
+from orz.ppo.tools.math_utils import is_countdown_equal, is_equal, solution2answer
 from orz.ppo.utils import check_reflection_pattern
 from playground.zero_setting_base import CustomDataset, EvalCustomDataset
 
@@ -35,6 +38,117 @@ DEBUG_MODE = False if os.environ.get("DEBUG_MODE", "False") == "False" else True
 file_name = f"{'debug_' if DEBUG_MODE else ''}{os.path.splitext(os.path.basename(__file__))[0]}"
 executor = ThreadPoolExecutor(max_workers=64)
 
+
+@dataclass
+class PPOExpConfig(BasePPOExpConfig):
+    use_compute_reward_fn: bool = True
+    use_orm_score: bool = False
+
+    # Conditional settings with production values first
+    total_num_nodes: int = 32 if not DEBUG_MODE else 1
+
+    # resource related settings
+    ref_num_nodes: int = total_num_nodes
+    ref_num_gpus_per_node: int = 1
+    actor_num_nodes: int = total_num_nodes
+    actor_num_gpus_per_node: int = 1
+    critic_num_nodes: int = total_num_nodes
+    critic_num_gpus_per_node: int = 1
+    colocate_all: bool = True
+    colocate_critic_reward: bool = True
+    colocate_actor_ref: bool = True
+    vllm_num_engines: int = total_num_nodes
+    vllm_tensor_parallel_size: int = 1
+    adam_offload: bool = False
+    zero_stage: int = 3
+
+    # path related settings
+    version = "v104" # TODO: update this!
+    pretrain: Optional[str] = "EleutherAI/pythia-14m" # TODO: or put your downloaded model path here!
+    self_play = False
+    
+    reward_pretrain: Optional[str] = None
+    save_interval: int = 50
+
+    file_name += f"_{version}"
+    file_name += f"_self_play" if self_play else ""
+    ckpt_path: str = f"/vc_data_blob/users/kevihuang/models/orz/orz_14m_ppo_mini_ckpt/{file_name}"
+    save_path: str = f"/vc_data_blob/users/kevihuang/models/orz/orz_14m_ppo_mini_ckpt/{file_name}"
+    tensorboard_log_dir: str = f"orz_logs/{file_name}"
+
+    # MathTrain dataset and Math500 eval dataset
+    # data related settings
+    if self_play:
+        prompt_data: ListConfig = ListConfig(
+            [
+                "data/countdown-tasks-3to4-query-gen-prompts_first_5000.json",
+            ]
+        )
+    else:
+        prompt_data: ListConfig = ListConfig(
+            [
+                "data/countdown-tasks-3to4_first_5000.json",
+                # "data/orz_math_57k_collected.json",
+            ]
+        )
+    eval_prompt_data: ListConfig = ListConfig(
+        [
+            # "data/countdown-tasks-3to4_first_100.json",
+            "data/eval_data/math500.json",
+            "data/eval_data/aime2024.json",
+            "data/eval_data/gpqa_diamond.json",
+        ]
+    )
+    prompt_data_probs: ListConfig = ListConfig([1.0])
+    logger.info(
+        f"prompt_data: {prompt_data}, eval_prompt_data: {eval_prompt_data}, prompt_data_probs: {prompt_data_probs}"
+    )
+
+    # ppo related settings
+    actor_learning_rate: float = 1e-6
+    critic_learning_rate: float = 5e-6
+    num_warmup_steps: int = 50
+    enable_prefix_caching: bool = True
+    update_ref_every_epoch: bool = True
+    advantage_normalize: bool = True
+
+    num_episodes: int = 20
+    rollout_batch_size: int = 128 if not DEBUG_MODE else 16 # len(all_inputs) # of prompts
+    n_samples_per_prompt: int = 64 if not DEBUG_MODE else 2 # self.num_generations
+    micro_rollout_batch_size: int = 128 if not DEBUG_MODE else 128
+
+    policy_update_steps: int = 1
+    critic_update_steps: int = 12 if not DEBUG_MODE else 1
+    micro_train_batch_size: int = 1
+    micro_forward_batch_size: int = 1
+    freezing_actor_steps: int = -1
+    init_kl_coef: float = 0
+    # 更换KL loss + k3
+    kl_loss_coef: float = 0.0
+    use_kl_loss: bool = True
+    use_kl_estimator_k3: bool = True
+
+    enable_eval: bool = False
+    eval_interval: int = 10
+
+    # generate related settings
+    prompt_max_len: int = 1024
+    packing_max_len: int = 2048
+    generate_max_len: int = 1024  # TODO: change to larger later
+    max_len: int = 2048  # TODO: change to larger later
+    temperature: float = 1.0
+    top_p: float = 1.0
+    top_k: int = -1
+    stop: ListConfig = ListConfig(["User:", "Human:", "Assistant:", "</answer>"])
+
+    # grpo related settings
+    use_grpo: bool = False
+
+    gpu_memory_utilization: float = 0.75 if use_grpo else 0.7 if not DEBUG_MODE else 0.5
+    critic_pretrain: Optional[str] = "" if use_grpo else pretrain
+
+    gamma: float = 1.0
+    lambd: float = 1.0
 
 def repeatness(s: str):
     def ranks(l):
@@ -77,101 +191,6 @@ def repeatness(s: str):
     cnt = sum(lcp(arr, sa, c))
 
     return cnt * 2 / (n * (n + 1))
-
-
-@dataclass
-class PPOExpConfig(BasePPOExpConfig):
-    use_compute_reward_fn: bool = True
-    use_orm_score: bool = False
-
-    # Conditional settings with production values first
-    total_num_nodes: int = 32 if not DEBUG_MODE else 1
-
-    # resource related settings
-    ref_num_nodes: int = total_num_nodes
-    ref_num_gpus_per_node: int = 1
-    actor_num_nodes: int = total_num_nodes
-    actor_num_gpus_per_node: int = 1
-    critic_num_nodes: int = total_num_nodes
-    critic_num_gpus_per_node: int = 1
-    colocate_all: bool = True
-    colocate_critic_reward: bool = True
-    colocate_actor_ref: bool = True
-    vllm_num_engines: int = total_num_nodes
-    vllm_tensor_parallel_size: int = 1
-    adam_offload: bool = False
-    zero_stage: int = 3
-
-    # path related settings
-    pretrain: Optional[str] = "EleutherAI/pythia-14m" # TODO: or put your downloaded model path here!
-    reward_pretrain: Optional[str] = None
-    save_interval: int = 50
-    ckpt_path: str = f"orz_ckpt/{file_name}"
-    save_path: str = f"orz_ckpt/{file_name}"
-    tensorboard_log_dir: str = f"orz_logs/{file_name}"
-
-    # MathTrain dataset and Math500 eval dataset
-    # data related settings
-    prompt_data: ListConfig = ListConfig(
-        [
-            "data/orz_math_57k_collected.json",
-        ]
-    )
-    eval_prompt_data: ListConfig = ListConfig(
-        [
-            "data/eval_data/math500.json",
-            "data/eval_data/aime2024.json",
-            "data/eval_data/gpqa_diamond.json",
-        ]
-    )
-    prompt_data_probs: ListConfig = ListConfig([1.0])
-
-    # ppo related settings
-    actor_learning_rate: float = 1e-6
-    critic_learning_rate: float = 5e-6
-    num_warmup_steps: int = 50
-    enable_prefix_caching: bool = True
-    update_ref_every_epoch: bool = True
-    advantage_normalize: bool = True
-
-    num_episodes: int = 20
-    rollout_batch_size: int = 128 if not DEBUG_MODE else 16
-    n_samples_per_prompt: int = 64 if not DEBUG_MODE else 2
-    micro_rollout_batch_size: int = 128 if not DEBUG_MODE else 128
-
-    policy_update_steps: int = 1
-    critic_update_steps: int = 12 if not DEBUG_MODE else 1
-    micro_train_batch_size: int = 1
-    micro_forward_batch_size: int = 1
-    freezing_actor_steps: int = -1
-    init_kl_coef: float = 0
-    # 更换KL loss + k3
-    kl_loss_coef: float = 0.0
-    use_kl_loss: bool = True
-    use_kl_estimator_k3: bool = True
-
-    enable_eval: bool = False
-    eval_interval: int = 10
-
-    # generate related settings
-    prompt_max_len: int = 1024
-    packing_max_len: int = 2048
-    generate_max_len: int = 1024  # TODO: change to larger later
-    max_len: int = 2048  # TODO: change to larger later
-    temperature: float = 1.0
-    top_p: float = 1.0
-    top_k: int = -1
-    stop: ListConfig = ListConfig(["User:", "Human:", "Assistant:", "</answer>"])
-
-    # grpo related settings
-    use_grpo: bool = False
-
-    gpu_memory_utilization: float = 0.75 if use_grpo else 0.7 if not DEBUG_MODE else 0.5
-    critic_pretrain: Optional[str] = "" if use_grpo else pretrain
-
-    gamma: float = 1.0
-    lambd: float = 1.0
-
 
 class CustomRewardTrainer(RayPPOTrainer):
     @override
@@ -317,6 +336,66 @@ class CustomRewardTrainer(RayPPOTrainer):
         return res_prompts, res_responses, res_score_tensors
 
     @override
+    async def custom_query_reward_fn(
+        self,
+        query_prompts: List[str],
+        query_outputs: List[Any],
+        query_extras: List[dict],
+        policy_custom_rewards: List[torch.Tensor],
+        R: int,  # Number of policy completions per query
+    ) -> List[torch.Tensor]:
+        """
+        Compute custom query rewards in a format consistent with custom_reward_fn.
+        
+        For each query:
+        1. If valid_prompt is False, the reward is 0.0.
+        2. Otherwise, compute avg_success_reward as the average of the last-token reward 
+            from the corresponding R policy outputs (from policy_custom_rewards). 
+            Then, compute:
+            
+            query_reward = 1 - 2 * abs(0.5 - avg_success_reward)
+            
+            (Optionally clamped to [0.0, 1.0].)
+        
+        Returns:
+        A list of reward tensors, one per query output, where each tensor has zeros for all tokens
+        except its last token, which is set to the computed query reward.
+        """
+        reward_tensors = []
+        query_outputs_responses = []
+        
+        # Loop over each query output and corresponding extras.
+        for idx, (output, extra) in enumerate(zip(query_outputs, query_extras)):
+            valid = extra.get("valid_prompt", False)
+            if not valid:
+                computed_reward = 0.0
+            else:
+                # Gather corresponding policy custom rewards for this query.
+                group_rewards = policy_custom_rewards[idx * R : (idx + 1) * R]
+                # Extract the last token reward from each policy output.
+                last_rewards = [r[-1].item() for r in group_rewards if r.numel() > 0]
+                if len(last_rewards) == 0:
+                    avg_success_reward = 0.0
+                else:
+                    avg_success_reward = sum(last_rewards) / len(last_rewards)
+                # Compute the query reward so that it is highest when avg_success_reward is near 0.5.
+                computed_reward = 1 - 2 * abs(0.5 - avg_success_reward)
+                computed_reward = max(0.0, min(computed_reward, 1.0))
+            
+            # Tokenize the query output to determine its token length.
+            tokenized = self._tokenize(output.get("response", ""), self.cfg.generate_max_len, padding=False)
+            token_ids = tokenized["input_ids"]
+            tensor_length = len(token_ids)
+            reward_tensor = torch.zeros(tensor_length)
+            if tensor_length > 0:
+                reward_tensor[-1] = computed_reward
+            reward_tensors.append(reward_tensor)
+            query_outputs_responses.append(output["response"])
+        
+        return query_prompts, query_outputs_responses, reward_tensors
+
+
+    @override # this override's RayPPOTrainer's generate_vllm
     @torch.no_grad()
     async def generate_vllm(
         self,
@@ -365,11 +444,17 @@ class CustomRewardTrainer(RayPPOTrainer):
         batched_results = await asyncio.gather(*[asyncio.to_thread(ray.get, task) for task in extract_tasks])
         final_answers = [answer for batch in batched_results for answer in batch]
 
+        # --- REWARD FUNCTION HERE --- #
         # 判断对错
         global executor
         equal_tasks = []
         for extra, final_answer in zip(extras, final_answers):
-            equal_tasks.append(is_equal(solution2answer(extra["answer"]), solution2answer(final_answer), executor))
+            # COUNTDOWN REWARD #
+            # add support for countdown by trying to extract the answer from the final_answer and then evaluating it
+            equal_tasks.append(is_countdown_equal(final_answer, extra))
+
+            # Original Math
+            # equal_tasks.append(is_equal(solution2answer(extra["answer"]), solution2answer(final_answer), executor))
         equal_results = await asyncio.gather(*equal_tasks)
 
         results = []
@@ -504,6 +589,7 @@ class PPOExp(BasePPOExp):
             eval_dataset=self.eval_dataset,
             vllm_engines=vllm_engines,
             colocate_pg=self.get_colocate_pg,
+            self_play=self.cfg.self_play,
         )
 
     @override

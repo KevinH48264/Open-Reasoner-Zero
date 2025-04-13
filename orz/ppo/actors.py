@@ -501,17 +501,26 @@ class PolicyRayActorBase(RayActor):
     def training_step(self, experience: Experience, global_steps, local_step, accumulation_steps) -> Dict[str, float]:
         self.model.train()
 
-        # TODO: only support packed sequences for now
-        assert isinstance(experience.sequences, list)
-        sequences = torch.cat(experience.sequences, dim=0).unsqueeze(0)
-        old_action_log_probs = torch.cat(experience.action_log_probs, dim=0).unsqueeze(0)
-        base_action_log_probs = torch.cat(experience.base_action_log_probs, dim=0).unsqueeze(0)
-        advantages = torch.cat(experience.advantages, dim=0).unsqueeze(0)
-        num_actions = torch.cat(experience.num_actions, dim=0).long().tolist()
-        packed_seq_lens = torch.cat(experience.packed_seq_lens, dim=0).long().tolist()
-        attention_mask = torch.cat(experience.attention_mask, dim=0).unsqueeze(0)
+        # Collate the mini-batch tensors.
+        sequences = torch.cat(experience.sequences, dim=0).unsqueeze(0)  # shape: (1, N, S)
+        old_action_log_probs = torch.cat(experience.action_log_probs, dim=0).unsqueeze(0)  # (1, N, A)
+        base_action_log_probs = torch.cat(experience.base_action_log_probs, dim=0).unsqueeze(0)  # (1, N, A)
+        advantages = torch.cat(experience.advantages, dim=0).unsqueeze(0)  # (1, N, A)
+        num_actions = torch.cat(experience.num_actions, dim=0).long().tolist()  # list of length N
+        packed_seq_lens = torch.cat(experience.packed_seq_lens, dim=0).long().tolist()  # list of length N
+        attention_mask = torch.cat(experience.attention_mask, dim=0).unsqueeze(0)  # (1, N, S)
 
-        # actor loss
+        # Assume that experience.info["exp_type"] is a tensor of shape (N,)
+        # with 1.0 for policy, 0.0 for query, 0.3 for policy evaluator, 0.6 for query evaluator.
+        exp_types = experience.info["exp_type"].squeeze()  # shape: (N,)
+
+        # Create boolean masks for each group.
+        policy_mask = (exp_types == 1.0)
+        query_mask = (exp_types == 0.0)
+        policy_evaluator_mask = (exp_types == 0.3)
+        query_evaluator_mask = (exp_types == 0.6)
+
+        # Forward pass to obtain new log probabilities.
         action_log_probs, output = self.model(
             sequences,
             num_actions,
@@ -520,54 +529,87 @@ class PolicyRayActorBase(RayActor):
             packed_seq_lens=packed_seq_lens,
         )
 
-        # loss function
-        # TODO: recompute advantages
-        actor_loss = self.actor_loss_fn(
-            action_log_probs,
-            old_action_log_probs,
-            advantages,
-            action_mask=experience.action_mask,
+        # Now, index into the tensors based on the masks.
+        # Since our tensors are shape (1, N, ...), we index along dimension 1.
+        policy_action_log_probs = action_log_probs[:, policy_mask, :]
+        policy_old_action_log_probs = old_action_log_probs[:, policy_mask, :]
+        policy_advantages = advantages[:, policy_mask, :]
+
+        query_action_log_probs = action_log_probs[:, query_mask, :]
+        query_old_action_log_probs = old_action_log_probs[:, query_mask, :]
+        query_advantages = advantages[:, query_mask, :]
+
+        policy_evaluator_action_log_probs = action_log_probs[:, policy_evaluator_mask, :]
+        policy_evaluator_old_action_log_probs = old_action_log_probs[:, policy_evaluator_mask, :]
+        policy_evaluator_advantages = advantages[:, policy_evaluator_mask, :]
+
+        query_evaluator_action_log_probs = action_log_probs[:, query_evaluator_mask, :]
+        query_evaluator_old_action_log_probs = old_action_log_probs[:, query_evaluator_mask, :]
+        query_evaluator_advantages = advantages[:, query_evaluator_mask, :]
+
+        # Compute losses separately for each group.
+        loss_policy = self.actor_loss_fn(
+            policy_action_log_probs,
+            policy_old_action_log_probs,
+            policy_advantages,
+            action_mask=experience.action_mask  # You might need to adjust the mask if it’s per-sample.
+        ) if policy_mask.sum() > 0 else 0.0
+
+        loss_query = self.actor_loss_fn(
+            query_action_log_probs,
+            query_old_action_log_probs,
+            query_advantages,
+            action_mask=experience.action_mask
+        ) if query_mask.sum() > 0 else 0.0
+
+        loss_policy_evaluator = (
+            self.actor_loss_fn(
+                policy_evaluator_action_log_probs,
+                policy_evaluator_old_action_log_probs,
+                policy_evaluator_advantages,
+                action_mask=experience.action_mask
+            )
+            if policy_evaluator_mask.sum() > 0 else 0.0
         )
-        # clip ratio
+
+        loss_query_evaluator = (
+            self.actor_loss_fn(
+                query_evaluator_action_log_probs,
+                query_evaluator_old_action_log_probs,
+                query_evaluator_advantages,
+                action_mask=experience.action_mask
+            )
+            if query_evaluator_mask.sum() > 0 else 0.0
+        )
+
+        # Compute overall actor loss as the average of all four losses.
+        actor_loss = (loss_policy + loss_query + loss_policy_evaluator + loss_query_evaluator) / 4.0
+
+        # For clip ratio calculation, you could compute it for the full batch:
         with torch.no_grad():
             ratio = (action_log_probs - old_action_log_probs).exp()
             clamp_ratio = ratio.clamp(1 - self.args.eps_clip, 1 + self.args.eps_clip)
             clip_ratio = (clamp_ratio != ratio).sum().item() / ratio.numel()
 
-        # entropy
+        # Entropy computation remains the same.
         with torch.no_grad():
-            assert isinstance(experience.sequences, list), "Only support packed sequences"
             action_logits = output["logits"][:, :-1, :]
             action_log_probs_all = torch.nn.functional.log_softmax(action_logits, dim=-1)
-
-            action_log_probs_all_list = []
-            offset = 0
-            for num_action, seq_len in zip(num_actions, packed_seq_lens):
-                start, end = max(0, offset + seq_len - num_action - 1), offset + seq_len - 1
-                action_log_probs_all_list.append(action_log_probs_all[:, start:end])
-                offset += seq_len
-            action_log_probs_all = torch.cat(action_log_probs_all_list, dim=1)
-
-            # Calculate entropy in chunks to avoid OOM
-            chunk_size = 512  # Adjust this value based on your GPU memory
+            chunk_size = 512
             num_chunks = (action_log_probs_all.size(1) + chunk_size - 1) // chunk_size
             entropy_sum = 0
             total_tokens = 0
-
             for i in range(num_chunks):
                 start_idx = i * chunk_size
                 end_idx = min((i + 1) * chunk_size, action_log_probs_all.size(1))
                 chunk = action_log_probs_all[:, start_idx:end_idx]
-
-                # Calculate entropy for this chunk
                 chunk_probs = chunk.exp()
                 chunk_entropy = -(chunk_probs * chunk).sum(-1)
                 entropy_sum += chunk_entropy.sum().item()
                 total_tokens += chunk_entropy.numel()
-
             entropy = entropy_sum / total_tokens
 
-        # kl loss
+        # If using KL loss:
         if self.args.use_kl_loss:
             kl_loss = action_log_probs - base_action_log_probs
             if self.args.use_kl_estimator_k3:
@@ -585,22 +627,20 @@ class PolicyRayActorBase(RayActor):
         if (local_step + 1) % accumulation_steps == 0:
             self.strategy.optimizer_step(self.optimizer, self.model, self.scheduler, name="actor")
 
-        # status
+        # Gather status info.
         status = {
-            "policy_loss": actor_loss.item(),
+            "policy_loss": actor_loss.item() if isinstance(actor_loss, torch.Tensor) else actor_loss,
             "actor_lr": self.scheduler.get_last_lr()[0],
             "clip_ratio": clip_ratio,
             "entropy": entropy,
         }
-
         for k, v in experience.info.items():
             if k == "kl":
-                status[k] = (
-                    (v * experience.info["response_length"]).sum() / experience.info["response_length"].sum()
-                ).item()
+                status[k] = ((v * experience.info["response_length"]).sum() / experience.info["response_length"].sum()).item()
             else:
                 status[k] = v.mean().item()
         return status
+
 
     def process_sequences(self, sequences, input_len, eos_token_id, pad_token_id):
         return self.model.process_sequences(sequences, input_len, eos_token_id, pad_token_id)

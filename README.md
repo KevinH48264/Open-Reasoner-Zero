@@ -5,7 +5,6 @@
 <img src="figure/logo.jpg" width="300"/>
 
 <div>
-<!-- I want to use a tide emoji here -->
 
 An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
 </div>
@@ -22,7 +21,7 @@ An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
     src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white"/></a>
 
   <br>
-  <a href="https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf"><b>Paper PDF Link [WIP]</b>👁️</a>
+  <a href="https://arxiv.org/abs/2503.24290"><b>Paper Arxiv Link </b>👁️</a>
 </div>
 
 <div>
@@ -30,29 +29,51 @@ An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model
 
 </div>
 
-![](figure/teaser.png)
-
-*Figure 1 | Evaluation performance of Open-Reasoner-Zero-\{7B, 32B\}. We report the average accuracy on the benchmark dataset for each question with 16 responses. Notably, Open-Reasoner-Zero-32B outperforms DeepSeek-R1-Zero-Qwen-32B on the GPQA Diamond benchmark while only requiring 1/30 of the training steps. We are continuing to scale up these RL settings until this preprint is released, as there is no sign of saturation.*
-
-![](figure/train_curve.png)
-*Figure 2 | Train Time Scale up both on Reward and Response Length of Open-Reasoner-Zero-{7B, 32B}.*
-
-## Overview
-🌊 We introduce **Open-Reasoner-Zero**, the first open source implementation of large-scale reasoning-oriented RL training focusing on scalability, simplicity and accessibility.
+## Overview 🌊
+We introduce **Open-Reasoner-Zero**, the first open source implementation of large-scale reasoning-oriented RL training focusing on scalability, simplicity and accessibility.
+Using the same base model as DeepSeek-R1-Zero-Qwen-32B, our implementation achieves superior performance on AIME2024, MATH500, and the GPQA Diamond benchmark while demonstrating remarkable efficiency—requiring only a tenth of the training steps, compared to DeepSeek-R1-Zero pipeline.
 
 To enable broader participation in this pivotal moment we witnessed and accelerate research towards artificial general intelligence (AGI), 
 we release our source code, parameter settings, training data, and model weights.
-Please refer to our [paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) for more insights.
+Please refer to our [paper](https://arxiv.org/abs/2503.24290) for more insights across various model sizes. 
 
 **Let the Reasoner-Zero tide rise!**
 
+
+## Main Results 🏆
+
+![](figure/teaser.png)
+
+*Figure 1 | Evaluation performance of Open-Reasoner-Zero-\{7B, 32B\}. Evaluation performance of Open-Reasoner-Zero-\{7B, 32B\} on benchmarks (averaged on 16 responses) during training. Using the same base model as DeepSeek-R1-Zero-Qwen-32B, Open-Reasoner-Zero-32B achieves superior performance on AIME2024, MATH500, and GPQA Diamond benchmark-requiring only a tenth of the training steps.*
+
+![](figure/train_curve.png)
+*Figure 2 | Train-time Scale up on Train Reward and Response Length of Open-Reasoner-Zero (ORZ) - \{0.5B, 1.5B, 7B, 32B\}. Train Reward and Response Length increase steadily, demonstrating consistent scalability across model sizes. Interestingly, the ORZ-32B Response Length exhibits fluctuations without negatively impacting training stability, highlighting the robustness of our minimalist recipe.*
+
 ## Releases 📦
+
+<strong>[2025/03/31]</strong>
+We announce a major milestone for `Open-Reasoner-Zero`:
+
+- 🌊 [Updated Paper](https://arxiv.org/abs/2503.24290) with new results.
+- 🔭 [Easy-to-use Training Scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/playground):
+  - [ORZ-1.5B training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_1p5b_ppo.py) and [ORZ-0.5B training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_0p5b_ppo.py) (main results in Figure 2). 
+  - [Minimal resource training scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/playground/orz_0p5b_ppo_1gpu.py): ORZ-0.5B can be run on a single A800/H800 gpu!
+- 🤩 [Updated Curated Datasets](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/data): 
+  - 129k data in total:
+    - [original 57k data](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_57k_collected.json).
+    - [extended 72k data](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_72k_collection_extended.json).
+  - [13k hard data](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_13k_collection_hard.json) mined from the above 129k data. 
+    - used in the "annealing" stage of ORZ-32B training: **AIME2024 from ~41% to ~48%**!
+- 🤗 More HF Models: 
+  - Updated HF Models: [`Open-Reasoner-Zero-7B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-7B) and [`Open-Reasoner-Zero-32B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-32B).
+  - Released HF Models: [`Open-Reasoner-Zero-1.5B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-1.5B) and [`Open-Reasoner-Zero-0.5B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-0.5B).
+- 🚀 Full Suite of Critic Models for in-depth research: `Open-Reasoner-Zero-Critic-`{[0.5B](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-Critic-0.5B), [1.5B](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-Critic-1.5B), [7B](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-Critic-7B),  [32B](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-Critic-32B)}.
 
 <strong>[2025/02/18]</strong>
 We release `Open-Reasoner-Zero`. 
 
 As part of this release, we open-source:
-- 🌊 [Paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) on our comprehensive analysis and insights in Reasoner-Zero training
+- 🌊 [Paper(WIP)](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf) on our comprehensive analysis and insights in Reasoner-Zero training
 - 🤗 HF Model [`Open-Reasoner-Zero-7B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-7B) and [`Open-Reasoner-Zero-32B`](https://huggingface.co/Open-Reasoner-Zero/Open-Reasoner-Zero-32B)
 - 🎁 [`Our curated 57k training data`](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/data)
 - 📄 [Training Scripts](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/playground) to enjoy your own Reasoner-Zero journey!
@@ -63,6 +84,16 @@ As part of this release, we open-source:
 - Colocate training and generation in the same GPUs to maximize GPU utilization.
 
 ## Getting Started 🚀
+### Data
+
+We release all of curated high-quality training data in the [`data`](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/data) folder:
+* curated 129k data:
+  * [original 57k](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_57k_collected.json), collected from various sources, including AIME (up to 2023), MATH, Numina-Math collection and Tulu3 MATH.
+  * [extended 72k](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_72k_collection_extended.json), mainly cleaned from OpenR1-Math-220k.
+* [hard 13k](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/data/orz_math_13k_collection_hard.json), mined from the first stage of ORZ-32B training.
+
+The details for how to collect data are described in our [paper](https://arxiv.org/abs/2503.24290).
+
 ### Installation & Training Scripts
 We release our [Dockerfile](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/docker/Dockerfile) in [docker](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/docker) folder to facilitate the reproducibility of our training.
 
@@ -71,70 +102,102 @@ To install the package, run:
 pip install -e .
 ```
 
-#### Start Orz-7B PPO Training
+#### Start ORZ-32B PPO Training
+Here are the starting commands in 16 nodes. 
 
-debug running command:
-```bash
-# NOTE: just for debug, not final setting!
-
-## Debug command in a single GPU with `EleutherAI/pythia-14m`
-DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
-
-## Debug command in a single node (8 GPUs) with `Qwen/Qwen2.5-7B`
-DEBUG_MODE=True python -m playground.orz_7b_ppo
-```
-
-Multi-node Training on 4 nodes:
-
-first on master node, run:
+First on master node, run:
 ```bash
 ray start --head
+# you will see logging like:
+# Next steps
+#  To add another node to this Ray cluster, run
+#    ray start --address='<master-node-ip>:<master-node-port>'
 ```
 
-then on other nodes, run:
+then on all other nodes, run:
 ```bash
-ray start --address='<master-node-ip>:<master-node-port>'
+ray start --address='<master-node-ip>:<master-node-port>' # <master-node-ip> and <master-node-port> are from above loggings!
 ```
 
-then on master node, run:
+finally on master node, just run:
 ```bash
+python -m playground.orz_32b_ppo
+```
+Your training log will be shown in the master node terminal.
+
+------
+
+#### Start ORZ-0.5B PPO Training
+You can start the ORZ-0.5B PPO training in single A800/H800 node:
+```bash
+python -m playground.orz_0p5b_ppo
+```
+
+You can even run in **a single A800/H800 gpu**: 
+```bash
+python -m playground.orz_0p5b_ppo_1gpu
+```
+
+note: since we are not in multi-node setting, no `ray start` like logics are needed.
+
+------
+
+#### Start ORZ-7B PPO Training
+
+Multi-node Training on 4 nodes:
+```bash
+# set up for multi-node training
+ray start --head # on master node
+ray start --address='<master-node-ip>:<master-node-port>' # then on other nodes
+
+# then on master node, run:
 python -m playground.orz_7b_ppo
 ```
 
 Your training log will be shown in the master node terminal.
 
-#### Start Orz-32B PPO Training
-running command in 16 nodes:
+-----
 
-first on master node, run:
+#### Start ORZ-1.5B PPO Training
+
+Multi-node Training on 2 nodes:
 ```bash
-ray start --head
+# set up for multi-node training
+ray start --head # on master node
+ray start --address='<master-node-ip>:<master-node-port>' # then on other nodes
+# then on master node, run:
+python -m playground.orz_1p5b_ppo
 ```
 
-then on other nodes, run:
+----
+
+#### Debug Settings
+In the code, we leave an environment variable `DEBUG_MODE` to run in debug setting for researcher to iterate. (Thought for now, we recommend using `python -m playground.orz_0p5b_ppo_1gpu` for debugging.)
+
+The debug running command examples:
 ```bash
-ray start --address='<master-node-ip>:<master-node-port>'
+# NOTE: just for debug, not final setting!
+
+## Debug command in a single GPU with `EleutherAI/pythia-14m`
+DEBUG_MODE=True python -m playground.orz_14m_ppo_mini
+## Debug command in a single node (8 GPUs) with `Qwen/Qwen2.5-7B`
+DEBUG_MODE=True python -m playground.orz_7b_ppo
 ```
 
-then on master node, run:
-```bash
-python -m playground.orz_32b_ppo
-```
+### How to Use the Model
+#### Policy Model
+Policy models can be used in the same way as any chat model in transformers and vllm, since we have put the chat template jinja in the tokenizer.
 
-Your training log will be shown in the master node terminal.
+#### Critic Model
+Critic models can be loaded the same way like in the [training code](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/orz/ppo/actors.py#L738). 
 
-### Data
 
-We release all of 57k curated high-quality training data in the [`data`](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/tree/main/data) folder.
-
-The details for how to collect data are described in our [paper](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/blob/main/ORZ_paper.pdf).
-
-## Acknowledgements
+## Acknowledgements 💖 
 
 - This work was supported by computing resources and valuable feedback provided by [StepFun](https://www.stepfun.com/) and Tsinghua University.
 - Our training framework is built on [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF), [vllm](https://github.com/vllm-project/vllm), [DeepSpeed](https://github.com/deepspeedai/DeepSpeed) and [ray](https://github.com/ray-project/ray).
-- Our model is based on [Qwen2.5-7B](https://huggingface.co/Qwen/Qwen2.5-7B) and [Qwen2.5-32B](https://huggingface.co/Qwen/Qwen2.5-32B).
-- We thank [Project Numina](https://projectnumina.ai/) and [Tulu3](https://allenai.org/blog/tulu-3-technical) for their collected open sourced data.
+- Our model is based on [Qwen2.5 Series](https://qwenlm.github.io/blog/qwen2.5-llm/) of **base models**, including [Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B), [Qwen2.5-1.5B](https://huggingface.co/Qwen/Qwen2.5-1.5B), [Qwen2.5-7B](https://huggingface.co/Qwen/Qwen2.5-7B) and [Qwen2.5-32B](https://huggingface.co/Qwen/Qwen2.5-32B).
+- We thank [Project Numina](https://projectnumina.ai/), [Tulu3](https://allenai.org/blog/tulu-3-technical) and [OpenR1-Math-220k](https://huggingface.co/datasets/open-r1/OpenR1-Math-220k) for their collected open sourced data.
 
 ## Advertisement Time 📣
 
@@ -143,19 +206,22 @@ We are hiring talented researchers and engineers to join our team. If you are in
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Open-Reasoner-Zero/Open-Reasoner-Zero&type=Timeline)](https://star-history.com/#Open-Reasoner-Zero/Open-Reasoner-Zero&Timeline)
 
-## Community Discussions
+## Community Discussions 🍺
 
-We have a wechat group to help discussions and sharing, you can scan the QR code below to join.
+We have several wechat groups to help discussions and sharing, you can scan the QR code below to join the latest group.
 
-<img src="figure/WeChatGroup_0224.png" width="300" style="display: block; margin: 0 auto;"/>
+<img src="figure/WeChatGroup.png" width="300" style="display: block; margin: 0 auto;"/>
 
 ## Citation
 
 ```bibtex
-@misc{OpenReasonerZero2025,
-  title={Open-Reasoner-Zero: An Open Source Approach to Scaling Reinforcement Learning on the Base Model},
-  author={Jingcheng Hu and Yinmin Zhang and Qi Han and Daxin Jiang and Xiangyu Zhang, Heung-Yeung Shum},
-  year={2025},
-  howpublished={\url{https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero}},
+@misc{hu2025openreasonerzeroopensourceapproach,
+      title={Open-Reasoner-Zero: An Open Source Approach to Scaling Up Reinforcement Learning on the Base Model}, 
+      author={Jingcheng Hu and Yinmin Zhang and Qi Han and Daxin Jiang and Xiangyu Zhang and Heung-Yeung Shum},
+      year={2025},
+      eprint={2503.24290},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.24290}, 
 }
 ```

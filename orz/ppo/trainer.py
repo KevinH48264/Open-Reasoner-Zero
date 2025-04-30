@@ -114,6 +114,53 @@ class RayPPOTrainer:
                 ):
                     await self.eval()
 
+                if self.cfg.curriculum_data_enabled:
+                    # ──────────────────────────────────────────────────────────────
+                    # 0. instead of random, pick first N where policy_majority_win=False
+                    N = len(rand_prompts)
+                    selected = []
+                    for prompt, extra in self.train_dataset.dialogues:
+                        if not extra.get("policy_majority_win", False):
+                            selected.append((prompt, extra))
+                        if len(selected) == N:
+                            break
+
+                    if len(selected) == N: # if we have enough prompts with policy_majority_win=False, use them. Otherwise use rand_prompts
+                        rand_prompts = selected
+
+                        # 1. debug‐print avg pass_rate_72b_tir of selected
+                        rates = [e.get("pass_rate_72b_tir", 0.0) for _, e in rand_prompts]
+                        avg_rate = sum(rates) / len(rates) if rates else 0.0
+                        logger.debug(f"[train] selected={len(rates)} prompts, avg_pass_rate_72b_tir={avg_rate:.4f}")
+
+                        # 2. log scalars to TensorBoard
+                        #  2a) average pass_rate of this batch
+                        self.writer.add_scalar(
+                            "query/avg_pass_rate_72b_tir_value",
+                            avg_rate,
+                            self.global_step,
+                        )
+                        #  2b) overall % of dialogues in the dataset with policy_majority_win=True
+                        total = len(self.train_dataset.dialogues)
+                        num_win = sum(1 for _, e in self.train_dataset.dialogues if e.get("policy_majority_win", False))
+                        pct_win = num_win / total if total else 0.0
+                        self.writer.add_scalar(
+                            "query/majority_win_true_percentage",
+                            pct_win,
+                            self.global_step,
+                        )
+
+                        #  2c) % of this batch where extra["answer"] == "[NO GT ANSWER]"
+                        num_no_gt = sum(1 for _, e in rand_prompts if e.get("answer") == "[NO GT ANSWER]")
+                        pct_no_gt = num_no_gt / len(rand_prompts) if rand_prompts else 0.0
+                        logger.debug(f"[train] query_answer_no_gt={pct_no_gt:.4f} ({num_no_gt}/{len(rand_prompts)})")
+                        self.writer.add_scalar(
+                            "query/answer_no_gt",
+                            pct_no_gt,
+                            self.global_step,
+                        )
+                    # ──────────────────────────────────────────────────────────────
+
                 # 3. make experiences, calculate advantages and returns
                 # Input: prompts, 
                 # Output: update the replay_buffer which is used for training policy + critic

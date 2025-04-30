@@ -44,6 +44,38 @@ class PromptDataset:
             self.dialogues = pool.map(self.process_dialogue, dialogues, remove_half_GT_answers_from_train_dataset, allow_do_not_know)
             pool.close()
             pool.join()
+        
+        # ──────────────────────────────────────────────────────────────
+        # Sort by pass_rate_72b_tir (highest first), missing/invalid → 0.0
+        def _get_pass_rate(item):
+            # item is (prompt, extra)
+            extra = item[1]
+            raw = extra.get("pass_rate_72b_tir", 0.0)
+            try:
+                return float(raw)
+            except (TypeError, ValueError):
+                return 0.0
+
+        # now sort in-place, highest rates first; missing/invalid become 0.0 and end up last
+        self.dialogues.sort(key=_get_pass_rate, reverse=True)
+        # ──────────────────────────────────────────────────────────────
+
+        # Calculate and print average pass_rate_72b_tir
+        pass_rates = [_get_pass_rate(item) for item in self.dialogues]
+        avg_pass_rate = sum(pass_rates) / len(pass_rates) if pass_rates else 0.0
+        print(f"[PromptDataset] Average pass_rate_72b_tir after sorting {len(self.dialogues)} items: {avg_pass_rate:.4f}")
+
+        # ──────────────────────────────────────────────────────────────
+        # Calculate and print % of entries with no GT answer
+        total = len(self.dialogues)
+        no_gt_count = sum(
+            1 for _, extra in self.dialogues
+            if extra.get("answer", "") == "[NO GT ANSWER]"
+        )
+        pct_no_gt = (no_gt_count / total * 100) if total else 0.0
+        print(f"[PromptDataset] % [NO GT ANSWER] entries out of {len(self.dialogues)} items: {pct_no_gt:.2f}%")
+        # ──────────────────────────────────────────────────────────────
+
 
     def process_dialogue(self, dialogue: dict, remove_half_GT_answers_from_train_dataset=False, allow_do_not_know=False):
         prompt_template = ""

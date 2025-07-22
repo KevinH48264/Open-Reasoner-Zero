@@ -91,7 +91,7 @@ Approach to install dependencies
 Note: I put my current environment into requirements.txt
 
 --- HF ---
-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
+REDACTED
 
 --- OPENAI API KEY ---
-"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"
+REDACTED

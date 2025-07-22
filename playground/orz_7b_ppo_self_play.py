@@ -54,17 +54,18 @@ class PPOExpConfig(BasePPOExpConfig):
     use_orm_score: bool = False
 
     # configs
-    version = "v1668" # TODO: update this!
+    version = "v1680" # TODO: update this!
     pretrain: Optional[str] = "Qwen/Qwen2.5-7B" #"/vc_data_blob/users/kevihuang/models/orz/orz_ckpt/debug_orz_7b_ppo_self_play__math__v1481__self_play_False/iter450/policy"  #"Qwen/Qwen2.5-7B" # TODO: or put your downloaded model path here!
     train_policy_w_ground_truth_not_evaluator = False # flag to train policy responses against ground truth signal when we have ground truth, still train evaluator network but reserve evaluator network only when we do not have ground truth signal. Set to False to just train policy with the policy evaluator's scores
     remove_half_GT_answers_from_train_dataset = True #True # if True, will remove half of the ground truth answers from the training dataset to encourage the model to learn from the policy evaluator's scores instead of just copying the GT answers. Set to False to keep all GT answers for training.
     set_unpaired_to_draw = False # unpaired wins and loses just turn into draws (reward=0.5)
+    set_unpaired_to_zero_if_incorrect_shortest_wins_if_correct = True # unpaired wins and loses are set to 0.0 if incorrect, and the shortest response is set to 1.0 if correct
 
 
     # ARCHIVE CONFIGS
     self_play = False
     use_policy_evaluator = True #True # trains a policy evaluator with exact match to evaluate the policy assistant's responses, otherwise use exact match to evaluate policy assistant's responses
-    train_policy_evaluator = True # whether to train policy evaluator network or not
+    train_policy_evaluator = False # whether to train policy evaluator network or not
     policy_evaluator_iscorrect_match_rewards = True # reward for policy evaluator is exact rule based reward matching iscorrect. otherwise, uses judge for semantic match
     allow_do_not_know = False # allow the model to output "I don't know" in the policy evaluator, this is useful for cases where the model cannot self-verify
     replace_half_incorrect_with_do_not_know = False
@@ -80,7 +81,7 @@ class PPOExpConfig(BasePPOExpConfig):
     curriculum_data_enabled = True
     exclude_no_GT_questions_from_train_dataset = False # not necessary when answering the question: when adding in no-GT questions, does our eval performance increase or decrease
     balance_evaluator_prompt_gt_iscorrect = True
-    policy_evaluator_balance_gt_iscorrect_experiences = False # NECESSARY: best practice to not have the policy evaluator overfit to yes/no given we're training against policy performance that starts off "no" 100% -> "yes" 100%. Ideally it's always 50/50 "no" and "yes". Actually might not be necessary if we have the half win half lose per prompt for evaluator = True which we really should have.
+    use_semantic_grader_reward = False # use exact match
     goal = "math" # {"math", "countdown"}
     user_goal_verbatim = "Get really good at math." # {"Get really good at math.", "Get really good at the Countdown Game with 3 to 4 numbers. The Countdown game is a numbers puzzle where players use a set of randomly drawn numbers and basic arithmetic operations (+, -, *, /) to reach a target number."}
 
@@ -129,8 +130,8 @@ class PPOExpConfig(BasePPOExpConfig):
         zero_stage: int = 3
 
         num_episodes: int = 20
-        rollout_batch_size: int = 64 if not DEBUG_MODE else 8 #32 #16 #8 #8 #8 #4 #4 #16
-        n_samples_per_prompt: int = 64 if not DEBUG_MODE else 8 #32 #16 #8 #8 #8 #4 #4 #8 #2
+        rollout_batch_size: int = 64 if not DEBUG_MODE else 16 #32 #16 #8 #8 #8 #4 #4 #16
+        n_samples_per_prompt: int = 64 if not DEBUG_MODE else 16 #32 #16 #8 #8 #8 #4 #4 #8 #2
         n_policy_evaluator_samples_per_policy_response: int = 3 #9 #4 #4 # sample policy evaluator responses to evaluate the correctness of the policy assistant's response
         micro_rollout_batch_size: int = 128 if not DEBUG_MODE else 128
 
@@ -173,7 +174,8 @@ class PPOExpConfig(BasePPOExpConfig):
                     # "data/orz_math_57k_collected_w_num_correct.json" # with num_correct = [0, 1] being the hardest 50% of questions
                     # "/vc_data_blob/users/kevihuang/data/orz/deepmath_103k.json"
                     # "/vc_data_blob/users/kevihuang/data/orz/openmathreasoning__cot__has_answer_extracted_only.json"
-                    "/vc_data_blob/users/kevihuang/data/orz/openmathreasoning__cot__has_answer_extracted_only__no_na__no_zero_pass_random_3K.json"
+                    # "/vc_data_blob/users/kevihuang/data/orz/openmathreasoning__cot__has_answer_extracted_only__no_na__no_zero_pass_random_3K.json"
+                    "/vc_data_blob/users/kevihuang/data/orz/openmathreasoning__cot__has_answer_extracted_only__no_na__no_zero_pass__ans_int__random_3K.json"
                     # "/vc_data_blob/users/kevihuang/data/orz/openmathreasoning__cot__has_answer_extracted_only__no_na__no_zero_pass.json" # 106K, all passable by Qwen-72B
                 ])
 
@@ -275,23 +277,36 @@ def repeatness(s: str):
 
     return cnt * 2 / (n * (n + 1))
 
-def build_judge_prompt(question: str, response: str, correct: str) -> str:
-    return f'''Judge whether the following [extracted_final_answer] is correct or not based on the precise and unambiguous [correct_answer] below.
+def build_judge_prompt(question: str, response: str, correct: str, full_response: str) -> str:
+#     return f'''Judge whether the following [extracted_final_answer] is correct or not based on the precise and unambiguous [correct_answer] below.
 
-[extracted_final_answer]: {response}
+# [extracted_final_answer]: {response}
 
-[correct_answer]: {correct}
+# [correct_answer]: {correct}
 
-Your judgement must be in the format and criteria specified below:
-<think>
-reasoning: Explain why the extracted_final_answer is correct or incorrect based on [correct_answer], focusing only on if there are meaningful differences between [correct_answer] and the extracted_final_answer. Do not comment on any background to the problem, do not attempt to solve the problem, do not argue for any answer different than [correct_answer], focus only on whether the answers match.
+# Your judgement must be in the format and criteria specified below:
+# <think>
+# reasoning: Explain why the extracted_final_answer is correct or incorrect based on [correct_answer], focusing only on if there are meaningful differences between [correct_answer] and the extracted_final_answer. Do not comment on any background to the problem, do not attempt to solve the problem, do not argue for any answer different than [correct_answer], focus only on whether the answers match.
 
-correct: Answer 'yes' if extracted_final_answer matches the[correct_answer] given above, or is within a small margin of error for
-numerical problems. Answer 'no' otherwise, i.e. if there is any inconsistency, ambiguity, non-equivalency, or if the extracted answer is incorrect.
-</think>
-<answer> yes or no </answer>
+# correct: Answer 'yes' if extracted_final_answer matches the[correct_answer] given above, or is within a small margin of error for
+# numerical problems. Answer 'no' otherwise, i.e. if there is any inconsistency, ambiguity, non-equivalency, or if the extracted answer is incorrect.
+# </think>
+# <answer> yes or no </answer>
 
-Response: <think>\n'''
+# Response: <think>\n'''
+    return rf'''You are a math teacher. Grade the Solution, verifying correctness step by step. Use Expected Answer to find any erroneous step in the Solution.
+
+Question: "{question}"
+
+Solution: "<think>{full_response}"
+
+Expected Answer: "{correct}"
+
+Please output your Solution verification in the following format:
+<think> Your Solution verification here </think>
+<answer> Yes or No </answer>
+
+Math Teacher Response: <think>\n'''
 
 def parse_judge_reply(txt: str) -> bool | None:
     m = re.search(r"<answer>(.*?)</answer>", txt, re.DOTALL)
@@ -343,11 +358,14 @@ class CustomRewardTrainer(RayPPOTrainer):
             responses.append(output["response"])
         output_tokens = self._tokenize(responses, self.cfg.generate_max_len, padding=False)["input_ids"]
 
+        policy_log = f"prompts: {prompts[0]}\n\nexpected_answer: {extras[0]['target']}\n\noutputs: {outputs[0]['response']}\n\nfinal_answer: {outputs[0]['final_answer']}\n\nis_correct: {outputs[0]['iscorrect']}\n\nstop_reason: {outputs[0]['stop_reason']}\n\nresponse_token: {len(output_tokens[0])}\n\nequal_result: {outputs[0]['iscorrect']}"
         self.writer.add_text(
             "generated_raws",
-            f"prompts: {prompts[0]}\n\noutputs: {outputs[0]['response']}\n\nfinal_answer: {outputs[0]['final_answer']}\n\nis_correct: {outputs[0]['iscorrect']}\n\nstop_reason: {outputs[0]['stop_reason']}\n\nresponse_token: {len(output_tokens[0])}",
+            policy_log,
             self.global_step,
         )
+        logger.info(f"[STEP {self.global_step}] [custom_reward_fn generated_raws policy_log]: {policy_log}")
+
         for idx in range(len(outputs)):
             prompt, output, out_token = prompts[idx], outputs[idx], output_tokens[idx]
             rep_score, reflection_pattern_score = repeat_scores[idx], reflection_pattern_scores[idx]
@@ -599,6 +617,7 @@ Math Teacher Response: <think>\n'''
             # --- Step 3: Build RF-Eval prompts (n_samples per policy output) ---
             rf_eval_prompts = []
             rf_policy_indices = []  # keep track of the policy index for each RF prompt
+            rf_eval_prompt_to_policy_response_map = {}
             for i, (prompt, output, extra) in enumerate(zip(prompts, outputs, extras)):
                 for sample_idx in range(n_samples):
                     rf_prompt = rf'''You are a math teacher. Grade the Solution, verifying correctness step by step.
@@ -615,6 +634,7 @@ Math Teacher Response: <think>\n'''
 
                     rf_eval_prompts.append(rf_prompt)
                     rf_policy_indices.append(i)
+                    rf_eval_prompt_to_policy_response_map[rf_prompt] = output['response']
 
 
             rf_eval_results, _ = await gen_func(
@@ -1054,6 +1074,7 @@ Math Teacher Response: <think>'''
                             new_responses.append(resp)
                             new_score_tensors.append(draw_tensor)
                             new_rv_flags.append(flag)
+                        
 
                     # now append *all* the invalids
                     for idx in invalids_idx:
@@ -1069,221 +1090,6 @@ Math Teacher Response: <think>'''
                 evaluator_res_score_tensors = new_score_tensors
                 rf_verification_list        = new_rv_flags
 
-
-            # balance evaluator policy responses whose gt iscorrect is True and False, so that we have equal number of GT "yes" and "no" responses for the policy evaluator training
-            if self.cfg.balance_evaluator_prompt_gt_iscorrect: # Note: this assume that you are NOT training the evaluator with majority vote
-                # 1) compute draw_frac per prompt‐group
-                group_to_idxs = defaultdict(list)
-                for i, prompt in enumerate(evaluator_res_prompts):
-                    group_to_idxs[prompt].append(i)
-
-                draw_frac = {
-                    prompt: sum(1 for idx in idxs if abs(evaluator_res_score_tensors[idx][-1].item() - 0.5) < 1e-6) / len(idxs)
-                    for prompt, idxs in group_to_idxs.items()
-                }
-
-                # 2) collect unique prompts by GT label
-                true_prompts = [
-                    prompt
-                    for prompt in group_to_idxs
-                    if outputs[evaluator_prompt_policy_idxs[prompt]]["iscorrect"]
-                ]
-                false_prompts = [
-                    prompt
-                    for prompt in group_to_idxs
-                    if not outputs[evaluator_prompt_policy_idxs[prompt]]["iscorrect"]
-                ]
-
-
-                # 3) pair them with draw_frac and sort
-                # true_list = sorted(
-                #     [(p, draw_frac[p]) for p in true_prompts],
-                #     key=lambda x: x[1]
-                # )
-                # false_list = sorted(
-                #     [(p, draw_frac[p]) for p in false_prompts],
-                #     key=lambda x: x[1]
-                # )
-                true_list = sorted(
-                    [(p, len(group_to_idxs[p])) for p in true_prompts],
-                    key=lambda x: -x[1]
-                )
-                false_list = sorted(
-                    [(p, len(group_to_idxs[p])) for p in false_prompts],
-                    key=lambda x: -x[1]
-                )
-
-                # 4) pick equal number of prompts
-                n = min(len(true_list), len(false_list))
-                sel_true_prompts  = [p for p, _ in true_list[:n]]
-                sel_false_prompts = [p for p, _ in false_list[:n]]
-
-                # 5) log average draw_frac
-                avg_true_frac  = sum(fr for _, fr in true_list[:n])  / n if n else 0.0
-                avg_false_frac = sum(fr for _, fr in false_list[:n]) / n if n else 0.0
-                self.writer.add_scalar("policy_evaluator/avg_draw_frac_policy_correct",   avg_true_frac,  self.global_step)
-                self.writer.add_scalar("policy_evaluator/avg_draw_frac_policy_incorrect", avg_false_frac, self.global_step)
-
-                # 0) compute avg group-size for the top-n true/false lists
-                avg_len_true_list = (
-                    sum(count for _, count in true_list[:n]) / n
-                    if n else 0.0
-                )
-                avg_len_false_list = (
-                    sum(count for _, count in false_list[:n]) / n
-                    if n else 0.0
-                )
-                self.writer.add_scalar(
-                    "policy_evaluator/avg_len_true_list",
-                    avg_len_true_list,
-                    self.global_step
-                ) # tells us how many examples we have in this direction of + "yes", - "no"
-                self.writer.add_scalar(
-                    "policy_evaluator/avg_len_false_list",
-                    avg_len_false_list,
-                    self.global_step
-                ) # tells us how many examples we have in this direction of + "no", - "yes"
-
-                # 6) rebuild evaluator buffers to include ONLY experiences from those prompts
-                selected_prompts = set(sel_true_prompts + sel_false_prompts)
-                filtered = [
-                    (pr, resp, tensor, p_idx, vf)
-                    for pr, resp, tensor, p_idx, vf
-                    in zip(
-                        evaluator_res_prompts,
-                        evaluator_res_responses,
-                        evaluator_res_score_tensors,
-                        evaluator_res_policy_idxs,
-                        rf_verification_list,
-                    )
-                    if pr in selected_prompts
-                ]
-                if filtered:
-                    evaluator_res_prompts, evaluator_res_responses, evaluator_res_score_tensors, evaluator_res_policy_idxs, rf_verification_list = map(list, zip(*filtered))
-                else:
-                    evaluator_res_prompts = []
-                    evaluator_res_responses = []
-                    evaluator_res_score_tensors = []
-                    evaluator_res_policy_idxs = []
-                    rf_verification_list = []
-
-            # downstream: log avg_after as before
-            final_vals = [t[-1].item() for t in evaluator_res_score_tensors]
-            avg_after = float(np.mean(final_vals)) if final_vals else 0.0
-            self.writer.add_scalar(
-                "policy_evaluator/avg_score_after_balance_evaluator_prompt_gt_iscorrect",
-                avg_after,
-                self.global_step
-            )
-
-            logger.debug(f"Before balancing, len(evaluator_res_score_tensors): {len(evaluator_res_score_tensors)}")
-            # if self.cfg.policy_evaluator_balance_gt_iscorrect_experiences, go through all evaluator_res_prompts, evaluator_res_responses, evaluator_res_score_tensors tuples where evaluator_res_score_tensors has the final score_val = 1.0, and find the minimum # of rf_verification = "yes" or rf_verification = "no" and then filter out the extras of the other group to ensure that when score_val = 1.0, we have an equal number of responses where rf_verification = "yes" and rf_verificaiton = "no". Same thing for final score_val = 0.0
-            # --- Balance evaluator experiences if required ---
-            if self.cfg.policy_evaluator_balance_gt_iscorrect_experiences: # I think that balancing is best practice anyway to not train a model that just always sees "Yes" or "No", we should do this always
-                assert(len(evaluator_res_prompts) == len(evaluator_res_responses) == len(evaluator_res_score_tensors) == len(rf_verification_list))
-                
-                # Get the final score value from each evaluator score tensor.
-                final_score_vals = [t[-1].item() for t in evaluator_res_score_tensors]
-                logger.debug(f"Final score values before balancing: {final_score_vals}") # for debugging purposes, to see the distribution of final score vals
-                logger.debug(f"rf_verification_list: {rf_verification_list}") # for debugging purposes, to see the distribution of rf_verification
-                # These lists (final_score_vals, rf_verification_list, evaluator_res_prompts, etc.)
-                # should now all have the same length.
-                group_1_yes = []  # indices with score == 1.0 and rf_verification == "yes"
-                group_1_no  = []  # indices with score == 1.0 and rf_verification == "no"
-                group_0_yes = []  # indices with score == 0.0 and rf_verification == "yes"
-                group_0_no  = []  # indices with score == 0.0 and rf_verification == "no"
-                selected_indices = []  # indices to keep
-
-                for j, (score_val, rf_verif) in enumerate(zip(final_score_vals, rf_verification_list)):
-                    if score_val == -0.5:
-                        selected_indices.append(j)
-                    elif score_val == 1.0: # iscorrect == rf_verif
-                        if rf_verif == "yes":
-                            group_1_yes.append(j)
-                        elif rf_verif == "no":
-                            group_1_no.append(j)
-                    elif score_val == 0.0: # iscorrect != rf_verif
-                        if rf_verif == "yes":
-                            group_0_yes.append(j)
-                        elif rf_verif == "no":
-                            group_0_no.append(j)
-
-                logger.debug(f"group_1_yes: {len(group_1_yes)}, group_1_no: {len(group_1_no)}")
-                logger.debug(f"group_0_yes: {len(group_0_yes)}, group_0_no: {len(group_0_no)}")
-
-                # For examples with score 1.0, balance the counts between "yes" and "no".
-                min_count_overall = min(len(group_1_yes), len(group_1_no), len(group_0_yes), len(group_0_no))
-                if group_1_yes and group_1_no:
-                    min_count_1 = min_count_overall #min(len(group_1_yes), len(group_1_no))
-                    selected_1_yes = random.sample(group_1_yes, min_count_1)
-                    selected_1_no  = random.sample(group_1_no,  min_count_1)
-                else:
-                    selected_1_yes = []
-                    selected_1_no  = []
-
-                # For examples with score 0.0, balance similarly.
-                if group_0_yes and group_0_no:
-                    min_count_0 = min_count_overall #min(len(group_0_yes), len(group_0_no))
-                    selected_0_yes = random.sample(group_0_yes, min_count_0)
-                    selected_0_no  = random.sample(group_0_no,  min_count_0)
-                else:
-                    selected_0_yes = []
-                    selected_0_no  = []
-
-                # Combine the balanced indices.
-                selected_indices.extend(selected_1_yes + selected_1_no + selected_0_yes + selected_0_no)
-                selected_indices = sorted(selected_indices)
-                logger.debug(f"Selected indices after balancing: {selected_indices}") # for debugging purposes, to see which indices were selected after balancing
-
-                # Filter the evaluator arrays to only keep the balanced examples.
-                evaluator_res_prompts = [p for j, p in enumerate(evaluator_res_prompts) if j in selected_indices]
-                evaluator_res_responses = [r for j, r in enumerate(evaluator_res_responses) if j in selected_indices]
-                evaluator_res_score_tensors = [t for j, t in enumerate(evaluator_res_score_tensors) if j in selected_indices]
-
-
-                # --- Log metrics for the balanced evaluator set. ---
-                final_filtered_scores = [t[-1].item() for t in evaluator_res_score_tensors]
-                filtered_rf_verif = [rf_verification_list[j] for j in selected_indices]
-
-                # Compute metric for score == 1.0 with rf_verif == "yes"
-                group_1 = [(s, v) for s, v in zip(final_filtered_scores, filtered_rf_verif) if s == 1.0]
-                if group_1:
-                    count_1_yes = sum(1 for s, v in group_1 if v == "yes")
-                    rewards_1_yes = count_1_yes / len(group_1) * 100
-                else:
-                    rewards_1_yes = 0.5
-
-                # Compute metric for score == 0.0 with rf_verif == "yes"
-                group_0 = [(s, v) for s, v in zip(final_filtered_scores, filtered_rf_verif) if s == 0.0]
-                if group_0:
-                    count_0_yes = sum(1 for s, v in group_0 if v == "yes")
-                    rewards_0_yes = count_0_yes / len(group_0) * 100
-                else:
-                    rewards_0_yes = 0.5
-
-                # Compute metric for all examples that have score 1.0 or 0.0 (i.e. excluding -0.5).
-                group_1_or_0 = [s for s in final_filtered_scores if s in {0.0, 1.0}]
-                if final_filtered_scores:
-                    rewards_1_or_0 = len(group_1_or_0) / len(final_filtered_scores) * 100
-                else:
-                    rewards_1_or_0 = 0.0
-
-                # Additional metrics for percentage of all examples with score == 1.0 and score == 0.0.
-                if final_filtered_scores:
-                    rewards_1 = (sum(1 for s in final_filtered_scores if s == 1.0) / len(final_filtered_scores)) * 100
-                    rewards_0 = (sum(1 for s in final_filtered_scores if s == 0.0) / len(final_filtered_scores)) * 100
-                else:
-                    rewards_1 = rewards_0 = 0.0
-
-                # Log these metrics.
-                self.writer.add_scalar("policy_evaluator/rewards_1_yes", rewards_1_yes, self.global_step) # ideal: 0.5 to ensure "yes" and "no" are being equally rewarded
-                self.writer.add_scalar("policy_evaluator/rewards_0_yes", rewards_0_yes, self.global_step) # ideal: 0.5 to ensure "yes" and "no" are being equally rewarded
-                self.writer.add_scalar("policy_evaluator/rewards_1_or_0", rewards_1_or_0, self.global_step) # ideally 1.0 to focus on improving accuracy of evaluator
-                self.writer.add_scalar("policy_evaluator/rewards_1", rewards_1, self.global_step) # ensuring that at least some evaluation responses are correct as signal
-                self.writer.add_scalar("policy_evaluator/rewards_0", rewards_0, self.global_step)
-
-                logger.debug(f"After balancing, len(evaluator_res_score_tensors): {len(evaluator_res_score_tensors)}")
-                logger.debug(f"final_filtered_scores: {final_filtered_scores}") # for debugging purposes, to see the distribution of final score vals after balancing
 
             # Update policy scores based on RF evaluations if extra["answer"] == "[NO GT ANSWER]"
             if not self.cfg.train_policy_w_ground_truth_not_evaluator:
@@ -1675,10 +1481,14 @@ Math Teacher Response: <think>'''
         per_prompt_avgs = [sum(sc_list) / len(sc_list) for sc_list in batch_group_scores.values()]
 
         # 3) collect the prompts whose avg score > 0.5
+        win_threshold = 0.5
+        if self.cfg.set_unpaired_to_zero_if_incorrect_shortest_wins_if_correct:
+            win_threshold = 0.99 # all scores are 1.0 to allow for some time for the shortest program to be developed basically
+
         winners = {
             prompt
             for prompt, sc_list in batch_group_scores.items()
-            if (sum(sc_list) / len(sc_list)) > 0.5
+            if (sum(sc_list) / len(sc_list)) > win_threshold
         }
 
         # 4) log prompt win percentage
@@ -1746,6 +1556,34 @@ Math Teacher Response: <think>'''
                         res_prompts.append(prompt)
                         res_responses.append(resp)
                         res_score_tensors.append(draw_score)
+                elif self.cfg.set_unpaired_to_zero_if_incorrect_shortest_wins_if_correct:
+                    unselected_wins_idx  = [i for i in wins_idx  if i not in selected_wins_idx]
+                    unselected_loses_idx = [i for i in loses_idx if i not in selected_loses_idx]
+                    for idx in unselected_loses_idx:
+                        resp, orig_tensor, _ = group[idx]
+                        draw_score = orig_tensor.clone()
+                        draw_score[-1] = 0.0
+                        res_prompts.append(prompt)
+                        res_responses.append(resp)
+                        res_score_tensors.append(draw_score)
+
+                    # sort unselected_wins_idx by the length of the response, the shortest half of responses get score 1.0, the rest get score 0.0
+                    unselected_wins_idx.sort(key=lambda i: len(group[i][0]))
+                    half_len = len(unselected_wins_idx) // 2
+                    for idx in unselected_wins_idx[:half_len]:
+                        resp, orig_tensor, _ = group[idx]
+                        draw_score = orig_tensor.clone()
+                        draw_score[-1] = 1.0
+                        res_prompts.append(prompt)
+                        res_responses.append(resp)
+                        res_score_tensors.append(draw_score)
+                    for idx in unselected_wins_idx[half_len:]:
+                        resp, orig_tensor, _ = group[idx]
+                        draw_score = orig_tensor.clone()
+                        draw_score[-1] = 0.5
+                        res_prompts.append(prompt)
+                        res_responses.append(resp)
+                        res_score_tensors.append(draw_score)
 
                 # now append *all* the invalid (-0.5) examples
                 for idx in invalids_idx:
@@ -1763,6 +1601,75 @@ Math Teacher Response: <think>'''
                     res_prompts.append(prompt)
                     res_responses.append(response)
                     res_score_tensors.append(score_tensor)
+
+
+        # balance evaluator policy responses whose gt iscorrect is True and False, so that we have equal number of GT "yes" and "no" responses for the policy evaluator training
+        if self.cfg.balance_evaluator_prompt_gt_iscorrect: # Note: this assume that you are NOT training the evaluator with majority vote
+            # update based on rf_eval_prompt_to_policy_response_map
+            selected_prompts = set()
+            for prompt in evaluator_res_prompts:
+                if rf_eval_prompt_to_policy_response_map[prompt] in res_responses: # if the prompt is based on a selected policy response, add it
+                    selected_prompts.add(prompt)
+
+            # 6) rebuild evaluator buffers to include ONLY experiences from those prompts
+            filtered = [
+                (pr, resp, tensor, p_idx, vf)
+                for pr, resp, tensor, p_idx, vf
+                in zip(
+                    evaluator_res_prompts,
+                    evaluator_res_responses,
+                    evaluator_res_score_tensors,
+                    evaluator_res_policy_idxs,
+                    rf_verification_list,
+                )
+                if pr in selected_prompts
+            ]
+            if filtered:
+                evaluator_res_prompts, evaluator_res_responses, evaluator_res_score_tensors, evaluator_res_policy_idxs, rf_verification_list = map(list, zip(*filtered))
+            else:
+                evaluator_res_prompts = []
+                evaluator_res_responses = []
+                evaluator_res_score_tensors = []
+                evaluator_res_policy_idxs = []
+                rf_verification_list = []
+
+            # TODO: add a metric where we log the # iscorrect evaluator responses whose outputs[evaluator_prompt_policy_idxs[prompt]]["iscorrect"] =True where score = 1.0 and outputs[evaluator_prompt_policy_idxs[prompt]]["iscorrect"] = False where score = 0.0
+
+            # count how many “GT=True” cases got score==1.0
+            num_pred_true_score1 = 0
+            num_pred_false_score0 = 0
+            for i, prompt in enumerate(evaluator_res_prompts):
+                pred_is_correct = outputs[evaluator_prompt_policy_idxs[prompt]]["iscorrect"]
+                score = evaluator_res_score_tensors[i][-1].item()
+                if pred_is_correct and score == 1.0:
+                    num_pred_true_score1 += 1
+                if not pred_is_correct and score == 0.0:
+                    num_pred_false_score0 += 1
+
+            # push both counts to TensorBoard
+            self.writer.add_scalar(
+                "policy_evaluator/num_pred_true_score1",
+                num_pred_true_score1,
+                self.global_step
+            ) # this tells us if we have more or less examples that are predicting "yes" or "no"
+            self.writer.add_scalar(
+                "policy_evaluator/num_pred_false_score0",
+                num_pred_false_score0,
+                self.global_step
+            )
+
+
+        # downstream: log avg_after as before
+        final_vals = [t[-1].item() for t in evaluator_res_score_tensors]
+        avg_after = float(np.mean(final_vals)) if final_vals else 0.0
+        self.writer.add_scalar(
+            "policy_evaluator/avg_score_after_balance_evaluator_prompt_gt_iscorrect",
+            avg_after,
+            self.global_step
+        )
+
+        logger.debug(f"After balancing, len(evaluator_res_score_tensors): {len(evaluator_res_score_tensors)}")
+
 
 
         # Count the # of experiences in replay buffer because too many policy experiences --> policy mode instead of evaluating mode
@@ -1879,8 +1786,9 @@ Math Teacher Response: <think>'''
                                 .strip(),
                 response=fa,
                 correct=extra["target"],
+                full_response=full_response,
             )
-            for prompt, fa, extra in zip(prompts, final_answers, extras)
+            for prompt, fa, extra, full_response in zip(prompts, final_answers, extras, responses)
         ]
 
         # run them all with deterministic sampling
@@ -1893,18 +1801,18 @@ Math Teacher Response: <think>'''
             skip_special_tokens=False,
             include_stop_str_in_output=True,
         )
-        semantic_responses, _ = await gen_func(
-            prompts=semantic_prompts,
-            sampling_params=semantic_params,
-            use_tqdm=False,
-            truncate_prompt=True,
-        )
+        # semantic_responses, _ = await gen_func(
+        #     prompts=semantic_prompts,
+        #     sampling_params=semantic_params,
+        #     use_tqdm=False,
+        #     truncate_prompt=True,
+        # )
+        semantic_responses = ["temp"] * len(semantic_prompts)  # Placeholder for actual responses
         semantic_ok = [parse_judge_reply(txt) for txt in semantic_responses]
 
         # now compute "equal_results", using semantic when available, else is_equal()
         async def resolve_correct(idx, extra, final):
-            if semantic_ok[idx] is None:
-                # fallback to exact‐match
+            if semantic_ok[idx] is None or self.cfg.use_semantic_grader_reward == False:
                 return await is_equal(
                     solution2answer(str(extra["target"])),
                     solution2answer(final),
@@ -1916,6 +1824,13 @@ Math Teacher Response: <think>'''
             resolve_correct(i, e, fa)
             for i, (e, fa) in enumerate(zip(extras, final_answers))
         ])
+
+        # log the % of examples where the equal_results match semantic_ok. This measures how good our semantic grader is
+        assert len(equal_results) == len(semantic_ok), "equal_results and semantic_ok must be same length"
+        total = len(equal_results)
+        matches = sum(1 for eq, sem in zip(equal_results, semantic_ok) if eq == sem)
+        pct_match = matches / total * 100 if total else 0.0
+        self.writer.add_scalar("policy/exact_semantic_grader_match", pct_match, self.global_step)
 
         # --- Log average True rate in equal_results ---
         num_true = sum(1 for x in equal_results if x)
@@ -1944,8 +1859,8 @@ Math Teacher Response: <think>'''
         # equal_results = await asyncio.gather(*equal_tasks)
 
         results = []
-        for extra, response, final_answer, stop_reason, iscorrect in zip(
-            extras, responses, final_answers, stop_reasons, equal_results
+        for extra, response, final_answer, stop_reason, iscorrect, semantic_prompt, semantic_response, semantic_result in zip(
+            extras, responses, final_answers, stop_reasons, equal_results, semantic_prompts, semantic_responses, semantic_ok
         ):
 
             # because "I don't know" is not in the prior, we will set the cases where iscorrect = false to "I don't know"
@@ -1961,7 +1876,10 @@ Math Teacher Response: <think>'''
                     iscorrect=iscorrect,
                     stop_reason=stop_reason,
                     final_answer=final_answer,
-                    extra=extra
+                    extra=extra,
+                    semantic_prompt=semantic_prompt,
+                    semantic_response=semantic_response,
+                    semantic_result=semantic_result,
                 )
             )
     
@@ -2024,8 +1942,7 @@ Math Teacher Response: <think>'''
             # –– NEW: build and run semantic‐judge prompts on each sample ––
             logger.info("Building semantic judge prompts")
             semantic_prompts = []
-            for prompt, final, gold in zip(prompts, final_answers, answers):
-                # adapt your example’s build_judge_prompt signature
+            for prompt, final, gold, full_response in zip(prompts, final_answers, answers, outputs):
                 semantic_prompts.append(
                     build_judge_prompt(
                     question=prompt.split("This is the problem:",1)[-1]
@@ -2033,6 +1950,7 @@ Math Teacher Response: <think>'''
                                     .strip(),
                     response=final,
                     correct=gold,
+                    full_response=full_response
                     )
                 )
 

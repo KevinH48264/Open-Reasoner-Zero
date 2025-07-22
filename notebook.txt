@@ -21,6 +21,8 @@ DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%
 self_play=False
 DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_22__orz_7b__math_debug_run_v1445__nodes_1__self_play_false.txt &
 
+DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_19__orz_7b__math_debug_run_v1679__nodes_1__self_play_false.txt &
+
 DEBUG_MODE=True python -m playground.orz_7b_ppo &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_7b_debug_run_v104__nodes_1__self_play_false.txt &
 
 TRAIN ON 1 NODE
@@ -32,7 +34,7 @@ first on master node, run: 'ray start --head'
 then on other nodes, run: 'ray start --address='10.4.34.79:6379''
 then on master node, run: 'python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_ckpt_v200__nodes_4__self_play_false.txt &'
 
-DEBUG_MODE=True python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_27__orz_32b__math_debug_run_v1430__nodes_4__self_play_false.txt &
+python -m playground.orz_7b_ppo_self_play &> logs/log_$(date +'%Y-%m-%d_%H-%M-%S')__test_crimson_tree_21__orz_7b__math_debug_run_v1678__nodes_1__self_play_false.txt &
 
 
 ON OTHER NODES:
@@ -43,7 +45,7 @@ cd /data/users/kevihuang/projects/TNLGv2
 
 cd /data/users/kevihuang/projects/Open-Reasoner-Zero
 source venv/bin/activate
-ray start --address='10.4.35.183:6379'
+ray start --address='10.4.33.126:6379'
 
 (to restart GPUs, you must restart ray) - ray stop
 
@@ -87,3 +89,9 @@ Approach to install dependencies
 13. pip install flash-attn==2.7.4.post1 --no-build-isolation --force-reinstall
 14. Repeat from step 3 and it seems to have worked? Not sure
 Note: I put my current environment into requirements.txt
+
+--- HF ---
+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
+
+--- OPENAI API KEY ---
+"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"
